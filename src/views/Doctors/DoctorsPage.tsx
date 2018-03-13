@@ -1,6 +1,6 @@
 import * as React from "react";
 import Header from "../Header";
-import '../../styles/Doctors.css'
+import '../../styles/DoctorsPage.css'
 import {employees} from "../../data/doctor";
 import {CardView} from "./CardView";
 
@@ -19,7 +19,7 @@ export default class DoctorsPage extends React.Component<any,any> {
                 <div>
                     <div className='row'>
                         <div className='col-12'>
-                            <div className= 'header' key={index}>{specialty}</div>
+                            <div className= 'header border border-dark' key={index}>{specialty}</div>
                         </div>
                     </div>
                     <div className='card-deck'>

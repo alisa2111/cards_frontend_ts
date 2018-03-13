@@ -34,7 +34,7 @@
     color : #082567 !important;
 }
 .headerInfo{
-    margin-top: 250px;
+    margin-top: 200px;
     text-align: center;
     font-family: Gabriola, cursive;
     font-size: 50px;
@@ -44,6 +44,7 @@
     width: 300px;
     height: 300px;
     margin: 30px 0 0 25%;
+    box-shadow: 8px 8px 10px gray;
 }
 .text{
     text-align: center;
@@ -54,7 +55,7 @@
 }
 .textInfo{
     text-align: center;
-    margin: 10px 10% 0 10%;
+    margin: 0px 10% 0 10%;
     font-family: Gabriola, cursive;
     font-size: 30px;
     color: #082567 !important;
