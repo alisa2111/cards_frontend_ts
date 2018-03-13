@@ -1,7 +1,7 @@
 import * as e1 from '../../src/images/e1.jpg';
 import * as e2 from '../../src/images/e2.jpg';
 import * as e3 from '../../src/images/e3.jpg';
-
+import * as image from '../../src/images/g.jpg';
 export let employees = [
     {
         specialty:'Эндокринология',
@@ -54,3 +54,4 @@ export let employees = [
         text:'Педиатрия'
     }
 ];
+export let img_doctor =  image;

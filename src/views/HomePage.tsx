@@ -1,6 +1,7 @@
 import * as React from "react";
 import "../styles/HomePage.css"
 import Header from "./Header";
+import {img_doctor} from "../data/doctor";
 export default class HomePage extends React.Component<any,any> {
     render(){
         return(
@@ -41,7 +42,7 @@ export default class HomePage extends React.Component<any,any> {
                     {/*about doctor*/}
                     <div className="col-4 border-left border-secondary">
                         <h3 className="headerHomePage">Информация о глав враче</h3>
-                        <img src='../../src/images/g.jpg' alt='doctor_photo' className="rounded-circle"/>
+                        <img src={img_doctor} alt='doctor_photo' className="rounded-circle"/>
                         <p className='text'>
                             В траве сидел кузнечик
                             в траве сидел кузнечик
