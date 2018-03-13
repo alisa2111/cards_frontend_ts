@@ -1,0 +1,27 @@
+.header{
+    text-align: center;
+    margin: 30px auto 0 auto;
+    font-family: Gabriola, cursive;
+    font-size: 50px;
+    color: #082567 !important;
+}
+.card-img-top{
+    height: 300px;
+}
+.card-deck{
+    width: 50%;
+    margin: 30px auto 0 auto;
+}
+.card-text{
+    font-family: Gabriola, cursive;
+    font-size: 30px;
+    color: #082567 !important;
+}
+.card border{
+    width: 100px;
+    height: 100px;
+}
+.card-deck .card{
+    margin-bottom: 25px;
+    width: 300px;
+}
