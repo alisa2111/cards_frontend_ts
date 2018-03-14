@@ -32,7 +32,7 @@ export default class DoctorsPage extends React.Component<any,any> {
         });
         return(
             <div className="container-fluid">
-                <Header head = 'Наши специалисты' flag = 'true'/>
+                <Header onLogin={this.props.onLogin}  user = {this.props.user}/>
                 {groups}
             </div>
         )

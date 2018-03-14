@@ -5,8 +5,13 @@
   "dependencies": {
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "latest",
     "react-scripts-ts": "2.13.0",
-    "react-router-dom": "latest"
+    "redux": "latest",
+    "redux-thunk": "latest",
+    "redux-logger": "latest",
+    "redux-actions": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",
@@ -19,7 +24,10 @@
     "@types/node": "^9.4.7",
     "@types/react": "^16.0.40",
     "@types/react-dom": "^16.0.4",
+    "@types/react-redux": "^5.0.15",
     "@types/react-router-dom": "^4.2.4",
+    "@types/redux-actions": "^2.2.4",
+    "@types/redux-logger": "^3.0.5",
     "typescript": "^2.7.2"
   }
 }

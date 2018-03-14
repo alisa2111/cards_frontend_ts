@@ -2,11 +2,16 @@ import * as React from "react";
 import "../styles/HomePage.css"
 import Header from "./Header";
 import {img_doctor} from "../data/doctor";
-export default class HomePage extends React.Component<any,any> {
+import {User} from "../models/User";
+interface Props{
+    user?: User
+    onLogin: (user: User) => void
+}
+export default class HomePage extends React.Component<Props,any> {
     render(){
         return(
             <div className="container-fluid">
-                <Header head = 'Добро пожаловать' flag = 'false'/>
+                <Header onLogin={this.props.onLogin}  user = {this.props.user}/>
                 {/*page body*/}
                 <div className="row">
                     {/*information*/}

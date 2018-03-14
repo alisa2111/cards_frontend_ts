@@ -1,7 +1,32 @@
 import * as React from "react";
 import '../styles/HomePage.css'
 import '../styles/AuthDialog.css'
-export default class AuthDialog extends React.Component<any,any> {
+import {User} from "../models/User";
+interface Props{
+    user?: User
+    onLogin: (user: User) => void
+}
+export default class AuthDialog extends React.Component<Props,any> {
+    constructor(props:any) {
+        super(props);
+        this.state = {
+            email: '',
+            role:''
+        };
+    }
+
+    setEmail(e: any) {
+        this.setState({
+            email: e.target.value
+        })
+    }
+
+    login() {
+        let {email} = this.state;
+        const user = new User(email, 'doctor');
+        console.log(user.role);
+    }
+
     render(){
         return(
             <div>
@@ -17,13 +42,13 @@ export default class AuthDialog extends React.Component<any,any> {
                             </div>
                             <div className="modal-body">
                                 <div className="login-page">
-                                    <input type="text" placeholder="username"/>
+                                    <input type="text" placeholder="username" onKeyUp={(e) => this.setEmail(e)}/>
                                     <input type="password" placeholder="password"/>
                                 </div>
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary " data-dismiss="modal">Закрыть</button>
-                                <button type="button" className="btn btn-primary ">Войти</button>
+                                <button type="button" className="btn btn-primary " onClick={()=>this.login()}>Войти</button>
                             </div>
                         </div>
                     </div>
