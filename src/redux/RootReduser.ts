@@ -14,6 +14,7 @@ const UsersReducer = handleActions<UserActionState, UserActionData>({
     [LOGIN_SET]: (currentState: UserActionState, action: Action<User>): UserActionState => {
         const u = action.payload || initialUserState; //copy current state
         const newUser = new User(u.email, u.role);
+        newUser.isSignedIn = u.isSignedIn;
         return newUser
     },
 
