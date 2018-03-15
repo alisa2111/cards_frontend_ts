@@ -22,7 +22,7 @@ export default class Header extends React.Component<Props,any> {
                         <div className="navbar-text">{head}</div>
                         {search?<Search/>:null}
                         {links_before_auth? <LinksBefore onLogin = {onLogin} user = {user}/>:null}
-                        {links_after_auth? <LinksAfter/>:null}
+                        {links_after_auth? <LinksAfter onLogin = {onLogin} user = {user}/>:null}
                     </nav>
                 </div>
             </div>
@@ -57,11 +57,18 @@ const LinksBefore = (props:any) => {
     )
 };
 
-const LinksAfter = () => {
+const LinksAfter = (props:any) => {
+    const {onLogin , user} = props;
+    function exit(){
+        if (user) {
+            user.isSignedIn = false;
+            onLogin(user);
+        }
+    }
     return (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
-                <Link to={`/Logout`} className="nav-link ">Выйти</Link>
+                <button type="button" className='btnSign' onClick={() => exit()}>Выйти</button>
             </li>
         </ul>
     )

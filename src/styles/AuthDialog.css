@@ -9,7 +9,7 @@ input {
     padding: 15px;
     box-sizing: border-box;
 }
-.btnSignIn{
+.btnSign{
     background-color: #082567;
     font-family: Gabriola, cursive;
     color : white !important;
@@ -17,7 +17,7 @@ input {
     margin: 7px 5px 0 10px;
     border: navy;
 }
-.btnSignIn:hover{
+.btnSign:hover{
     color : #ffe87d !important;
 }
 .modal-title{

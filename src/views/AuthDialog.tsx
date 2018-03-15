@@ -24,7 +24,7 @@ export default class AuthDialog extends React.Component<Props,any> {
     login() {
         const {onLogin } = this.props;
         let {email} = this.state;
-        const user = new User(email, 'Doctor');
+        const user = new User(email, 'Admin');
         user.isSignedIn = true;
         onLogin(user);
     }
@@ -32,7 +32,7 @@ export default class AuthDialog extends React.Component<Props,any> {
     render(){
         return(
             <div>
-                <button type="button" className='btnSignIn' data-toggle="modal" data-target="#exampleModalCenter"> Войти</button>
+                <button type="button" className='btnSign' data-toggle="modal" data-target="#exampleModalCenter"> Войти</button>
                 <div className="modal fade" id="exampleModalCenter" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                     <div className="modal-dialog modal-dialog-centered" role="document">
                         <div className="modal-content">

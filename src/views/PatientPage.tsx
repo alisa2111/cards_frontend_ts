@@ -8,10 +8,10 @@ interface Props{
 }
 export default class PatientPage extends React.Component<Props,any> {
     render(){
-        const {onLogin} = this.props;
+        const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} links_after_auth={true}/>
+                <Header onLogin={onLogin} user = {user} links_after_auth={true}/>
                 <h1>PatientPage!</h1>
             </div>
         )

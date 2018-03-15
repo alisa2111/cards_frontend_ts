@@ -19,23 +19,23 @@ interface Props{
 export default class AppRouter extends React.Component<Props> {
     render(){
         const {onLogin , user} = this.props;
-        if( user && user.role==='Doctor' ) {
+        if( user && user.isSignedIn && user.role==='Doctor' ) {
            return(
                <BrowserRouter>
                    <Switch>
                        <div>
                            <Redirect exact={true} to='/DoctorPage'/>
-                           <Route exact={true} path='/DoctorPage' render={() => <DoctorPage onLogin={onLogin}/>}/>
+                           <Route exact={true} path='/DoctorPage' render={() => <DoctorPage onLogin={onLogin} user = {user}/>}/>
                            <Route exact={true} path='/Doctor/DoctorTest' render={() => <DoctorTest/>}/>
                            <Route exact={true} path='/Doctor/TestDoctor' render={() => <TestDoctor/>}/>
-                           <Route exact={true} path='/' render={() => <DoctorPage onLogin={onLogin}/>}/>
+                           <Route exact={true} path='/' render={() => <DoctorPage onLogin={onLogin} user = {user}/>}/>
                        </div>
                    </Switch>
                </BrowserRouter>
            )
         }
 
-        if( user && user.role==='Patient' ) {
+        if( user &&  user.isSignedIn && user.role==='Patient' ) {
             return(
                 <BrowserRouter>
                     <Switch>
@@ -49,16 +49,16 @@ export default class AppRouter extends React.Component<Props> {
             )
         }
 
-        if( user && user.role==='Admin' ) {
+        if( user &&  user.isSignedIn && user.role==='Admin' ) {
             return (
                 <BrowserRouter>
                     <Switch>
                         <div>
                             <Redirect exact={true}  to='/AdminPage'/>
-                            <Route exact={true} path='/AdminPage' render={() => <AdminPage onLogin={onLogin}/>}/>
+                            <Route exact={true} path='/AdminPage' render={() => <AdminPage onLogin={onLogin}user = {user}/>}/>
                             <Route exact={true} path='/Admin/AdminTest' render={() => <AdminTest/>}/>
                             <Route exact={true} path='/Admin/TestAdmin' render={() => <TestAdmin/>}/>
-                            <Route exact={true} path='/' render={() => <AdminPage onLogin={onLogin}/>}/>
+                            <Route exact={true} path='/' render={() => <AdminPage onLogin={onLogin} user = {user}/>}/>
                         </div>
                     </Switch>
                 </BrowserRouter>
