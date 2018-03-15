@@ -3,11 +3,14 @@ import "../styles/HomePage.css"
 import Header from "./Header";
 import {img_doctor} from "../data/doctor";
 import {User} from "../models/User";
+import Registration from "./RegistrationView";
+
 interface Props{
     user?: User
     onLogin: (user: User) => void
 }
 export default class HomePage extends React.Component<Props,any> {
+
     render(){
         const {onLogin , user} = this.props;
         return(
@@ -25,6 +28,8 @@ export default class HomePage extends React.Component<Props,any> {
                             Назначенное лечение и рекоммендации врача вы всегда сможете просмотреть в вашей электронной карточке в режиме онлайн.
                             Добро пожаловать!
                         </p>
+                        <button type="button" className="btnSignUp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Отправить заявку для регистрации</button>
+                        <Registration/>
                     </div>
 
                     {/*about doctor*/}

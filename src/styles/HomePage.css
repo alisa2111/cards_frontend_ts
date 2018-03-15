@@ -34,7 +34,7 @@
     color : #082567 !important;
 }
 .headerInfo{
-    margin-top: 200px;
+    margin-top: 180px;
     text-align: center;
     font-family: Gabriola, cursive;
     font-size: 50px;
@@ -59,6 +59,17 @@
     font-family: Gabriola, cursive;
     font-size: 30px;
     color: #082567 !important;
+}
+.btnSignUp{
+    margin: 40px 0 0 30%;
+    font-family: Gabriola, cursive;
+    border-radius: 15%;
+    font-size: 30px;
+    box-shadow: 8px 8px 10px gray;
+    color: #f2f2f2;
+    background-color: #082567;
+    height: 70px;
+    width: 40%;
 }
 .container-fluid{
     background-image: url("../../src/images/homeBack.jpg");

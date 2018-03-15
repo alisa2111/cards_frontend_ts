@@ -44,8 +44,8 @@ export default class AuthDialog extends React.Component<Props,any> {
                             </div>
                             <div className="modal-body">
                                 <div className="login-page">
-                                    <input type="text" placeholder="username" onKeyUp={(e) => this.setEmail(e)}/>
-                                    <input type="password" placeholder="password"/>
+                                    <input type="text" placeholder="E-mail" onKeyUp={(e) => this.setEmail(e)}/>
+                                    <input type="password" placeholder="Password"/>
                                 </div>
                             </div>
                             <div className="modal-footer">
