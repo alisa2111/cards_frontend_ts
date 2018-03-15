@@ -1,5 +1,5 @@
 import * as React from 'react';
-import AppRouter from './routing/AppRouter';
+import AppRouter from './views/AppRouter';
 import {Component} from "react";
 import {User} from "./models/User";
 import {AppState} from "./redux/AppState";

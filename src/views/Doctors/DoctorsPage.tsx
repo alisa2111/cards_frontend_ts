@@ -13,6 +13,7 @@ export default class DoctorsPage extends React.Component<any,any> {
     };
 
     render(){
+        const {onLogin , user} = this.props;
         const groupedCards = this.groupBy(employees , 'specialty');  //groped by specialty
         const groups = Object.keys(groupedCards).map((specialty,index) => {
             return(
@@ -32,7 +33,7 @@ export default class DoctorsPage extends React.Component<any,any> {
         });
         return(
             <div className="container-fluid">
-                <Header onLogin={this.props.onLogin}  user = {this.props.user} head = 'Наши специалисты' flag = {true}/>
+                <Header onLogin={onLogin}  user = {user} head = 'Наши специалисты' search_flag = {true} links_before_auth={true} links_after_auth={false}/>
                 {groups}
             </div>
         )

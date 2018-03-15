@@ -7,6 +7,8 @@ interface Props{
     onLogin: (user: User) => void
     head?: string
     search_flag:boolean
+    links_before_auth:boolean
+    links_after_auth:boolean
 }
 export default class Header extends React.Component<Props,any> {
 
@@ -24,6 +26,37 @@ export default class Header extends React.Component<Props,any> {
             return null
     }
 
+    links_before_auth(flag:boolean){
+       if(flag === true){
+           return(
+               <ul className="navbar-nav ml-auto">
+                   <li className="nav-item">
+                       <Link to={`/Doctors`} className="nav-link border-right ">Наши специалисты</Link>
+                   </li>
+                   <li className="nav-item">
+                       <AuthDialog onLogin={this.props.onLogin}  user = {this.props.user}/>
+                   </li>
+               </ul>
+           )
+       }
+       else
+           return null
+    }
+
+    links_after_auth(flag:boolean){
+        if(flag === true){
+            return(
+                <ul className="navbar-nav ml-auto">
+                    <li className="nav-item">
+                        <Link to={`/Logout`} className="nav-link ">Выйти</Link>
+                    </li>
+                </ul>
+            )
+        }
+        else
+            return null
+    }
+
     render(){
         return(
             <div className="row">
@@ -32,14 +65,8 @@ export default class Header extends React.Component<Props,any> {
                         <Link to={`/`} className="navbar-brand mb-0 h1">MedicalCards</Link>
                         <div className="navbar-text">{this.props.head}</div>
                         {this.search(this.props.search_flag)}
-                        <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link to={`/Doctors`} className="nav-link border-right ">Наши специалисты</Link>
-                            </li>
-                            <li className="nav-item">
-                                <AuthDialog onLogin={this.props.onLogin}  user = {this.props.user}/>
-                            </li>
-                        </ul>
+                        {this.links_before_auth(this.props.links_before_auth)}
+                        {this.links_after_auth(this.props.links_after_auth)}
                     </nav>
                 </div>
             </div>

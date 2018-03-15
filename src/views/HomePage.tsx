@@ -9,9 +9,10 @@ interface Props{
 }
 export default class HomePage extends React.Component<Props,any> {
     render(){
+        const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={this.props.onLogin}  user = {this.props.user} head = 'Добро пожаловать!' flag = {false}/>
+                <Header onLogin={onLogin}  user = {user} head = 'Добро пожаловать!' search_flag = {false} links_before_auth={true} links_after_auth={false}/>
                 {/*page body*/}
                 <div className="row">
                     {/*information*/}
