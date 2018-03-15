@@ -12,13 +12,15 @@ interface Props {
 }
 class App extends Component<Props , any> {
     handleLogin(user: User){
-        this.props.changeLogin(user)
+        const {changeLogin} = this.props;
+        changeLogin(user)
     }
     render() {
+        const {user} = this.props;
         return (
             <div className="App">
                 <AppRouter
-                    user={this.props.user}
+                    user={user}
                     onLogin={(user: User) => this.handleLogin(user)}
                 />
             </div>

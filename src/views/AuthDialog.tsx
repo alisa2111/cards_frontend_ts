@@ -22,10 +22,11 @@ export default class AuthDialog extends React.Component<Props,any> {
     }
 
     login() {
+        const {onLogin } = this.props;
         let {email} = this.state;
         const user = new User(email, 'Doctor');
         user.isSignedIn = true;
-        this.props.onLogin(user);
+        onLogin(user);
     }
 
     render(){

@@ -13,15 +13,16 @@ interface Props{
 export default class Header extends React.Component<Props,any> {
 
     render(){
+        const {onLogin , head , user , search , links_after_auth , links_before_auth} = this.props;
         return(
             <div className="row">
                 <div className="col-lg-12">
                     <nav className="navbar navbar-expand-lg navbar-dark nav-width">
                         <Link to={`/`} className="navbar-brand mb-0 h1">MedicalCards</Link>
-                        <div className="navbar-text">{this.props.head}</div>
-                        {this.props.search?<Search/>:null}
-                        {this.props.links_before_auth? <LinksBefore onLogin = {this.props.onLogin} user = {this.props.user}/>:null}
-                        {this.props.links_after_auth? <LinksAfter/>:null}
+                        <div className="navbar-text">{head}</div>
+                        {search?<Search/>:null}
+                        {links_before_auth? <LinksBefore onLogin = {onLogin} user = {user}/>:null}
+                        {links_after_auth? <LinksAfter/>:null}
                     </nav>
                 </div>
             </div>
@@ -43,13 +44,14 @@ const Search = () => {
 };
 
 const LinksBefore = (props:any) => {
+    const {onLogin , user} = props;
     return (
         <ul className="navbar-nav ml-auto">
             <li className="nav-item">
                 <Link to={`/Doctors`} className="nav-link border-right ">Наши специалисты</Link>
             </li>
             <li className="nav-item">
-                <AuthDialog onLogin={props.onLogin}  user = {props.user}/>
+                <AuthDialog onLogin={onLogin}  user = {user}/>
             </li>
         </ul>
     )
