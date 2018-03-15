@@ -11,14 +11,18 @@ export default class HomePage extends React.Component<Props,any> {
     render(){
         return(
             <div className="container-fluid">
-                <Header onLogin={this.props.onLogin}  user = {this.props.user}/>
+                <Header onLogin={this.props.onLogin}  user = {this.props.user} head = 'Добро пожаловать!' flag = {false}/>
                 {/*page body*/}
                 <div className="row">
                     {/*information*/}
                     <div className="col-8">
                         <h3 className="headerInfo">Информация о сайте</h3>
                         <p className='textInfo'>
-                         Может быть здесь будут лучше отзывы? Потому что я не могу придумать нормальное описание сайта
+                       После регистрации вы получите возможность завести электронную медицинскую карточку.
+                            Вы сможете выбрать себе любого из наших специалистов и добавить к себе в профиль, после этого , выбранный вами врач получит доступ
+                            к вашей карточке и сможет оставлять там свои записи, назначать лечение.
+                            Назначенное лечение и рекоммендации врача вы всегда сможете просмотреть в вашей электронной карточке в режиме онлайн.
+                            Добро пожаловать!
                         </p>
                     </div>
 

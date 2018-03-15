@@ -4,8 +4,7 @@
     font-family: Gabriola, cursive;
     font-size: 50px;
     color: #001f50 !important;
-    width: 40%;
-    border-radius: 50%;
+    width: 75%;
     box-shadow: 8px 8px 10px #001f50;
 }
 .card-img-top{
@@ -29,8 +28,4 @@
     width: 300px;
     background-color: #6aa9a6;
     box-shadow: 8px 8px 10px #001f50;
-}
-.card-deck .card:hover{
-    width: 320px;
-    background-color: #79c6d3;
 }

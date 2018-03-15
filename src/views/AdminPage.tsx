@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '../styles/AdminPage.css'
 import {Link} from "react-router-dom";
-export default class Admin extends React.Component<any,any> {
+export default class AdminPage extends React.Component<any,any> {
 
     render(){
         return(

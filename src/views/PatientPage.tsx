@@ -1,6 +1,6 @@
 import * as React from 'react';
 import '../styles/AdminPage.css'
-export default class Patient extends React.Component<any,any> {
+export default class PatientPage extends React.Component<any,any> {
 
     render(){
         return(
