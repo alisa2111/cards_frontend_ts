@@ -11,7 +11,7 @@ export default class Doctor extends React.Component<Props,any> {
         const {onLogin} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} search_flag={false} links_before_auth={false} links_after_auth={true}/>
+                <Header onLogin={onLogin} links_after_auth={true}/>
                 <h1>DoctorPage!</h1>
                 <Link to={`/Doctor/DoctorTest`} className="nav-link border-right ">DoctorTest</Link>
                 <Link to={`/Doctor/TestDoctor`} className="nav-link border-right ">TestDoctor</Link>

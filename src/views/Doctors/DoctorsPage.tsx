@@ -33,7 +33,7 @@ export default class DoctorsPage extends React.Component<any,any> {
         });
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin}  user = {user} head = 'Наши специалисты' search_flag = {true} links_before_auth={true} links_after_auth={false}/>
+                <Header onLogin={onLogin}  user = {user} head = 'Наши специалисты' search = {true} links_before_auth={true}/>
                 {groups}
             </div>
         )
