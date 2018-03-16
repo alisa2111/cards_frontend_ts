@@ -2,12 +2,7 @@
     display: none;
 }
 .tab-pane{
-    height:900px;
-    overflow-y :scroll;
     overflow-x: hidden;
-}
-.card-deck{
-    width: 90%;
 }
 .list-group-item{
     background-color: #082567;

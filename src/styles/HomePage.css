@@ -73,7 +73,8 @@
 }
 .container-fluid{
     background-image: url("../../src/images/homeBack.jpg");
-    background-attachment: scroll;
+    height:1000px;
+    overflow-y :scroll;
 }
 .border-left{
     height: 890px;
