@@ -28,7 +28,7 @@ export default class AdminPage extends React.Component<Props,any> {
 
                     <div className="col-10">
                         <div className="tab-content" >
-                            <div className="tab-pane active " id="staff" role="tabpanel" ><DoctorsComponent/> </div>
+                            <div className="tab-pane active " id="staff" role="tabpanel" ><DoctorsComponent isAdmin={true}/> </div>
                             <div className="tab-pane" id="profile" role="tabpanel">...</div>
                             <div className="tab-pane" id="messages" role="tabpanel">...</div>
                             <div className="tab-pane" id="settings" role="tabpanel">...</div>

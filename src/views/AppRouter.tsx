@@ -55,7 +55,7 @@ export default class AppRouter extends React.Component<Props> {
                     <Switch>
                         <div>
                             <Redirect exact={true}  to='/AdminPage'/>
-                            <Route exact={true} path='/AdminPage' render={() => <AdminPage onLogin={onLogin}user = {user}/>}/>
+                            <Route exact={true} path='/AdminPage' render={() => <AdminPage onLogin={onLogin} user = {user}/>}/>
                             <Route exact={true} path='/Admin/AdminTest' render={() => <AdminTest/>}/>
                             <Route exact={true} path='/Admin/TestAdmin' render={() => <TestAdmin/>}/>
                             <Route exact={true} path='/' render={() => <AdminPage onLogin={onLogin} user = {user}/>}/>
@@ -70,7 +70,7 @@ export default class AppRouter extends React.Component<Props> {
                 <BrowserRouter>
                     <Switch>
                         <Route exact={true} path='/' render={() => <HomePage onLogin={onLogin} user={user}/>}/>
-                        <Route exact={true} path='/Doctors' render={() => <DoctorsPage onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path='/Doctors' render={() => <DoctorsPage onLogin={onLogin} user={user} isAdmin={false}/>}/>
                         <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
                     </Switch>
                 </BrowserRouter>

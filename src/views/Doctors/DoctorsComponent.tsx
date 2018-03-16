@@ -1,8 +1,10 @@
 import * as React from "react";
 import {employees} from "../../data/doctor";
 import {CardView} from "./CardView";
-
-export default class DoctorsComponent extends React.Component<any,any> {
+interface Props {
+    isAdmin:boolean;
+}
+export default class DoctorsComponent extends React.Component<Props,any> {
     groupBy(arr: any, key: any) {
         return arr.reduce(function (rv: any, x: any) {
             (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -11,6 +13,7 @@ export default class DoctorsComponent extends React.Component<any,any> {
     };
 
     render() {
+        const {isAdmin} = this.props;
         const groupedCards = this.groupBy(employees , 'specialty');  //groped by specialty
         const groups = Object.keys(groupedCards).map((specialty,index) => {
             return(
@@ -22,7 +25,7 @@ export default class DoctorsComponent extends React.Component<any,any> {
                     </div>
                     <div className='card-deck'>
                         {groupedCards[specialty].map((employee:object)=> {
-                            return <CardView data={employee}/>
+                            return <CardView data={employee} isAdmin={isAdmin}/>
                         })}
                     </div>
                 </div>
