@@ -6,3 +6,19 @@
     overflow-y :scroll;
     overflow-x: hidden;
 }
+.card-deck{
+    width: 90%;
+}
+.list-group-item{
+    background-color: #082567;
+    color: white;
+}
+.menu{
+    margin-top: 20px;
+    padding-left: 0;
+}
+.header-menu{
+    color: #082567;
+    margin-left: 30%;
+    font-family: Gabriola, cursive;
+}
