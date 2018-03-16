@@ -67,6 +67,18 @@ const LinksAfter = (props:any) => {
     }
     return (
         <ul className="navbar-nav ml-auto">
+            <li>
+                <div className="dropdown show">
+                    <a className="btn btn-secondary dropdown-toggle btnSign" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Регистрация
+                    </a>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a className="dropdown-item" href="#">Персонал</a>
+                        <a className="dropdown-item" href="#">Пользователь</a>
+                    </div>
+                </div>
+
+            </li>
             <li className="nav-item">
                 <button type="button" className='btnSign' onClick={() => exit()}>Выйти</button>
             </li>

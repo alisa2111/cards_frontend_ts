@@ -10,12 +10,12 @@ input {
     box-sizing: border-box;
 }
 .btnSign{
-    background-color: #082567;
+    background-color: #082567 !important;
     font-family: Gabriola, cursive;
     color : white !important;
     font-size: 30px;
     margin: 7px 5px 0 10px;
-    border: navy;
+    border: navy!important;
 }
 .btnSign:hover{
     color : #ffe87d !important;
@@ -27,5 +27,5 @@ input {
 }
 .btn{
     font-family: Gabriola, cursive;
-    font-size: 20px;
+    font-size: 25px;
 }
