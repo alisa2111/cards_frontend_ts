@@ -11,6 +11,10 @@ export const CardView = (props:any) => {
                 <div className="card-body">
                     <p className="card-text">{text}</p>
                 </div>
+                <div className="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" className="btn btn-secondary">Удалить</button>
+                    <button type="button" className="btn btn-secondary">Редактировать</button>
+                </div>
             </div>
         </div>
     )
