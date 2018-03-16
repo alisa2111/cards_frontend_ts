@@ -28,7 +28,7 @@ export default class HomePage extends React.Component<Props,any> {
                             Назначенное лечение и рекоммендации врача вы всегда сможете просмотреть в вашей электронной карточке в режиме онлайн.
                             Добро пожаловать!
                         </p>
-                        <button type="button" className="btnSignUp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo">Отправить заявку для регистрации</button>
+                        <button type="button" className="btnSignUp" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Отправить заявку для регистрации</button>
                         <Registration/>
                     </div>
 

@@ -59,6 +59,7 @@ const LinksBefore = (props:any) => {
 
 const LinksAfter = (props:any) => {
     const {onLogin , user} = props;
+
     function exit(){
         if (user) {
             user.isSignedIn = false;
@@ -73,7 +74,10 @@ const LinksAfter = (props:any) => {
                         Регистрация
                     </a>
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                        <a className="dropdown-item" href="#">Персонал</a>
+                        <button type="button" data-toggle="modal" data-target="#exampleModal">
+                            Персонал
+                        </button>
+
                         <a className="dropdown-item" href="#">Пользователь</a>
                     </div>
                 </div>
