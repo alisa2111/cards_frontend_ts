@@ -1,6 +1,6 @@
 import * as React from 'react';
-import HomePage from './HomePage';
-import DoctorsPage from './Doctors/DoctorsPage';
+import HomePage from './homeViws/HomePage';
+import DoctorsPage from './homeViws/DoctorsPage';
 import {Redirect, Route, Switch} from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import {User} from "../models/User";
@@ -8,9 +8,9 @@ import AdminTest from "./testViews/AdminTest";
 import TestAdmin from "./testViews/TestAdmin";
 import DoctorTest from "./testViews/DoctorTest";
 import TestDoctor from "./testViews/TestDoctor";
-import DoctorPage from './DoctorPage';
-import PatientPage from './PatientPage';
-import AdminPage from './AdminPage';
+import DoctorPage from './roles/DoctorPage';
+import PatientPage from './roles/PatientPage';
+import AdminPage from './roles/AdminPage';
 
 interface Props{
     user?: User

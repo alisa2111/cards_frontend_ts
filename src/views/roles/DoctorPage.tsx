@@ -1,8 +1,9 @@
 import * as React from 'react';
-import '../styles/AdminPage.css'
+import '../../styles/AdminPage.css'
 import {Link} from "react-router-dom";
-import Header from "./Header";
-import {User} from "../models/User";
+import Header from "../Header";
+import {User} from "../../models/User";
+
 interface Props{
     user: User
     onLogin: (user: User) => void

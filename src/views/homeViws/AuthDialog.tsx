@@ -1,7 +1,7 @@
 import * as React from "react";
-import '../styles/HomePage.css'
-import '../styles/AuthDialog.css'
-import {User} from "../models/User";
+import '../../styles/HomePage.css'
+import '../../styles/AuthDialog.css'
+import {User} from "../../models/User";
 interface Props{
     user?: User
     onLogin: (user: User) => void

@@ -4,52 +4,52 @@ import * as e3 from '../../src/images/e3.jpg';
 import * as image from '../../src/images/g.jpg';
 export let employees = [
     {
-        specialty:'Эндокринология',
+        department:'Эндокринология',
         image:e1,
         text:'Эндокринология'
     },
     {
-        specialty:"Эндокринология",
+        department:"Эндокринология",
         image:e2,
         text:'Эндокринология'
     },
     {
-        specialty:'Эндокринология',
+        department:'Эндокринология',
         image:e3,
         text:'Эндокринология'
     },
     {
-        specialty:'Дермотология',
+        department:'Дермотология',
         image:e2,
         text:'Дермотология'
     },
     {
-        specialty:'Педиатрия',
+        department:'Педиатрия',
         image:e3,
         text:'Педиатрия'
     },
     {
-        specialty:'Эндокринология',
+        department:'Эндокринология',
         image:e1,
         text:'Эндокринология'
     },
     {
-        specialty:'Эндокринология',
+        department:'Эндокринология',
         image:e2,
         text:'Эндокринология'
     },
     {
-        specialty:'Эндокринология',
+        department:'Эндокринология',
         image:e3,
         text:'Эндокринология'
     },
     {
-        specialty:'Дермотология',
+        department:'Дермотология',
         image:e2,
         text:'Дермотология'
     },
     {
-        specialty:'Педиатрия',
+        department:'Педиатрия',
         image:e3,
         text:'Педиатрия'
     }

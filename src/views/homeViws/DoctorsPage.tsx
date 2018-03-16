@@ -1,7 +1,7 @@
 import * as React from "react";
 import Header from "../Header";
 import '../../styles/DoctorsPage.css'
-import DoctorsComponent from "./DoctorsComponent";
+import DoctorsComponent from "../DoctorsComponent";
 import {User} from "../../models/User";
 interface Props {
     isAdmin:boolean

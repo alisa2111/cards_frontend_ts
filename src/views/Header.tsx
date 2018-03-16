@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Link} from 'react-router-dom'
-import AuthDialog from "./AuthDialog";
+import AuthDialog from "./homeViws/AuthDialog";
 import {User} from "../models/User";
 interface Props{
     user?: User

@@ -1,9 +1,9 @@
 import * as React from "react";
-import "../styles/HomePage.css"
-import Header from "./Header";
-import {img_doctor} from "../data/doctor";
-import {User} from "../models/User";
-import Registration from "./RegistrationView";
+import "../../styles/HomePage.css"
+import Header from "../Header";
+import {img_doctor} from "../../data/doctor";
+import {User} from "../../models/User";
+import Registration from "./RegistrationApplication";
 
 interface Props{
     user?: User

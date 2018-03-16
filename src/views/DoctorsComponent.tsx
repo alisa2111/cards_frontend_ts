@@ -1,5 +1,5 @@
 import * as React from "react";
-import {employees} from "../../data/doctor";
+import {employees} from "../data/doctor";
 import {CardView} from "./CardView";
 interface Props {
     isAdmin:boolean;
@@ -14,17 +14,17 @@ export default class DoctorsComponent extends React.Component<Props,any> {
 
     render() {
         const {isAdmin} = this.props;
-        const groupedCards = this.groupBy(employees , 'specialty');  //groped by specialty
-        const groups = Object.keys(groupedCards).map((specialty,index) => {
+        const groupedCards = this.groupBy(employees , 'department');  //groped by department
+        const groups = Object.keys(groupedCards).map((department,index) => {
             return(
                 <div>
                     <div className='row'>
                         <div className='col-12'>
-                            <div className= 'header border border-dark' key={index}>{specialty}</div>
+                            <div className= 'header border border-dark' key={index}>{department}</div>
                         </div>
                     </div>
                     <div className='card-deck'>
-                        {groupedCards[specialty].map((employee:object)=> {
+                        {groupedCards[department].map((employee:object)=> {
                             return <CardView data={employee} isAdmin={isAdmin}/>
                         })}
                     </div>
