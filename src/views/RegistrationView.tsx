@@ -47,7 +47,7 @@ export default class Registration extends React.Component<any,any> {
                                 </div>
                                 <div className="form-group">
                                     <label  className="col-form-label">Повторите пароль</label>
-                                    <input type="password" className="form-control" id="pas"/>
+                                    <input type="password" className="form-control" id="r_pas"/>
                                 </div>
                                 <div className="form-group">
                                     <label  className="col-form-label">Адрес</label>
@@ -66,7 +66,6 @@ export default class Registration extends React.Component<any,any> {
                     </div>
                 </div>
             </div>
-
         )
     }
 }
