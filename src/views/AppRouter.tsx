@@ -4,13 +4,12 @@ import DoctorsPage from './homeViws/DoctorsPage';
 import {Redirect, Route, Switch} from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import {User} from "../models/User";
-import AdminTest from "./testViews/AdminTest";
-import TestAdmin from "./testViews/TestAdmin";
 import DoctorTest from "./testViews/DoctorTest";
 import TestDoctor from "./testViews/TestDoctor";
 import DoctorPage from './roles/DoctorPage';
 import PatientPage from './roles/PatientPage';
-import AdminPage from './roles/AdminPage';
+import PatientsPage from "./roles/Admin/PatientsPage";
+import StaffPage from "./roles/Admin/StaffPage";
 
 interface Props{
     user?: User
@@ -54,11 +53,11 @@ export default class AppRouter extends React.Component<Props> {
                 <BrowserRouter>
                     <Switch>
                         <div>
-                            <Redirect exact={true}  to='/AdminPage'/>
-                            <Route exact={true} path='/AdminPage' render={() => <AdminPage onLogin={onLogin} user = {user}/>}/>
-                            <Route exact={true} path='/Admin/AdminTest' render={() => <AdminTest/>}/>
-                            <Route exact={true} path='/Admin/TestAdmin' render={() => <TestAdmin/>}/>
-                            <Route exact={true} path='/' render={() => <AdminPage onLogin={onLogin} user = {user}/>}/>
+                            <Redirect exact={true}  to='/staff'/>
+                            <Route exact={true} path='/staff' render={() => <StaffPage onLogin={onLogin} user={user}/>}/>
+                            <Route exact={true} path='/patients' render={() => <PatientsPage onLogin={onLogin} user={user}/>}/>
+                            <Route exact={true} path='/archive/staff' render={() => <h1>Архив сотрудников </h1>}/>
+                            <Route exact={true} path='/archive/patients' render={() => <h1>Архив пациентов </h1>}/>
                         </div>
                     </Switch>
                 </BrowserRouter>

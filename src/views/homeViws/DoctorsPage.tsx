@@ -13,7 +13,8 @@ export default class DoctorsPage extends React.Component<Props,any> {
         const {onLogin , user , isAdmin} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin}  user = {user} head = 'Наши специалисты' search = {true} mainHeader={true}/>
+                {isAdmin?<Header onLogin={onLogin}  user = {user} isAdmin={isAdmin} search={true}/>:
+                    <Header onLogin={onLogin}  user = {user} head = 'Наши специалисты' search = {true} mainHeader={true}/>}
                 <DoctorsComponent isAdmin = {isAdmin}/>
             </div>
         )
