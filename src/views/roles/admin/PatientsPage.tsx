@@ -14,7 +14,7 @@ export default class PatientsPage extends React.Component<Props,any> {
     render(){
         const {onLogin , user} = this.props;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientView patient={u}/>
+            <PatientRow patient={u}/>
         );
         return(
             <div className="container-fluid">
@@ -41,10 +41,9 @@ export default class PatientsPage extends React.Component<Props,any> {
         )
     }
 }
-const PatientView = (props: any) => {
+const PatientRow = (props: any) => {
     const {surname, name , patronymic , email , phone , address} = props.patient;
     return (
-
         <tr>
             <td>{surname}</td>
             <td>{name}</td>
