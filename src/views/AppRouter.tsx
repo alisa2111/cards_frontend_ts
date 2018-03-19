@@ -8,8 +8,8 @@ import DoctorTest from "./testViews/DoctorTest";
 import TestDoctor from "./testViews/TestDoctor";
 import DoctorPage from './roles/DoctorPage';
 import PatientPage from './roles/PatientPage';
-import PatientsPage from "./roles/Admin/PatientsPage";
-import StaffPage from "./roles/Admin/StaffPage";
+import PatientsPage from "./roles/admin/PatientsPage";
+import StaffPage from "./roles/admin/StaffPage";
 
 interface Props{
     user?: User
@@ -48,7 +48,7 @@ export default class AppRouter extends React.Component<Props> {
             )
         }
 
-        if( user &&  user.isSignedIn && user.role==='Admin' ) {
+        if( user &&  user.isSignedIn && user.role==='admin' ) {
             return (
                 <BrowserRouter>
                     <Switch>
@@ -68,7 +68,6 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path='/' render={() => <HomePage onLogin={onLogin} user={user}/>}/>
                         <Route exact={true} path='/Doctors' render={() => <DoctorsPage onLogin={onLogin} user={user} isAdmin={false}/>}/>
                         <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
                     </Switch>

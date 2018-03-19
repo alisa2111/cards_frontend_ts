@@ -15,10 +15,8 @@ export default class HomePage extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin}  user = {user} head = 'Добро пожаловать!' mainHeader={true} />
-                {/*page body*/}
+                <Header onLogin={onLogin}  user={user} head = 'Добро пожаловать!' mainHeader={true} />
                 <div className="row">
-                    {/*information*/}
                     <div className="col-8">
                         <h3 className="headerInfo">Информация о сайте</h3>
                         <p className='textInfo'>
@@ -31,8 +29,6 @@ export default class HomePage extends React.Component<Props,any> {
                         <button type="button" className="btnSignUp " data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" >Отправить заявку для регистрации</button>
                         <Registration/>
                     </div>
-
-                    {/*about doctor*/}
                     <div className="col-4 border-left border-secondary">
                         <h3 className="headerHomePage">Информация о глав враче</h3>
                         <img src={img_doctor} alt='doctor_photo' className="rounded-circle"/>
