@@ -12,7 +12,7 @@ export default class PatientPage extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} links_after_auth={true}/>
+                <Header onLogin={onLogin} user = {user} mainHeader={true}/>
                 <h1>PatientPage!</h1>
             </div>
         )

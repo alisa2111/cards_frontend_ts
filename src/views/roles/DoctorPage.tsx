@@ -13,7 +13,7 @@ export default class Doctor extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} links_after_auth={true}/>
+                <Header onLogin={onLogin} user = {user} mainHeader={true}/>
                 <h1>DoctorPage!</h1>
                 <Link to={`/Doctor/DoctorTest`} className="nav-link border-right ">DoctorTest</Link>
                 <Link to={`/Doctor/TestDoctor`} className="nav-link border-right ">TestDoctor</Link>

@@ -3,6 +3,8 @@ import '../../styles/AdminPage.css'
 import {User} from "../../models/User";
 import Header from "../Header";
 import DoctorsComponent from "../DoctorsComponent";
+import DoctorRegistration from "../DoctorRegistration";
+import PatientRegistration from "../PatientRegistration";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -13,7 +15,7 @@ export default class AdminPage extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} links_after_auth={true} search={true}/>
+                <Header onLogin={onLogin} user = {user} isAdmin={true} search={true}/>
                 <div className="row">
 
                     <div className="col-2 menu">
@@ -28,8 +30,16 @@ export default class AdminPage extends React.Component<Props,any> {
 
                     <div className="col-10">
                         <div className="tab-content" >
-                            <div className="tab-pane active " id="staff" role="tabpanel"> <DoctorsComponent isAdmin={true}/></div>
-                            <div className="tab-pane" id="patients" role="tabpanel">Пациенты</div>
+                            <div className="tab-pane active " id="staff" role="tabpanel">
+                                <button type="button" className="btnSignUp" data-toggle="modal" data-target="#staffModal">Зарегистрировать нового сотрудника</button>
+                                <DoctorRegistration/>
+                                <DoctorsComponent isAdmin={true}/>
+                            </div>
+
+                            <div className="tab-pane" id="patients" role="tabpanel">
+                                <button type="button" className="btnSignUp" data-toggle="modal" data-target="#patientModal">Зарегистрировать нового пациента</button>
+                                <PatientRegistration/>
+                            </div>
                             <div className="tab-pane" id="archive-staff" role="tabpanel">Архив персонала</div>
                             <div className="tab-pane" id="archive-patients" role="tabpanel">Архив пациентов</div>
                         </div>

@@ -1,13 +1,13 @@
 import * as React from "react";
 import '../styles/Registration.css'
-export default class DoctorRegistration extends React.Component<any,any> {
+export default class PatientRegistration extends React.Component<any,any> {
     render() {
         return (
-            <div className="modal fade" id="staffModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div className="modal fade" id="patientModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Регистрация персонала</h5>
+                            <h5 className="modal-title" id="exampleModalLabel">Регистрация пациента</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -28,21 +28,6 @@ export default class DoctorRegistration extends React.Component<any,any> {
                                 <div className="form-group">
                                     <label  className="col-form-label">Пароль</label>
                                     <input type="password" className="form-control" id="pas"/>
-                                </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">Отдел</label>
-                                    <input type="text" className="form-control" id="department"/>
-                                </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">Специализация</label>
-                                    <input type="date" className="form-control" id="specialty"/>
-                                </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">Врачебная практика с</label>
-                                    <input type="date" className="form-control" id="year"/>
-                                </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">DOWNLOAD PHOTO</label>
                                 </div>
                             </form>
                         </div>
