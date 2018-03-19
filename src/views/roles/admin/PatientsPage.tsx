@@ -4,7 +4,8 @@ import {User} from "../../../models/User";
 import Header from "../../Header";
 import PatientRegistration from "../../PatientRegistration";
 import '../../../styles/Patients.css'
-
+import {patients} from '../../../data/patients'
+import {Patient} from "../../../models/Patient";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -12,6 +13,9 @@ interface Props{
 export default class PatientsPage extends React.Component<Props,any> {
     render(){
         const {onLogin , user} = this.props;
+        const allPatientsView =  patients.map((u: Patient) =>
+            <PatientView patient={u}/>
+        );
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isAdmin={true} search={true}/>
@@ -21,7 +25,6 @@ export default class PatientsPage extends React.Component<Props,any> {
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">id</th>
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
@@ -31,41 +34,25 @@ export default class PatientsPage extends React.Component<Props,any> {
                     </tr>
                     </thead>
                     <tbody>
-
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Почтовая</td>
-                            <td>Алиса</td>
-                            <td>Геннадьевна</td>
-                            <td>qwerty@mail.ru</td>
-                            <td>+375298546719</td>
-                            <td>авнцйгвайцвцй 54</td>
-                        </tr>
-
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Чегаев</td>
-                        <td>Сергей</td>
-                        <td>Васильевич</td>
-                        <td>ytrewq@mail.ru</td>
-                        <td>+375298546719</td>
-                        <td>оргууу 55</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Лепешко</td>
-                        <td>Александр</td>
-                        <td>Ктотович</td>
-                        <td>jrhgw@mail.ru</td>
-                        <td>+375298546719</td>
-                        <td>шщцп 64</td>
-                    </tr>
+                    {allPatientsView}
                     </tbody>
                 </table>
-
-
-
             </div>
         )
     }
 }
+const PatientView = (props: any) => {
+    const {surname, name , patronymic , email , phone , address} = props.patient;
+    return (
+
+        <tr>
+            <td>{surname}</td>
+            <td>{name}</td>
+            <td>{patronymic}</td>
+            <td>{email}</td>
+            <td>{phone}</td>
+            <td>{address}</td>
+        </tr>
+
+    )
+};
