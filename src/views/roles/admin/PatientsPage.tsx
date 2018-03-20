@@ -44,7 +44,7 @@ export default class PatientsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , email , phone , address} = props.patient;
     return (
-        <tr>
+        <tr onClick={()=>{window.location.href = '/patientCard'}}>
             <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>

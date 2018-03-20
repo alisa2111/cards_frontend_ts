@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {Patient} from "../../../models/Patient";
 interface Props{
-    patient:Patient;
+    patient?:Patient;
 }
 
 export default class PatientCard extends React.Component<Props,any> {
