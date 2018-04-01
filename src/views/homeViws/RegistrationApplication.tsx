@@ -21,6 +21,9 @@ export default class Registration extends React.Component<any,any> {
                                         <input type="text" className="form-control" placeholder="Отчество"/>
                                     </div>
                                 </div>
+                                <div className="form-group">
+                                    <input type="text" className="form-control" placeholder="Email" id="e-mail"/>
+                                </div>
                                 <div className="input-group mb-3">
                                     <div className="input-group-prepend">
                                         <label className="input-group-text" >Пол</label>
@@ -31,27 +34,16 @@ export default class Registration extends React.Component<any,any> {
                                     </select>
                                 </div>
                                 <div className="form-group">
-                                    <label  className="col-form-label">E-mail</label>
                                     <div className="input-group">
-                                        <input type="text" className="form-control" id="e-mail"/>
-                                            <select className="custom-select" id="inputGroupSelect01">
-                                                <option value="1">@gmail.com</option>
-                                                <option value="2">@mail.ru</option>
-                                                <option value="3">@bk.ru</option>
-                                            </select>
+                                        <input type="password" className="form-control"  id="pas" placeholder="Пароль"/>
+                                        <input type="password" className="form-control"  id="r_pas" placeholder="Повторите пароль"/>
                                     </div>
                                 </div>
                                 <div className="form-group">
-                                    <label  className="col-form-label">Пароль</label>
-                                    <input type="password" className="form-control" id="pas"/>
+                                    <input type="text" className="form-control" id="address" placeholder="Адрес"/>
                                 </div>
                                 <div className="form-group">
-                                    <label  className="col-form-label">Повторите пароль</label>
-                                    <input type="password" className="form-control" id="r_pas"/>
-                                </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">Адрес</label>
-                                    <input type="text" className="form-control" id="address"/>
+                                    <input type="tel" className="form-control" id="phone" placeholder="Номер телефона"/>
                                 </div>
                                 <div className="form-group">
                                     <label  className="col-form-label">Год рождения</label>
