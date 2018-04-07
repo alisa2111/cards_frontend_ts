@@ -1,4 +1,20 @@
 .table{
-    width: 70%;
+    width: 90%;
     margin: 20px auto 0 auto;
+}
+
+thead{
+    text-align: center;
+}
+
+td{
+    text-align: center;
+}
+
+.claim-btn{
+    height: 45px;
+}
+
+.claim-btn:hover{
+    background-color: #082567;
 }
