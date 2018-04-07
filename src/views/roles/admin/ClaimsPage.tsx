@@ -3,16 +3,16 @@ import '../../../styles/AdminPage.css'
 import {User} from "../../../models/User";
 import Header from "../../Header";
 import '../../../styles/Patients.css'
-import {patients} from '../../../data/patients'
+import {claims} from '../../../data/patients'
 import {Patient} from "../../../models/Patient";
 interface Props{
     user: User
     onLogin: (user: User) => void
 }
-export default class PatientsPage extends React.Component<Props,any> {
+export default class ClaimsPage extends React.Component<Props,any> {
     render(){
         const {onLogin , user} = this.props;
-        const allPatientsView =  patients.map((u: Patient) =>
+        const allPatientsView =  claims.map((u: Patient) =>
             <PatientRow patient={u}/>
         );
         return(
@@ -42,7 +42,7 @@ export default class PatientsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
     return (
-        <tr onClick={()=>{window.location.href = '/patientCard'}}>
+        <tr>
             <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>

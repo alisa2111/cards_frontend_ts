@@ -3,7 +3,8 @@ import * as React from "react";
 export const CardView = (props:any) => {
     const {image , text } = props.data;
     return(
-        <div className="col-lg-3">
+        //col-lg-4
+        <div className="col-sm-4">
             <div className="card border border-dark" >
                 {props.isAdmin? <AdminButtons/> : null}
                 <img className="card-img-top border border-dark" src={image} alt='qwerty'/>

@@ -34,7 +34,7 @@
     color : #082567 !important;
 }
 .headerInfo{
-    margin-top: 180px;
+    margin-top: 10%;
     text-align: center;
     font-family: Gabriola, cursive;
     font-size: 50px;
@@ -73,11 +73,11 @@
 }
 .container-fluid{
     background-image: url("../../src/images/homeBack.jpg");
-    height:950px;
-    overflow-y :scroll;
+    height: 750px;
+    overflow-y: scroll;
 }
 .border-left{
-    height: 890px;
+    height: 100%;
 }
 
 .search{

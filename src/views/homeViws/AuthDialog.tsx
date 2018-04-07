@@ -29,23 +29,26 @@ export default class AuthDialog extends React.Component<Props,any> {
     }
 
     login() {
-        const {email, password } = this.state;
-
-        fetch(`http://localhost:8080/MedicalCardsServer/api/hello?login=${email}&password=${password}`, {
-            method: 'post',
-        })
-            .then((res: any) => {
-                return res.json();
-            })
-            .then((result:any) => {
-                const user = new User(result.email, result.role);
-                user.isSignedIn = true;
-                this.props.onLogin(user);
-
-            })
-            .catch((err: any) => {
-                console.log(err)
-            });
+        const {email} = this.state;
+        const user = new User(email, 'admin');
+        user.isSignedIn = true;
+        this.props.onLogin(user);
+        // fetch is working
+        // fetch(`http://localhost:8080/MedicalCardsServer/api/hello?login=${email}&password=${password}`, {
+        //     method: 'post',
+        // })
+        //     .then((res: any) => {
+        //         return res.json();
+        //     })
+        //     .then((result:any) => {
+        //         const user = new User(result.email, result.role);
+        //         user.isSignedIn = true;
+        //         this.props.onLogin(user);
+        //
+        //     })
+        //     .catch((err: any) => {
+        //         console.log(err)
+        //     });
     }
     render(){
         return(
