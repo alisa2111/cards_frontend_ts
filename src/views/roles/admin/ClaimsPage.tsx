@@ -10,6 +10,7 @@ interface Props{
     onLogin: (user: User) => void
 }
 export default class ClaimsPage extends React.Component<Props,any> {
+
     render(){
         const {onLogin , user} = this.props;
         const allPatientsView =  claims.map((u: Patient) =>
@@ -42,6 +43,34 @@ export default class ClaimsPage extends React.Component<Props,any> {
 }
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    function addPatient() {
+        let patient = new Patient(surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
+        console.log(patient)
+        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
+        //     method: 'post',
+        // })
+        //     .then((res: any) => {
+        //         return res.json();
+        //     })
+        //     .catch((err: any) => {
+        //         console.log(err)
+        //     });
+    }
+
+    function deletePatient() {
+        let patient = new Patient(surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
+        console.log(patient)
+        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
+        //     method: 'post',
+        // })
+        //     .then((res: any) => {
+        //         return res.json();
+        //     })
+        //     .catch((err: any) => {
+        //         console.log(err)
+        //     });
+    }
+
     return (
         <tr>
             <td>{surname}</td>
@@ -54,8 +83,20 @@ const PatientRow = (props: any) => {
             <td>{birthday}</td>
             <td>
                 <div className="btn-group" role="group">
-                    <button type="button" className="btn btn-secondary claim-btn">Принять</button>
-                    <button type="button" className="btn btn-secondary claim-btn">Отклонить</button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        onClick={()=>{addPatient()}}
+                    >
+                        Принять
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        onClick={()=>{deletePatient()}}
+                    >
+                        Отклонить
+                    </button>
                 </div>
             </td>
         </tr>
