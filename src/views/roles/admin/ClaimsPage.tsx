@@ -3,17 +3,51 @@ import '../../../styles/AdminPage.css'
 import {User} from "../../../models/User";
 import Header from "../../Header";
 import '../../../styles/Patients.css'
-import {claims} from '../../../data/patients'
 import {Patient} from "../../../models/Patient";
 interface Props{
     user: User
     onLogin: (user: User) => void
 }
 export default class ClaimsPage extends React.Component<Props,any> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            patients:[]
+        };
+    }
+
+    componentWillMount(){
+        fetch(`http://localhost:8080/api/patients/claim/all`, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            },
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then((result: any) => {
+                const patients = result.map((r: any) => new Patient(
+                    r.lastName,
+                    r.firstName,
+                    r.secondName,
+                    r.email,
+                    r.sex,
+                    r.password,
+                    r.address,
+                    r.phoneNumber,
+                    r.birthday));
+                this.setState({patients})
+            })
+            .catch((err: any) => {
+                console.log(err)
+            })
+    }
 
     render(){
         const {onLogin , user} = this.props;
-        const allPatientsView =  claims.map((u: Patient) =>
+        const {patients} = this.state;
+        const allPatientsView =  patients.map((u: Patient) =>
             <PatientRow patient={u}/>
         );
         return(
@@ -41,6 +75,8 @@ export default class ClaimsPage extends React.Component<Props,any> {
         )
     }
 }
+
+
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
     function addPatient() {

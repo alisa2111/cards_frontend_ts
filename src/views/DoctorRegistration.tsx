@@ -65,18 +65,36 @@ export default class DoctorRegistration extends React.Component<any,any> {
     }
 
         addDoctor() {
-        const {surname, name, patronymic, email, password, department, practise_date , specialty} = this.state;
+        const {surname, name, patronymic, email, password, department , specialty} = this.state;
+        let practise_date = "12";
         let doctor = new Doctor(surname, name , patronymic, email, password, department, specialty ,  practise_date);
         console.log(doctor)
-        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
-        //     method: 'post',
-        // })
-        //     .then((res: any) => {
-        //         return res.json();
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err)
-        //     });
+        fetch(`http://localhost:8080/api/doctors/registration`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/json`,
+                'Accept': 'application/json'
+            },
+            body:
+            JSON.stringify({
+                doctor: doctor
+                // surname: surname,
+                // name: name,
+                // patronymic: patronymic,
+                // email: email,
+                // password: password,
+                // department: department,
+                // practise_date: specialty,
+                // specialty: practise_date
+            })
+        })
+            .then((res: any) => {
+                alert(res);
+                return res.json();
+            })
+            .catch((err: any) => {
+                console.log(err)
+            });
     }
 
     render() {

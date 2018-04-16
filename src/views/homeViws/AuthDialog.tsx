@@ -29,26 +29,35 @@ export default class AuthDialog extends React.Component<Props,any> {
     }
 
     login() {
-        const {email} = this.state;
-        const user = new User(email, 'admin');
-        user.isSignedIn = true;
-        this.props.onLogin(user);
+      //  const {email , password} = this.state;
+        // const user = new User(email, 'admin');
+        // user.isSignedIn = true;
+        // this.props.onLogin(user);
         // fetch is working
-        // fetch(`http://localhost:8080/MedicalCardsServer/api/hello?login=${email}&password=${password}`, {
-        //     method: 'post',
-        // })
-        //     .then((res: any) => {
-        //         return res.json();
-        //     })
-        //     .then((result:any) => {
-        //         const user = new User(result.email, result.role);
-        //         user.isSignedIn = true;
-        //         this.props.onLogin(user);
-        //
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err)
-        //     });
+        fetch(`http://localhost:8080/api/authorization`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/json`,
+                'Accept': 'application/json'
+            },
+            body:
+               JSON.stringify({
+                email: "alisa2111@mail.ru",
+                password: "123"
+            })
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then((result:any) => {
+                const user = new User(result.email, result.role);
+                user.isSignedIn = true;
+                this.props.onLogin(user);
+
+            })
+            .catch((err: any) => {
+                console.log(err)
+            });
     }
     render(){
         return(
@@ -59,9 +68,6 @@ export default class AuthDialog extends React.Component<Props,any> {
                         <div className="modal-content">
                             <div className="modal-header">
                                 <h5 className="modal-title" id="exampleModalLongTitle">Авторизация</h5>
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
                             </div>
                             <div className="modal-body">
                                 <div className="login-page">

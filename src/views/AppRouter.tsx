@@ -20,7 +20,7 @@ interface Props{
 export default class AppRouter extends React.Component<Props> {
     render(){
         const {onLogin , user} = this.props;
-        if( user && user.isSignedIn && user.role==='Doctor' ) {
+        if( user && user.isSignedIn && user.role==='DOCTOR' ) {
            return(
                <BrowserRouter>
                    <Switch>
@@ -36,7 +36,7 @@ export default class AppRouter extends React.Component<Props> {
            )
         }
 
-        if( user &&  user.isSignedIn && user.role==='Patient' ) {
+        if( user &&  user.isSignedIn && user.role==='PATIENT' ) {
             return(
                 <BrowserRouter>
                     <Switch>
@@ -50,7 +50,7 @@ export default class AppRouter extends React.Component<Props> {
             )
         }
 
-        if( user &&  user.isSignedIn && user.role==='admin' ) {
+        if( user &&  user.isSignedIn && user.role==='ADMIN' ) {
             return (
                 <BrowserRouter>
                     <Switch>
