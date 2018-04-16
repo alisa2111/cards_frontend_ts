@@ -1,6 +1,5 @@
 import * as React from "react";
 import '../styles/Registration.css'
-import {Doctor} from "../models/Doctor";
 export default class DoctorRegistration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
@@ -65,32 +64,30 @@ export default class DoctorRegistration extends React.Component<any,any> {
     }
 
         addDoctor() {
-        const {surname, name, patronymic, email, password, department , specialty} = this.state;
-        let practise_date = "12";
-        let doctor = new Doctor(surname, name , patronymic, email, password, department, specialty ,  practise_date);
-        console.log(doctor)
-        fetch(`http://localhost:8080/api/doctors/registration`, {
-            method: 'post',
-            headers: {
-                'Content-Type': `application/json`,
-                'Accept': 'application/json'
+            const {surname, name, patronymic, email, password, department , specialty, practise_date} = this.state;
+            let practise_date_ =  practise_date.replace('-','.')
+            practise_date_ =  practise_date_.replace('-','.')
+              fetch(`http://localhost:8080/api/doctors/registration`, {
+                method: 'post',
+                headers: {
+                    'Content-Type': `application/json`,
+                    'Accept': 'application/json'
             },
             body:
             JSON.stringify({
-                doctor: doctor
-                // surname: surname,
-                // name: name,
-                // patronymic: patronymic,
-                // email: email,
-                // password: password,
-                // department: department,
-                // practise_date: specialty,
-                // specialty: practise_date
+                lastName: surname,
+                secondName: patronymic,
+                firstName: name,
+                email: email,
+                password: password,
+                department: department,
+                firstPractiseDate: practise_date_,
+                specialty: specialty
             })
         })
             .then((res: any) => {
-                alert(res);
-                return res.json();
+                console.log(res);
+                return res;
             })
             .catch((err: any) => {
                 console.log(err)
