@@ -1,6 +1,5 @@
 import * as React from "react";
 import '../../styles/Registration.css'
-import {Patient} from "../../models/Patient";
 export default class Registration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
@@ -9,7 +8,7 @@ export default class Registration extends React.Component<any,any> {
             name:'',
             patronymic:'',
             email:'',
-            gender:'Женский',
+            gender:'female',
             password:'',
             address:'',
             phoneNumber:'',
@@ -73,17 +72,33 @@ export default class Registration extends React.Component<any,any> {
 
     sendClaim() {
         const {surname, name, patronymic, email, gender, password, address, phoneNumber, birthday} = this.state;
-        let patient = new Patient(surname, name , patronymic, email, gender, password, address, phoneNumber, birthday);
-        console.log(patient)
-        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
-        //     method: 'post',
-        // })
-        //     .then((res: any) => {
-        //         return res.json();
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err)
-        //     });
+        let birthday_ =  birthday.replace('-','.')
+        birthday_ =  birthday_.replace('-','.')
+        fetch(`http://localhost:8080/api/patients/registration`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/json`,
+                'Accept': 'application/json'
+            },
+            body:
+                JSON.stringify({
+                    lastName: surname,
+                    secondName: patronymic,
+                    firstName: name,
+                    email: email,
+                    sex: gender,
+                    password: password,
+                    address: address,
+                    phoneNumber: phoneNumber,
+                    birthday: birthday_
+                })
+        })
+            .then((res: any) => {
+                alert(res)
+            })
+            .catch((err: any) => {
+                console.log(err)
+            });
     }
 
     render() {
@@ -130,8 +145,8 @@ export default class Registration extends React.Component<any,any> {
                                         <label className="input-group-text" >Пол</label>
                                     </div>
                                     <select className="custom-select" id="inputGroupSelect01" onChange={(e)=>{this.setGender(e)}}>
-                                        <option value="Женский">Женский</option>
-                                        <option value="Мужской">Мужской</option>
+                                        <option value="female">Женский</option>
+                                        <option value="male">Мужской</option>
                                     </select>
                                 </div>
                                 <div className="form-group">
