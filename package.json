@@ -3,15 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "bootstrap": "^4.1.0",
     "react": "^16.2.0",
+    "react-bootstrap": "^0.32.1",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router-dom": "latest",
     "react-scripts-ts": "2.13.0",
     "redux": "latest",
-    "redux-thunk": "latest",
+    "redux-actions": "latest",
     "redux-logger": "latest",
-    "redux-actions": "latest"
+    "redux-thunk": "latest"
   },
   "scripts": {
     "start": "react-scripts-ts start",

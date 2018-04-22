@@ -28,6 +28,7 @@ export default class PatientsPage extends React.Component<Props,any> {
             })
             .then((result: any) => {
                 const patients = result.map((r: any) => new Patient(
+                    r.id,
                     r.lastName,
                     r.firstName,
                     r.secondName,

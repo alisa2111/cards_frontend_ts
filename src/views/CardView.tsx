@@ -23,4 +23,4 @@ const AdminButtons = () =>{
             <button type="button" className="btn btn-secondary btn-admin">Редактировать</button>
         </div>
     )
-}
+};

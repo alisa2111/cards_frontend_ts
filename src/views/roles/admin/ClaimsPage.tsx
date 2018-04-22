@@ -28,6 +28,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
             })
             .then((result: any) => {
                 const patients = result.map((r: any) => new Patient(
+                    r.id,
                     r.lastName,
                     r.firstName,
                     r.secondName,
@@ -76,25 +77,39 @@ export default class ClaimsPage extends React.Component<Props,any> {
     }
 }
 
-
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {surname, name , patronymic , gender,  email , phone , address, birthday , password, id} = props.patient;
     function addPatient() {
-        let patient = new Patient(surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
-        console.log(patient)
-        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
-        //     method: 'post',
-        // })
-        //     .then((res: any) => {
-        //         return res.json();
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err)
-        //     });
+        fetch(`http://localhost:8080/api/patients/add`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/json`,
+                'Accept': 'application/json'
+            },
+            body:
+                JSON.stringify({
+                    lastName: surname,
+                    secondName: patronymic,
+                    firstName: name,
+                    email: email,
+                    password: password,
+                    sex: gender,
+                    birthday: birthday,
+                    phoneNumber: phone,
+                    address: address,
+                    id: id
+                })
+        })
+            .then((res: any) => {
+                // window.location.reload();
+            })
+            .catch((err: any) => {
+                console.log(err)
+            });
     }
 
     function deletePatient() {
-        let patient = new Patient(surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
+        let patient = new Patient(id, surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
         console.log(patient)
         // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
         //     method: 'post',

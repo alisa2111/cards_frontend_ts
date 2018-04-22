@@ -1,10 +1,44 @@
 import * as React from "react";
 import {employees} from "../data/doctor";
 import {CardView} from "./CardView";
+import {Patient} from "../models/Patient";
+import {Employee} from "../models/Employee";
 interface Props {
     isAdmin:boolean;
 }
 export default class DoctorsComponent extends React.Component<Props,any> {
+    constructor(props: any) {
+        super(props);
+        this.state = {
+            employees:[]
+        };
+    }
+
+ /*   componentWillMount(){
+        fetch(`http://localhost:8080/api/patients/claim/all`, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            },
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then((result: any) => {
+                const employees = result.map((r: any) => new Employee(
+                    r.department,
+                    r.image,
+                    r.text));
+                this.setState({employees})
+            })
+            .catch((err: any) => {
+                console.log(err)
+            })
+    }*/
+
+
+
+
     groupBy(arr: any, key: any) {
         return arr.reduce(function (rv: any, x: any) {
             (rv[x[key]] = rv[x[key]] || []).push(x);

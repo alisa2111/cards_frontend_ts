@@ -30,34 +30,34 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     login() {
       //  const {email , password} = this.state;
-        // const user = new User(email, 'admin');
-        // user.isSignedIn = true;
-        // this.props.onLogin(user);
+        const user = new User("alisa", 'ADMIN');
+        user.isSignedIn = true;
+        this.props.onLogin(user);
         // fetch is working
-        fetch(`http://localhost:8080/api/authorization`, {
-            method: 'post',
-            headers: {
-                'Content-Type': `application/json`,
-                'Accept': 'application/json'
-            },
-            body:
-               JSON.stringify({
-                email: "alisa2111@mail.ru",
-                password: "123"
-            })
-        })
-            .then((res: any) => {
-                return res.json();
-            })
-            .then((result:any) => {
-                const user = new User(result.email, result.role);
-                user.isSignedIn = true;
-                this.props.onLogin(user);
-
-            })
-            .catch((err: any) => {
-                console.log(err)
-            });
+        // fetch(`http://localhost:8080/api/authorization`, {
+        //     method: 'post',
+        //     headers: {
+        //         'Content-Type': `application/json`,
+        //         'Accept': 'application/json'
+        //     },
+        //     body:
+        //        JSON.stringify({
+        //         email: "alisa2111@mail.ru",
+        //         password: "123"
+        //     })
+        // })
+        //     .then((res: any) => {
+        //         return res.json();
+        //     })
+        //     .then((result:any) => {
+        //         const user = new User(result.email, result.role);
+        //         user.isSignedIn = true;
+        //         this.props.onLogin(user);
+        //
+        //     })
+        //     .catch((err: any) => {
+        //         console.log(err)
+        //     });
     }
     render(){
         return(

@@ -1,4 +1,5 @@
 export class Patient {
+    id: number;
     surname: string;
     name: string;
     patronymic: string;
@@ -10,6 +11,7 @@ export class Patient {
     birthday:string;
 
     constructor(
+        id: number,
         surname: string ,
         name: string,
         patronymic: string,
@@ -21,6 +23,7 @@ export class Patient {
         birthday:string
     )
     {
+        this.id = id;
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;
