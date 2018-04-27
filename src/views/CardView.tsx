@@ -1,7 +1,9 @@
 import * as React from "react";
 
 export const CardView = (props:any) => {
-    const {image , text } = props.data;
+    const {lastname, firstname, secondname, specialty} = props.data;
+    const {image} = props;
+
     return(
         //col-lg-4
         <div className="col-sm-4">
@@ -9,7 +11,7 @@ export const CardView = (props:any) => {
                 {props.isAdmin? <AdminButtons/> : null}
                 <img className="card-img-top border border-dark" src={image} alt='qwerty'/>
                 <div className="card-body">
-                    <p className="card-text">{text}</p>
+                    <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
                 </div>
 
             </div>

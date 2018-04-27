@@ -94,7 +94,7 @@ export default class Registration extends React.Component<any,any> {
                 })
         })
             .then((res: any) => {
-                alert(res)
+                //!!!!!
             })
             .catch((err: any) => {
                 console.log(err)

@@ -16,6 +16,21 @@ export default class ClaimsPage extends React.Component<Props,any> {
         };
     }
 
+    refreshClaims = (result: any) => {
+    const patients = result.map((r: any) => new Patient(
+        r.id,
+        r.lastName,
+        r.firstName,
+        r.secondName,
+        r.email,
+        r.sex,
+        r.password,
+        r.address,
+        r.phoneNumber,
+        r.birthday));
+    this.setState({patients})
+};
+
     componentWillMount(){
         fetch(`http://localhost:8080/api/patients/claim/all`, {
             method: 'get',
@@ -26,20 +41,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
             .then((res: any) => {
                 return res.json();
             })
-            .then((result: any) => {
-                const patients = result.map((r: any) => new Patient(
-                    r.id,
-                    r.lastName,
-                    r.firstName,
-                    r.secondName,
-                    r.email,
-                    r.sex,
-                    r.password,
-                    r.address,
-                    r.phoneNumber,
-                    r.birthday));
-                this.setState({patients})
-            })
+            .then(this.refreshClaims)
             .catch((err: any) => {
                 console.log(err)
             })
@@ -49,7 +51,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u}/>
+            <PatientRow patient={u} refreshClaims={this.refreshClaims}/>
         );
         return(
             <div className="container-fluid">
@@ -79,6 +81,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
 
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday , password, id} = props.patient;
+    const {refreshClaims} = props;
     function addPatient() {
         fetch(`http://localhost:8080/api/patients/add`, {
             method: 'post',
@@ -101,8 +104,9 @@ const PatientRow = (props: any) => {
                 })
         })
             .then((res: any) => {
-                // window.location.reload();
+                return res.json();
             })
+            .then(refreshClaims)
             .catch((err: any) => {
                 console.log(err)
             });

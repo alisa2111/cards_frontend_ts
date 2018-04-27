@@ -65,8 +65,8 @@ export default class DoctorRegistration extends React.Component<any,any> {
 
         addDoctor() {
             const {surname, name, patronymic, email, password, department , specialty, practise_date} = this.state;
-            let practise_date_ =  practise_date.replace('-','.')
-            practise_date_ =  practise_date_.replace('-','.')
+            let practise_date_ =  practise_date.replace('-','.');
+            practise_date_ =  practise_date_.replace('-','.');
               fetch(`http://localhost:8080/api/doctors/registration`, {
                 method: 'post',
                 headers: {
@@ -142,13 +142,26 @@ export default class DoctorRegistration extends React.Component<any,any> {
                                         id="pas"
                                         onKeyUp={(e) => this.setPassword(e)}/>
                                 </div>
-                                <div className="form-group">
-                                    <input
-                                        type="text"
-                                        className="form-control"
-                                        placeholder="Отдел"
-                                        id="department"
-                                        onKeyUp={(e) => this.setDepartment(e)}/>
+                                <div className="input-group mb-3">
+                                    <div className="input-group-prepend">
+                                        <label className="input-group-text" >Отдел</label>
+                                    </div>
+                                    <select className="custom-select" id="inputGroupSelect01" onChange={(e) => this.setDepartment(e)}>
+                                        <option value="Эндокринология">Эндокринология</option>
+                                        <option value="Дерматология">Дерматология</option>
+                                        <option value="Онкодерматология">Онкодерматология</option>
+                                        <option value="УЗИ-диагностика">УЗИ-диагностика</option>
+                                        <option value="Педиатрия">Педиатрия</option>
+                                        <option value="Кардиология">Кардиология</option>
+                                        <option value="Оториноларингология">Оториноларингология</option>
+                                        <option value="Неврология">Неврология</option>
+                                        <option value="Стоматология">Стоматология</option>
+                                        <option value="Психотерапия">Психотерапия</option>
+                                        <option value="Аллергология">Аллергология</option>
+                                        <option value="Терапия">Терапия</option>
+                                        <option value="Лабораторная диагностика">Лабораторная диагностика</option>
+                                        <option value="Функциональная диагностика">Функциональная диагностика</option>
+                                    </select>
                                 </div>
                                 <div className="form-group">
                                     <input

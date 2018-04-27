@@ -1,8 +1,8 @@
 import * as React from "react";
-import {employees} from "../data/doctor";
 import {CardView} from "./CardView";
-import {Patient} from "../models/Patient";
 import {Employee} from "../models/Employee";
+import {img_doctor} from "../data/doctor";
+
 interface Props {
     isAdmin:boolean;
 }
@@ -14,8 +14,8 @@ export default class DoctorsComponent extends React.Component<Props,any> {
         };
     }
 
- /*   componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/claim/all`, {
+    componentWillMount(){
+        fetch(`http://localhost:8080/api/doctors/all`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -25,19 +25,23 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                 return res.json();
             })
             .then((result: any) => {
-                const employees = result.map((r: any) => new Employee(
-                    r.department,
-                    r.image,
-                    r.text));
+                const employees = result.map((e: any) => new Employee(
+                    e.id,
+                    e.lastName,
+                    e.firstName,
+                    e.secondName,
+                    e.email,
+                    e.password,
+                    e.department,
+                    e.specialty,
+                    e.firstPractiseDate
+                   ));
                 this.setState({employees})
             })
             .catch((err: any) => {
                 console.log(err)
             })
-    }*/
-
-
-
+    }
 
     groupBy(arr: any, key: any) {
         return arr.reduce(function (rv: any, x: any) {
@@ -48,7 +52,8 @@ export default class DoctorsComponent extends React.Component<Props,any> {
 
     render() {
         const {isAdmin} = this.props;
-        const groupedCards = this.groupBy(employees , 'department');  //groped by department
+        const {employees} = this.state;
+        const groupedCards = this.groupBy(employees, 'department');  //groped by department
         const groups = Object.keys(groupedCards).map((department,index) => {
             return(
                 <div>
@@ -59,7 +64,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                     </div>
                     <div className='card-deck'>
                         {groupedCards[department].map((employee:object)=> {
-                            return <CardView data={employee} isAdmin={isAdmin}/>
+                            return <CardView data={employee} isAdmin={isAdmin} image = {img_doctor}/>
                         })}
                     </div>
                 </div>

@@ -59,6 +59,7 @@ const AdminHeader = (props:any) => {
     const {onLogin , user , search} = props;
     function exit(){
         if (user) {
+            localStorage.removeItem("user");
             user.isSignedIn = false;
             onLogin(user);
         }
