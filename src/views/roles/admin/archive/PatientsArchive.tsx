@@ -63,7 +63,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
                         <th scope="col">E-mail</th>
                         <th scope="col">Телефон</th>
                         <th scope="col">Адрес</th>
-                        <th scope="col">Год рождения</th>
+                        <th scope="col">Г.Р.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -86,7 +86,24 @@ const PatientRow = (props: any) => {
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>
-            <td>КНОПОЧКА</td>
+            <td>
+                <div className="btn-group" role="group">
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        //onClick={()=>{addPatient()}}
+                    >
+                        Восстановить
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        //onClick={()=>{deletePatient()}}
+                    >
+                        Удалить
+                    </button>
+                </div>
+            </td>
         </tr>
     )
 };

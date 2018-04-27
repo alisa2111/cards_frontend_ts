@@ -9,6 +9,7 @@ export const CardView = (props:any) => {
         <div className="col-sm-4">
             <div className="card border border-dark" >
                 {props.isAdmin? <AdminButtons/> : null}
+                {props.isArchive? <ArchiveButtons/> : null}
                 <img className="card-img-top border border-dark" src={image} alt='qwerty'/>
                 <div className="card-body">
                     <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
@@ -18,11 +19,21 @@ export const CardView = (props:any) => {
         </div>
     )
 };
-const AdminButtons = () =>{
+
+const AdminButtons = () => {
     return (
         <div className="btn-group" role="group" aria-label="Basic example">
             <button type="button" className="btn btn-secondary btn-admin">В архив</button>
             <button type="button" className="btn btn-secondary btn-admin">Редактировать</button>
+        </div>
+    )
+};
+
+const ArchiveButtons = () => {
+    return (
+        <div className="btn-group" role="group" aria-label="Basic example">
+            <button type="button" className="btn btn-secondary btn-admin">Восстановить</button>
+            <button type="button" className="btn btn-secondary btn-admin">Удалить</button>
         </div>
     )
 };

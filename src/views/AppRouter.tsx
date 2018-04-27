@@ -12,6 +12,7 @@ import PatientsPage from "./roles/admin/PatientsPage";
 import StaffPage from "./roles/admin/StaffPage";
 import PatientCard from "./roles/admin/PatientCard";
 import ClaimsPage from "./roles/admin/ClaimsPage";
+import DoctorsArchive from "./roles/admin/archive/DoctorsArchive";
 import PatientsArchive from "./roles/admin/archive/PatientsArchive";
 
 interface Props{
@@ -61,7 +62,7 @@ export default class AppRouter extends React.Component<Props> {
                             <Route exact={true} path='/patients' render={() => <PatientsPage onLogin={onLogin} user={user}/>}/>
                             <Route exact={true} path='/patients/claim' render={() => <ClaimsPage onLogin={onLogin} user={user}/>}/>
                             <Route exact={true} path='/patientCard' render={() => <PatientCard/>}/>
-                            <Route exact={true} path='/archive/staff' render={() => <PatientsArchive onLogin={onLogin} user={user}/>}/>
+                            <Route exact={true} path='/archive/staff' render={() => <DoctorsArchive onLogin={onLogin} user={user}/>}/>
                             <Route exact={true} path='/archive/patients' render={() => <PatientsArchive onLogin={onLogin} user={user}/>}/>
                         </div>
                     </Switch>

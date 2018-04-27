@@ -87,6 +87,15 @@ const PatientRow = (props: any) => {
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>
+            <td>
+                <button
+                    type="button"
+                    className="btn btn-secondary claim-btn"
+                    //onClick={()=>{addPatient()}}
+                >
+                    В архив
+                </button>
+            </td>
         </tr>
     )
 };
