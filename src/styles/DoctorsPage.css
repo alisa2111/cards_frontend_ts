@@ -1,12 +1,12 @@
 .header{
-    text-align: center;
-    margin: 30px auto 0 auto;
-    font-family: Gabriola, cursive;
-    font-size: 50px;
-    color: #001f50 !important;
-    width: 80%;
-    box-shadow: 8px 8px 10px #001f50;
-}
+     text-align: center;
+     margin: 30px auto 0 auto;
+     font-family: Gabriola, cursive;
+     font-size: 50px;
+     color: #001f50 !important;
+     width: 80%;
+     box-shadow: 8px 8px 10px #001f50;
+ }
 .card-img-top{
     height: 300px;
 }

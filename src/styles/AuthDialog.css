@@ -9,14 +9,13 @@ input {
     padding: 15px;
     box-sizing: border-box;
 }
-.btnSign{
-    background-color: #082567 !important;
-    font-family: Gabriola, cursive;
-    color : white !important;
-    font-size: 30px;
-    margin: 7px 5px 0 10px;
-    border: navy!important;
-}
+/*.btnSign{*/
+    /*background-color: #082567 !important;*/
+    /*font-family: Gabriola, cursive;*/
+    /*color : white !important;*/
+    /*margin: 7px 5px 0 10px;*/
+    /*border: navy!important;*/
+/*}*/
 .btnSign:hover{
     color : #ffe87d !important;
 }

@@ -1,26 +1,26 @@
 .modal-backdrop{
     display: none;
 }
-.tab-pane{
-    overflow-x: hidden;
-}
-.list-group-item{
-    background-color: #082567;
-    color: white;
-}
-.menu{
-    margin-top: 20px;
-    padding-left: 0;
-}
-.header-menu{
-    color: #082567;
-    margin-left: 30%;
-    font-family: Gabriola, cursive;
-}
-.btnLogOut{
-    background-color: #082567 !important;
-    font-family: Gabriola, cursive;
-    color : white !important;
-    font-size: 30px;
-    border: navy!important;
-}
+/*.tab-pane{*/
+    /*overflow-x: hidden;*/
+/*}*/
+/*.list-group-item{*/
+    /*background-color: #082567;*/
+    /*color: white;*/
+/*}*/
+/*.menu{*/
+    /*margin-top: 20px;*/
+    /*padding-left: 0;*/
+/*}*/
+/*.header-menu{*/
+    /*color: #082567;*/
+    /*margin-left: 30%;*/
+    /*font-family: Gabriola, cursive;*/
+/*}*/
+/*.btnLogOut{*/
+    /*background-color: #082567 !important;*/
+    /*font-family: Gabriola, cursive;*/
+    /*color : white !important;*/
+    /*font-size: 30px;*/
+    /*border: navy!important;*/
+/*}*/
