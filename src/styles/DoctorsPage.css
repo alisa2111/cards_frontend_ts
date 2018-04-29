@@ -33,3 +33,7 @@
     background-color: #6aa9a6;
     width: 50%;
 }
+.btn-default:hover{
+    background-color: #6aa9a6;
+    color: #f2f2f2;
+}

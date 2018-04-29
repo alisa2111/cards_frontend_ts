@@ -5,7 +5,9 @@ import {img_doctor} from "../data/doctor";
 
 interface Props {
     isAdmin?:boolean;
+    isPatient?:boolean;
     isArchive?:boolean;
+    myDoctor?:boolean;
 }
 export default class DoctorsComponent extends React.Component<Props,any> {
     constructor(props: any) {
@@ -52,7 +54,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
     };
 
     render() {
-        const {isAdmin, isArchive} = this.props;
+        const {isAdmin, isArchive, isPatient, myDoctor} = this.props;
         const {employees} = this.state;
         const groupedCards = this.groupBy(employees, 'department');  //groped by department
         const groups = Object.keys(groupedCards).map((department,index) => {
@@ -69,7 +71,9 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                                 <CardView
                                     data={employee}
                                     isAdmin={isAdmin}
-                                    isArchive = {isArchive}
+                                    isArchive={isArchive}
+                                    isPatient={isPatient}
+                                    myDoctor={myDoctor}
                                     image={img_doctor}
                                 />
                                 )
