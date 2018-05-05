@@ -15,8 +15,24 @@ export default class PatientsArchive extends React.Component<Props,any> {
         };
     }
 
+    refreshPatientsArchive = (result: any) => {
+        const patients = result.map((r: any) => new Patient(
+            r.id,
+            r.lastName,
+            r.firstName,
+            r.secondName,
+            r.email,
+            r.sex,
+            r.password,
+            r.address,
+            r.phoneNumber,
+            r.birthday));
+        this.setState({patients})
+    };
+
+
     componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/all`, {
+        fetch(`http://localhost:8080/api/archive/patients/all`, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -25,20 +41,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
             .then((res: any) => {
                 return res.json();
             })
-            .then((result: any) => {
-                const patients = result.map((r: any) => new Patient(
-                    r.id,
-                    r.lastName,
-                    r.firstName,
-                    r.secondName,
-                    r.email,
-                    r.sex,
-                    r.password,
-                    r.address,
-                    r.phoneNumber,
-                    r.birthday));
-                this.setState({patients})
-            })
+            .then(this.refreshPatientsArchive)
             .catch((err: any) => {
                 console.log(err)
             })
@@ -48,7 +51,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u}/>
+            <PatientRow patient={u} refreshPatientsArchive={this.refreshPatientsArchive}/>
         );
         return(
             <div className="container-fluid">
@@ -75,10 +78,46 @@ export default class PatientsArchive extends React.Component<Props,any> {
     }
 }
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {id, surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {refreshPatientsArchive}=props;
+
+    function restorePatient(){
+        fetch(`http://localhost:8080/api/archive/patients/restore`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshPatientsArchive)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
+    function deletePatient(){
+        fetch(`http://localhost:8080/api/archive/patients/delete`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshPatientsArchive)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
     return (
-        <tr onClick={()=>{window.location.href = '/patientCard'}}>
-            <td>{surname}</td>
+        <tr>
+            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>
@@ -91,14 +130,14 @@ const PatientRow = (props: any) => {
                     <button
                         type="button"
                         className="btn btn-secondary claim-btn"
-                        //onClick={()=>{addPatient()}}
+                        onClick={()=>{restorePatient()}}
                     >
                         Восстановить
                     </button>
                     <button
                         type="button"
                         className="btn btn-secondary claim-btn"
-                        //onClick={()=>{deletePatient()}}
+                        onClick={()=>{deletePatient()}}
                     >
                         Удалить
                     </button>

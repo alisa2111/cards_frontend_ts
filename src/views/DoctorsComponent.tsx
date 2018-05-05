@@ -17,6 +17,21 @@ export default class DoctorsComponent extends React.Component<Props,any> {
         };
     }
 
+    refreshDoctors = (result: any) => {
+        const employees = result.map((e: any) => new Employee(
+            e.id,
+            e.lastName,
+            e.firstName,
+            e.secondName,
+            e.email,
+            e.password,
+            e.department,
+            e.specialty,
+            e.firstPractiseDate
+        ));
+        this.setState({employees})
+    };
+
     componentWillMount(){
         fetch(`http://localhost:8080/api/doctors/all`, {
             method: 'get',
@@ -27,20 +42,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
             .then((res: any) => {
                 return res.json();
             })
-            .then((result: any) => {
-                const employees = result.map((e: any) => new Employee(
-                    e.id,
-                    e.lastName,
-                    e.firstName,
-                    e.secondName,
-                    e.email,
-                    e.password,
-                    e.department,
-                    e.specialty,
-                    e.firstPractiseDate
-                   ));
-                this.setState({employees})
-            })
+            .then(this.refreshDoctors)
             .catch((err: any) => {
                 console.log(err)
             })
@@ -70,13 +72,14 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                             return (
                                 <CardView
                                     data={employee}
+                                    refreshDoctors = {this.refreshDoctors}
                                     isAdmin={isAdmin}
                                     isArchive={isArchive}
                                     isPatient={isPatient}
                                     myDoctor={myDoctor}
                                     image={img_doctor}
                                 />
-                                )
+                            )
                         })}
                     </div>
                 </div>

@@ -5,6 +5,7 @@ import AuthDialog from "./homeViws/AuthDialog";
 interface Props{
     user?: User
     onLogin: (user: User) => void
+
     head?: string
     search?:boolean
     mainHeader?:boolean
@@ -159,7 +160,7 @@ const DoctorHeader = (props:any) => {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link to={`/patients/my`} className="dropdown-item">Текущие пациенты</Link>
-                                <Link to={`/patients/my/all`} className="dropdown-item">Все пациенты</Link>
+                                <Link to={`/patients/my/all`} className="dropdown-item">Заявки</Link>
                             </div>
                         </li>
                         <li className="nav-item">

@@ -43,8 +43,8 @@ export default class ClaimsPage extends React.Component<Props,any> {
             })
             .then(this.refreshClaims)
             .catch((err: any) => {
-                console.log(err)
-            })
+            console.log(err)
+        })
     }
 
     render(){

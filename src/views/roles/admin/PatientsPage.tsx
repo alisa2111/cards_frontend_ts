@@ -16,6 +16,21 @@ export default class PatientsPage extends React.Component<Props,any> {
         };
     }
 
+    refreshPatients = (result: any) => {
+        const patients = result.map((r: any) => new Patient(
+            r.id,
+            r.lastName,
+            r.firstName,
+            r.secondName,
+            r.email,
+            r.sex,
+            r.password,
+            r.address,
+            r.phoneNumber,
+            r.birthday));
+        this.setState({patients})
+    };
+
     componentWillMount(){
         fetch(`http://localhost:8080/api/patients/all`, {
             method: 'get',
@@ -26,20 +41,7 @@ export default class PatientsPage extends React.Component<Props,any> {
             .then((res: any) => {
                 return res.json();
             })
-            .then((result: any) => {
-                const patients = result.map((r: any) => new Patient(
-                    r.id,
-                    r.lastName,
-                    r.firstName,
-                    r.secondName,
-                    r.email,
-                    r.sex,
-                    r.password,
-                    r.address,
-                    r.phoneNumber,
-                    r.birthday));
-                this.setState({patients})
-            })
+            .then(this.refreshPatients)
             .catch((err: any) => {
                 console.log(err)
             })
@@ -49,7 +51,7 @@ export default class PatientsPage extends React.Component<Props,any> {
         const {onLogin , user} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u}/>
+            <PatientRow patient={u} refreshPatients={this.refreshPatients}/>
         );
         return(
             <div className="container-fluid">
@@ -76,10 +78,29 @@ export default class PatientsPage extends React.Component<Props,any> {
     }
 }
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {surname, name , patronymic , gender,  email , phone , address, birthday, id} = props.patient;
+    const {refreshPatients} = props;
+
+    function addToArchive() {
+        fetch(`http://localhost:8080/api/archive/patients/add`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshPatients)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
     return (
-        <tr onClick={()=>{window.location.href = '/patientCard'}}>
-            <td>{surname}</td>
+        <tr>
+            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>
@@ -91,7 +112,7 @@ const PatientRow = (props: any) => {
                 <button
                     type="button"
                     className="btn btn-secondary claim-btn"
-                    //onClick={()=>{addPatient()}}
+                    onClick={()=>{addToArchive()}}
                 >
                     В архив
                 </button>
