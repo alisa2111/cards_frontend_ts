@@ -2,14 +2,14 @@ import * as React from "react";
 
 export const CardView = (props:any) => {
     const {lastname, firstname, secondname, specialty} = props.data;
-    const {image, myDoctor, refreshDoctors} = props;
+    const {image, myDoctor, refreshDoctorsArchive} = props;
 
     return(
         //col-lg-4
         <div className="col-sm-4">
             <div className="card border border-dark" >
-                {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctors={refreshDoctors}/> : null}
-                {props.isArchive? <ArchiveButtons/> : null}
+                {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
+                {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
                 <img className="card-img-top border border-dark" src={image} alt='qwerty'/>
                 <div className="card-body">
@@ -23,24 +23,20 @@ export const CardView = (props:any) => {
 
 const AdminButtons = (props: any) => {
     const {id} = props.doctor;
-    const {refreshDoctors} = props;
+    const {refreshDoctorsArchive} = props;
 
     function addToArchive() {
-        fetch(`http://localhost:8080/api/patients/...`, {
+        fetch(`http://localhost:8080/api/archive/doctors/add`, {
             method: 'post',
             headers: {
-                'Content-Type': `application/json`,
-                'Accept': 'application/json'
+                'Content-Type': `application/x-www-form-urlencoded`
             },
-            body:
-                JSON.stringify({
-                    id: id
-                })
+            body: "id=" + id
         })
             .then((res: any) => {
                 return res.json();
             })
-            .then(refreshDoctors)
+            .then(refreshDoctorsArchive)
             .catch((err: any) => {
                 console.log(err)
             });
@@ -60,11 +56,56 @@ const AdminButtons = (props: any) => {
     )
 };
 
-const ArchiveButtons = () => {
+const ArchiveButtons = (props: any) => {
+    const {id} = props.doctor;
+    const {refreshDoctorsArchive} = props;
+
+    function restoreDoctor(){
+        fetch(`http://localhost:8080/api/archive/doctors/restore`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshDoctorsArchive)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
+    function deleteDoctor(){
+        fetch(`http://localhost:8080/api/archive/doctors/delete`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshDoctorsArchive)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
     return (
         <div className="btn-group" role="group" aria-label="Basic example">
-            <button type="button" className="btn btn-secondary btn-admin">Восстановить</button>
-            <button type="button" className="btn btn-secondary btn-admin">Удалить</button>
+            <button
+                type="button"
+                className="btn btn-secondary btn-admin"
+                onClick={()=>{restoreDoctor()}}
+            >Восстановить</button>
+            <button
+                type="button"
+                className="btn btn-secondary btn-admin"
+                onClick={()=>{deleteDoctor()}}
+            >Удалить</button>
         </div>
     )
 };

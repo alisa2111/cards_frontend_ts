@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CardView} from "./CardView";
-import {Employee} from "../models/Employee";
 import {img_doctor} from "../data/doctor";
+import {Employee} from "../models/Employee";
 
 interface Props {
     isAdmin?:boolean;
@@ -31,6 +31,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
         ));
         this.setState({employees})
     };
+
 
     componentWillMount(){
         fetch(`http://localhost:8080/api/doctors/all`, {
@@ -64,7 +65,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                 <div>
                     <div className='row'>
                         <div className='col-12'>
-                            <div className= 'header border border-dark' key={index}>{department}</div>
+                            <div className='header border border-dark' key={index}>{department}</div>
                         </div>
                     </div>
                     <div className='card-deck'>
@@ -72,11 +73,11 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                             return (
                                 <CardView
                                     data={employee}
-                                    refreshDoctors = {this.refreshDoctors}
                                     isAdmin={isAdmin}
                                     isArchive={isArchive}
                                     isPatient={isPatient}
                                     myDoctor={myDoctor}
+                                    refreshDoctorsArchive={this.refreshDoctors}
                                     image={img_doctor}
                                 />
                             )

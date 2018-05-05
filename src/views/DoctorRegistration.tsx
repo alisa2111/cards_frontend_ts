@@ -9,7 +9,7 @@ export default class DoctorRegistration extends React.Component<any,any> {
             patronymic:'',
             email:'',
             password:'',
-            department:'',
+            department:'Эндокринология',
             specialty:'',
             practise_date:''
         };
