@@ -10,7 +10,7 @@
     "react-redux": "^5.0.7",
     "react-router-dom": "latest",
     "react-scripts-ts": "2.13.0",
-    "redux": "latest",
+    "redux": "3.7.2",
     "redux-actions": "latest",
     "redux-logger": "latest",
     "redux-thunk": "latest"
