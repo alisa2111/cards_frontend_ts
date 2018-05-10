@@ -8,6 +8,7 @@ import {Link} from "react-router-dom";
 interface Props{
     user: User
     onLogin: (user: User) => void
+    onPatient: (patient: Patient) => void
 }
 export default class PatientsPage extends React.Component<Props,any> {
     constructor(props: any) {
@@ -49,10 +50,10 @@ export default class PatientsPage extends React.Component<Props,any> {
     }
 
     render(){
-        const {onLogin , user} = this.props;
+        const {onLogin , user , onPatient} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u} refreshPatients={this.refreshPatients}/>
+            <PatientRow patient={u} refreshPatients={this.refreshPatients} onPatient={onPatient}/>
         );
         return(
             <div className="container-fluid">
@@ -80,7 +81,7 @@ export default class PatientsPage extends React.Component<Props,any> {
 }
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday, id} = props.patient;
-    const {refreshPatients} = props;
+    const {refreshPatients, onPatient} = props;
 
     function addToArchive() {
         fetch(`http://localhost:8080/api/archive/patients/add`, {
@@ -101,10 +102,11 @@ const PatientRow = (props: any) => {
 
     return (
         <tr>
-            <td>
-                <Link to={'/patientCard'} className="table-link">
-                    {surname}
-                </Link>
+            <td onClick={()=>{
+                const patient = new Patient(id,surname, name, patronymic, email, gender, "123", address , phone, birthday);
+                onPatient(patient);
+            }}>
+                <Link to={"/patientCard"}>{surname}</Link>
             </td>
             <td>{name}</td>
             <td>{patronymic}</td>

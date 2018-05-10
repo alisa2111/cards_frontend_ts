@@ -6,48 +6,15 @@ import {img_doctor} from "../../../data/doctor.js";
 
 interface Props {
     patient?: Patient;
+    onPatient: (patient: Patient) => void
     user: User
     onLogin: (user: User) => void
 }
 
 export default class PatientCard extends React.Component<Props, any> {
-    constructor(props: any) {
-        super(props);
-        this.state = {
-            patients:[]
-        };
-    }
-    componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/all`, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json'
-            },
-        })
-            .then((res: any) => {
-                return res.json();
-            })
-            .then((result:any) => {
-                const patients = result.map((r: any) => new Patient(
-                    r.id,
-                    r.lastName,
-                    r.firstName,
-                    r.secondName,
-                    r.email,
-                    r.sex,
-                    r.password,
-                    r.address,
-                    r.phoneNumber,
-                    r.birthday));
-                this.setState({patients})
-            })
-            .catch((err: any) => {
-                console.log(err)
-            })
-    }
-    render() {
-        const {onLogin, user} = this.props;
 
+    render() {
+        const {onLogin, user, patient} = this.props;
         return (
             <div className="container">
                 <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
@@ -55,7 +22,7 @@ export default class PatientCard extends React.Component<Props, any> {
 
                     <div className="panel panel-info">
                         <div className="panel-heading">
-                            <h3 className="panel-title">Пациент</h3>
+                            <h3 className="panel-title">{patient? patient.surname : null}</h3>
                         </div>
                         <div className="panel-body">
                             <div className="row">
