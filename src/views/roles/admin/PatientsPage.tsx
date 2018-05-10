@@ -4,6 +4,7 @@ import {User} from "../../../models/User";
 import Header from "../../Header";
 import '../../../styles/Patients.css'
 import {Patient} from "../../../models/Patient";
+import {Link} from "react-router-dom";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -55,7 +56,7 @@ export default class PatientsPage extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
@@ -100,7 +101,11 @@ const PatientRow = (props: any) => {
 
     return (
         <tr>
-            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
+            <td>
+                <Link to={'/patientCard'} className="table-link">
+                    {surname}
+                </Link>
+            </td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>

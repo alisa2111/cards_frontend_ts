@@ -5,6 +5,8 @@ import {User} from "../../models/User";
 import Header from "../Header";
 import Registration from "./RegistrationApplication";
 
+//todo: doctor profile, patient profile, images for Patient and Doctor
+
 interface Props{
     user?: User
     onLogin: (user: User) => void
