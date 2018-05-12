@@ -37,3 +37,28 @@
     background-color: #6aa9a6;
     color: #f2f2f2;
 }
+
+.search-div{
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
+    width: 510px;
+    position: relative;
+    background: rgba(179, 179, 179, 0.28);
+}
+
+.search-div > input {
+    width: 400px;
+    padding: 5px;
+    display: inline;
+}
+
+.search-div > button {
+    display: inline;
+    width: 75px;
+    margin-left: 20px;
+}
+
+.center{
+    margin: auto;
+}

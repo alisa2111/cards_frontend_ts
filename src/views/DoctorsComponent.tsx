@@ -13,6 +13,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
     constructor(props: any) {
         super(props);
         this.state = {
+            input: '',
             employees:[]
         };
     }
@@ -48,6 +49,27 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                 console.log(err)
             })
     }
+
+    setStateInput(event: any) {
+        this.setState({input: event.target.value});
+    }
+
+    searchDoctors() {
+        const {input} = this.state;
+        fetch(`http://localhost:8080/api/doctors/search?match=${input}`, {
+            method: 'get',
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(this.refreshDoctors)
+            .catch((err: any) => {
+                console.log(err)
+            })
+    };
 
     groupBy(arr: any, key: any) {
         return arr.reduce(function (rv: any, x: any) {
@@ -88,6 +110,24 @@ export default class DoctorsComponent extends React.Component<Props,any> {
         });
         return(
             <div>
+                <br/>
+                <div className="search-div center">
+                    <input id="searchInput"
+                           className="center"
+                           type="text"
+                           placeholder="Поиск по врачам"
+                           title="Поддерживает поиск по фамилии, имени, отчеству, отделению и специальности"
+                           onChange={(event) => {
+                               this.setStateInput(event)
+                           }}
+                    />
+                    <button type="button"
+                            className="btn btn-primary center"
+                            onClick={() => {
+                                this.searchDoctors()
+                            }}
+                    >Поиск</button>
+                </div>
                 {groups}
             </div>
         )
