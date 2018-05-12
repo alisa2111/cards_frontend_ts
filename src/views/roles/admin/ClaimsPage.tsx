@@ -131,8 +131,8 @@ const PatientRow = (props: any) => {
             <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
-            <td>{email}</td>
             <td>{gender}</td>
+            <td>{email}</td>
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>
