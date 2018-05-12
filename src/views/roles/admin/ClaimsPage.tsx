@@ -22,8 +22,8 @@ export default class ClaimsPage extends React.Component<Props,any> {
         r.lastName,
         r.firstName,
         r.secondName,
-        r.email,
         r.sex,
+        r.email,
         r.password,
         r.address,
         r.phoneNumber,
@@ -131,8 +131,8 @@ const PatientRow = (props: any) => {
             <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
-            <td>{gender}</td>
             <td>{email}</td>
+            <td>{gender}</td>
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>

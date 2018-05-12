@@ -9,7 +9,7 @@ import {connect} from "react-redux";
 import {Patient} from "./models/Patient";
 interface Props {
     user?: User
-    patient?: Patient
+    patient: Patient
     changeLogin: Function
     changePatient: Function
 }

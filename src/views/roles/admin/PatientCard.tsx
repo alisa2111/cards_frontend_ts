@@ -2,10 +2,11 @@ import * as React from 'react';
 import {Patient} from "../../../models/Patient";
 import Header from "../../Header";
 import {User} from "../../../models/User";
-import {img_doctor} from "../../../data/doctor.js";
+import {avatar} from "../../../data/doctor.js";
+import DoctorsComments from "../../DoctorsComments";
 
 interface Props {
-    patient?: Patient;
+    patient: Patient;
     onPatient: (patient: Patient) => void
     user: User
     onLogin: (user: User) => void
@@ -19,37 +20,44 @@ export default class PatientCard extends React.Component<Props, any> {
             <div className="container">
                 <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
                 <div className="row">
-
                     <div className="panel panel-info">
                         <div className="panel-heading">
-                            <h3 className="panel-title">{patient? patient.surname : null}</h3>
+                            <h1 className="panel-title">{patient.surname + " " + patient.name + " " + patient.patronymic}</h1>
                         </div>
                         <div className="panel-body">
                             <div className="row">
-                                <div className="col-md-6 col-lg-6 "><img alt="User Pic" src={img_doctor}
-                                                                         className="img-circle img-responsive"/></div>
+                                <div className="col-md-6 col-lg-6 ">
+                                    <img alt="User Pic" src={avatar} className="img-circle  avatar"/></div>
                                 <div className=" col-md-6 col-lg-6 ">
                                     <table className="table table-user-information">
                                         <tbody>
                                         <tr>
-                                            <td>Department:</td>
-                                            <td>Programming</td>
+                                            <th>Пол:</th>
+                                            <td>{patient.gender}</td>
                                         </tr>
                                         <tr>
-                                            <td>Hire date:</td>
-                                            <td>06/23/2013</td>
+                                            <th>Дата рождения:</th>
+                                            <td>{patient.birthday}</td>
                                         </tr>
                                         <tr>
-                                            <td>Date of Birth</td>
-                                            <td>01/24/1988</td>
+                                            <th>Адрес:</th>
+                                            <td>{patient.address}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Номер телефона:</th>
+                                            <td>{patient.phone}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Email:</th>
+                                            <td>{patient.email}</td>
                                         </tr>
                                         </tbody>
                                     </table>
-
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <DoctorsComments user={user} onLogin={onLogin}/>
                 </div>
             </div>
         )

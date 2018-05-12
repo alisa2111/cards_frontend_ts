@@ -8,7 +8,7 @@ export default class Registration extends React.Component<any,any> {
             name:'',
             patronymic:'',
             email:'',
-            gender:'female',
+            gender:'Женский',
             password:'',
             address:'',
             phoneNumber:'',
@@ -72,8 +72,8 @@ export default class Registration extends React.Component<any,any> {
 
     sendClaim() {
         const {surname, name, patronymic, email, gender, password, address, phoneNumber, birthday} = this.state;
-        let birthday_ =  birthday.replace('-','.')
-        birthday_ =  birthday_.replace('-','.')
+        let birthday_ =  birthday.replace('-','.');
+        birthday_ =  birthday_.replace('-','.');
         fetch(`http://localhost:8080/api/patients/registration`, {
             method: 'post',
             headers: {
@@ -145,8 +145,8 @@ export default class Registration extends React.Component<any,any> {
                                         <label className="input-group-text" >Пол</label>
                                     </div>
                                     <select className="custom-select" id="inputGroupSelect01" onChange={(e)=>{this.setGender(e)}}>
-                                        <option value="female">Женский</option>
-                                        <option value="male">Мужской</option>
+                                        <option value="Женский">Женский</option>
+                                        <option value="Мужской">Мужской</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

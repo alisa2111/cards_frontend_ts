@@ -18,7 +18,7 @@ import {Patient} from "../models/Patient";
 
 interface Props{
     user?: User
-    patient?: Patient
+    patient: Patient
     onLogin: (user: User) => void
     onPatient: (patient: Patient) => void
 }
