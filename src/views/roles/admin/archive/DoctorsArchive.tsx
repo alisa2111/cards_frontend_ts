@@ -63,7 +63,6 @@ export default class DoctorsArchive extends React.Component<Props,any> {
         const groups = Object.keys(groupedCards).map((department, index) => {
             return (
                 <div>
-                    <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
                     <div className='row'>
                         <div className='col-12'>
                             <div className='header border border-dark' key={index}>{department}</div>
@@ -86,6 +85,7 @@ export default class DoctorsArchive extends React.Component<Props,any> {
         });
         return (
             <div>
+                <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
                 {groups}
             </div>
         )
