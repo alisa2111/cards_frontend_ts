@@ -8,7 +8,7 @@ export default class Registration extends React.Component<any,any> {
             name:'',
             patronymic:'',
             email:'',
-            gender:'female',
+            gender:'Женский',
             password:'',
             address:'',
             phoneNumber:'',
@@ -145,8 +145,8 @@ export default class Registration extends React.Component<any,any> {
                                         <label className="input-group-text" >Пол</label>
                                     </div>
                                     <select className="custom-select" id="inputGroupSelect01" onChange={(e)=>{this.setGender(e)}}>
-                                        <option value="female">Женский</option>
-                                        <option value="male">Мужской</option>
+                                        <option value="Женский">Женский</option>
+                                        <option value="Мужской">Мужской</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

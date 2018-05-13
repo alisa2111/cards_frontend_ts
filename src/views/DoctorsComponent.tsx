@@ -2,6 +2,7 @@ import * as React from "react";
 import {CardView} from "./CardView";
 import {img_doctor} from "../data/doctor";
 import {Employee} from "../models/Employee";
+import SearchComponent from "./SearchComponent";
 
 interface Props {
     isAdmin?:boolean;
@@ -50,27 +51,6 @@ export default class DoctorsComponent extends React.Component<Props,any> {
             })
     }
 
-    setStateInput(event: any) {
-        this.setState({input: event.target.value});
-    }
-
-    searchDoctors() {
-        const {input} = this.state;
-        fetch(`http://localhost:8080/api/doctors/search?match=${input}`, {
-            method: 'get',
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-            .then((res: any) => {
-                return res.json();
-            })
-            .then(this.refreshDoctors)
-            .catch((err: any) => {
-                console.log(err)
-            })
-    };
-
     groupBy(arr: any, key: any) {
         return arr.reduce(function (rv: any, x: any) {
             (rv[x[key]] = rv[x[key]] || []).push(x);
@@ -110,24 +90,11 @@ export default class DoctorsComponent extends React.Component<Props,any> {
         });
         return(
             <div>
-                <br/>
-                <div className="search-div center">
-                    <input id="searchInput"
-                           className="center"
-                           type="text"
-                           placeholder="Поиск по врачам"
-                           title="Поддерживает поиск по фамилии, имени, отчеству, отделению и специальности"
-                           onChange={(event) => {
-                               this.setStateInput(event)
-                           }}
-                    />
-                    <button type="button"
-                            className="btn btn-primary center"
-                            onClick={() => {
-                                this.searchDoctors()
-                            }}
-                    >Поиск</button>
-                </div>
+                <SearchComponent refreshState={this.refreshDoctors}
+                                 placeholder="Поиск по врачам"
+                                 title="Поиск по фамилии, имени, отчеству, отделу и специальности"
+                                 isDoctor={true}
+                />
                 {groups}
             </div>
         )

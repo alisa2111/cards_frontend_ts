@@ -17,7 +17,7 @@ export default class PatientCard extends React.Component<Props, any> {
         const {onLogin, user, patient} = this.props;
         return (
             <div className="container">
-                <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user={user} isAdmin={true} />
                 <div className="row">
 
                     <div className="panel panel-info">

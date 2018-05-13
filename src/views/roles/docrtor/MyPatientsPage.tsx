@@ -16,6 +16,21 @@ export default class MyPatientsPage extends React.Component<Props,any> {
         };
     }
 
+    refreshPatients = (result: any) => {
+        const patients = result.map((r: any) => new Patient(
+            r.id,
+            r.lastName,
+            r.firstName,
+            r.secondName,
+            r.email,
+            r.sex,
+            r.password,
+            r.address,
+            r.phoneNumber,
+            r.birthday));
+        this.setState({patients})
+    };
+
     componentWillMount(){
         fetch(`http://localhost:8080/api/patients/all`, {
             method: 'get',
@@ -26,20 +41,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
             .then((res: any) => {
                 return res.json();
             })
-            .then((result: any) => {
-                const patients = result.map((r: any) => new Patient(
-                    r.id,
-                    r.lastName,
-                    r.firstName,
-                    r.secondName,
-                    r.email,
-                    r.sex,
-                    r.password,
-                    r.address,
-                    r.phoneNumber,
-                    r.birthday));
-                this.setState({patients})
-            })
+            .then(this.refreshPatients)
             .catch((err: any) => {
                 console.log(err)
             })
@@ -53,7 +55,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} isDoctor={true} search={true}/>
+                <Header onLogin={onLogin} user = {user} isDoctor={true} />
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>

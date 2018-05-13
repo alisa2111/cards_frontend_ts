@@ -1,9 +1,9 @@
 import * as React from "react";
 
 export const CardView = (props:any) => {
-    const {lastname, firstname, secondname, specialty} = props.data;
-    const {image, myDoctor, refreshDoctorsArchive} = props;
-
+    const {lastname, firstname, secondname, specialty, id} = props.data;
+    const {myDoctor, refreshDoctorsArchive} = props;
+    let requestForImage = "http://localhost:8080/api/image/" + id;
     return(
         //col-lg-4
         <div className="col-sm-4">
@@ -11,7 +11,7 @@ export const CardView = (props:any) => {
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
-                <img className="card-img-top border border-dark" src={image} alt='qwerty'/>
+                <img className="card-img-top border border-dark" src={requestForImage} alt='qwerty'/>
                 <div className="card-body">
                     <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
                 </div>

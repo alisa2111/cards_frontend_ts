@@ -5,6 +5,7 @@ import Header from "../../Header";
 import '../../../styles/Patients.css'
 import {Patient} from "../../../models/Patient";
 import {Link} from "react-router-dom";
+import SearchComponent from "../../SearchComponent";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -57,10 +58,16 @@ export default class PatientsPage extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user={user} isAdmin={true} />
+                <SearchComponent title="Поиск по имени, фамилии, отчеству и адресу"
+                                 placeholder="Поиск по пациентам"
+                                 refreshState={this.refreshPatients}
+                                 isPatient={true}
+                />
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
+                        <th scope="col">Фото</th>
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
@@ -82,6 +89,7 @@ export default class PatientsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday, id} = props.patient;
     const {refreshPatients, onPatient} = props;
+    let requestForImage = "http://localhost:8080/api/image/" + id;
 
     function addToArchive() {
         fetch(`http://localhost:8080/api/archive/patients/add`, {
@@ -102,6 +110,10 @@ const PatientRow = (props: any) => {
 
     return (
         <tr>
+            <td>
+                <img onClick={()=>{window.location.href = '/patientCard'}}
+                     className="border border-dark" src={requestForImage}
+                     alt='qwerty' height="125px" width="125px"/></td>
             <td onClick={()=>{
                 const patient = new Patient(id,surname, name, patronymic, email, gender, "123", address , phone, birthday);
                 onPatient(patient);

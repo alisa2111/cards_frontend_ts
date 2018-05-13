@@ -55,7 +55,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user = {user} isAdmin={true} />
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>

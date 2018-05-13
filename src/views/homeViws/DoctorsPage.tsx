@@ -16,10 +16,10 @@ export default class DoctorsPage extends React.Component<Props,any> {
         return(
             <div className="container-fluid">
                 {isAdmin?
-                    <Header onLogin={onLogin}  user={user} isAdmin={isAdmin} search={true}/>:
+                    <Header onLogin={onLogin}  user={user} isAdmin={isAdmin} />:
                     isPatient?
-                        <Header onLogin={onLogin}  user={user} isPatient={isPatient} search={true}/>:
-                            <Header onLogin={onLogin}  user={user} head='Наши специалисты' search={true} mainHeader={true}/>}
+                        <Header onLogin={onLogin}  user={user} isPatient={isPatient} />:
+                            <Header onLogin={onLogin}  user={user} head='Наши специалисты' mainHeader={true}/>}
                 <DoctorsComponent isAdmin = {isAdmin} isPatient={isPatient} myDoctor={myDoctor}/>
             </div>
         )

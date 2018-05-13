@@ -2,6 +2,7 @@ import {User} from "../../../../models/User";
 import {Patient} from "../../../../models/Patient";
 import Header from "../../../Header";
 import * as React from "react";
+import SearchComponent from "../../../SearchComponent";
 
 interface Props{
     user: User
@@ -55,10 +56,16 @@ export default class PatientsArchive extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user = {user} isAdmin={true}/>
+                <SearchComponent title="Поиск по имени, фамилии, отчеству и адресу"
+                                 placeholder="Поиск по пациентам в архиве"
+                                 refreshState={this.refreshPatientsArchive}
+                                 isPatientArchive={true}
+                />
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
+                        <td scope="col">Фото</td>
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
@@ -80,6 +87,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
     const {refreshPatientsArchive}=props;
+    let requestForImage = "http://localhost:8080/api/image/" + id;
 
     function restorePatient(){
         fetch(`http://localhost:8080/api/archive/patients/restore`, {
@@ -117,6 +125,11 @@ const PatientRow = (props: any) => {
 
     return (
         <tr>
+            <td>
+                <img onClick={()=>{window.location.href = '/patientCard'}}
+                 className="border border-dark" src={requestForImage}
+                 alt='qwerty' height="125px" width="125px"/>
+            </td>
             <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
