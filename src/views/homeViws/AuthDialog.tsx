@@ -63,7 +63,6 @@ export default class AuthDialog extends React.Component<Props,any> {
                 return res.json();
             })
             .then((result:any) => {
-
                 const user = new User(result.email, result.role);
                 user.isSignedIn = true;
                 let obj = JSON.stringify(user);

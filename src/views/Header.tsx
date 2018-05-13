@@ -200,7 +200,7 @@ const PatientHeader = (props:any) => {
                             <Link to={`/profile`} className="nav-link">Моя карточка</Link>
                         </li>
                         <li className="nav-item ">
-                            <Link to={`/`} className="nav-link">Мои записи</Link>
+                            <Link to={`/doctors/appointments`} className="nav-link">Мои записи</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -112,6 +112,7 @@ const ArchiveButtons = (props: any) => {
 
 const PatientButtons = (props:any) => {
     const {myDoctor} = props;
+    console.log(myDoctor)
     return (
         myDoctor?
             <button type="button" className="btn btn-default">Записаться</button>:

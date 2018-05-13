@@ -15,6 +15,7 @@ import PatientsArchive from "./roles/admin/archive/PatientsArchive";
 import MyPatientsPage from "./roles/docrtor/MyPatientsPage";
 import AppointmentsPage from "./roles/patient/AppointmentsPage";
 import {Patient} from "../models/Patient";
+import MyDoctorsPage from "./roles/patient/MyDoctorsPage";
 
 interface Props{
     user?: User
@@ -49,7 +50,7 @@ export default class AppRouter extends React.Component<Props> {
                             <Redirect exact={true} to='/PatientPage'/>
                             <Route exact={true} path='/PatientPage' render={() => <PatientPage onLogin={onLogin}/>}/>
                             <Route exact={true} path='/Doctors' render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true}/>}/>
-                            <Route exact={true} path='/doctors/my' render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true} myDoctor={true}/>}/>
+                            <Route exact={true} path='/doctors/my' render={() => <MyDoctorsPage onLogin={onLogin} user={user}/>}/>
                             <Route exact={true} path='/doctors/appointments' render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
                         </div>
                     </Switch>

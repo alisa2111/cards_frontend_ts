@@ -6,13 +6,12 @@ import {User} from "../../models/User";
 interface Props {
     isAdmin?:boolean
     isPatient?:boolean
-    myDoctor?:boolean
     user?: User
     onLogin: (user: User) => void
 }
 export default class DoctorsPage extends React.Component<Props,any> {
     render(){
-        const {onLogin , user , isAdmin, isPatient, myDoctor} = this.props;
+        const {onLogin , user , isAdmin, isPatient} = this.props;
         return(
             <div className="container-fluid">
                 {isAdmin?
@@ -20,7 +19,7 @@ export default class DoctorsPage extends React.Component<Props,any> {
                     isPatient?
                         <Header onLogin={onLogin}  user={user} isPatient={isPatient} search={true}/>:
                             <Header onLogin={onLogin}  user={user} head='Наши специалисты' search={true} mainHeader={true}/>}
-                <DoctorsComponent isAdmin = {isAdmin} isPatient={isPatient} myDoctor={myDoctor}/>
+                <DoctorsComponent isAdmin = {isAdmin} isPatient={isPatient}/>
             </div>
         )
     }

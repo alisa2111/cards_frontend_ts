@@ -7,7 +7,6 @@ interface Props {
     isAdmin?:boolean;
     isPatient?:boolean;
     isArchive?:boolean;
-    myDoctor?:boolean;
 }
 export default class DoctorsComponent extends React.Component<Props,any> {
     constructor(props: any) {
@@ -79,7 +78,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
     };
 
     render() {
-        const {isAdmin, isArchive, isPatient, myDoctor} = this.props;
+        const {isAdmin, isArchive, isPatient} = this.props;
         const {employees} = this.state;
         const groupedCards = this.groupBy(employees, 'department');  //groped by department
         const groups = Object.keys(groupedCards).map((department,index) => {
@@ -98,7 +97,6 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                                     isAdmin={isAdmin}
                                     isArchive={isArchive}
                                     isPatient={isPatient}
-                                    myDoctor={myDoctor}
                                     refreshDoctorsArchive={this.refreshDoctors}
                                     image={img_doctor}
                                 />
