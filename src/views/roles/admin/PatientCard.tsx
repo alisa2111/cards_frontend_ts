@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {Patient} from "../../../models/Patient";
-import Header from "../../Header";
+import Header from "../../common/Header";
 import {User} from "../../../models/User";
 import {avatar} from "../../../data/doctor.js";
-import DoctorsComments from "../../DoctorsComments";
+import DoctorsComments from "../../common/DoctorsComments";
 
 interface Props {
     patient: Patient;

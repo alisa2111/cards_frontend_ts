@@ -1,7 +1,7 @@
 import * as React from 'react';
 import '../../../styles/AdminPage.css'
 import {User} from "../../../models/User";
-import Header from "../../Header";
+import Header from "../../common/Header";
 
 interface Props{
     user: User

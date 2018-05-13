@@ -1,21 +1,22 @@
 import * as React from 'react';
-import HomePage from './homeViws/HomePage';
-import DoctorsPage from './homeViws/DoctorsPage';
+import HomePage from '../homeViews/HomePage';
+import DoctorsPage from '../homeViews/DoctorsPage';
 import {Redirect, Route, Switch} from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
-import {User} from "../models/User";
-import DoctorPage from './roles/docrtor/DoctorPage';
-import PatientPage from './roles/patient/PatientPage';
-import PatientsPage from "./roles/admin/PatientsPage";
-import StaffPage from "./roles/admin/StaffPage";
-import PatientCard from "./roles/admin/PatientCard";
-import ClaimsPage from "./roles/admin/ClaimsPage";
-import DoctorsArchive from "./roles/admin/archive/DoctorsArchive";
-import PatientsArchive from "./roles/admin/archive/PatientsArchive";
-import MyPatientsPage from "./roles/docrtor/MyPatientsPage";
-import AppointmentsPage from "./roles/patient/AppointmentsPage";
-import {Patient} from "../models/Patient";
-import MyDoctorsPage from "./roles/patient/MyDoctorsPage";
+import {User} from "../../models/User";
+import DoctorPage from '../roles/docrtor/DoctorPage';
+import PatientPage from '../roles/patient/PatientPage';
+import PatientsPage from "./PatientsPage";
+import StaffPage from "../roles/admin/StaffPage";
+import PatientCard from "../roles/admin/PatientCard";
+import ClaimsPage from "../roles/admin/ClaimsPage";
+import DoctorsArchive from "../roles/admin/archive/DoctorsArchive";
+import PatientsArchive from "../roles/admin/archive/PatientsArchive";
+import MyPatientsPage from "../roles/docrtor/MyPatientsPage";
+import AppointmentsPage from "../roles/patient/AppointmentsPage";
+import {Patient} from "../../models/Patient";
+import MyDoctorsPage from "../roles/patient/MyDoctorsPage";
+import MyClaimsPage from "../roles/docrtor/MyClaimsPage";
 
 interface Props{
     user?: User
@@ -33,8 +34,15 @@ export default class AppRouter extends React.Component<Props> {
                        <div>
                            <Redirect exact={true} to='/patients/my'/>
                            <Route exact={true} path='/patients/my' render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
-                           <Route exact={true} path='/patients/my/all' render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
-                           <Route exact={true} path='/patients/base' render={() =>  <MyPatientsPage onLogin={onLogin} user={user}/>}/>
+                           <Route exact={true} path='/patients/my/claims' render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
+                           <Route exact={true} path='/patients' render={() =>
+                               <PatientsPage
+                                   onLogin={onLogin}
+                                   onPatient={onPatient}
+                                   user={user}
+                                   isDoctor={true}
+                               />
+                           }/>
                            <Route exact={true} path='/' render={() => <DoctorPage onLogin={onLogin} user = {user}/>}/>
                        </div>
                    </Switch>

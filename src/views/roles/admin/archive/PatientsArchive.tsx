@@ -1,8 +1,8 @@
 import {User} from "../../../../models/User";
 import {Patient} from "../../../../models/Patient";
-import Header from "../../../Header";
+import Header from "../../../common/Header";
 import * as React from "react";
-import SearchComponent from "../../../SearchComponent";
+import SearchComponent from "../../../common/SearchComponent";
 
 interface Props{
     user: User

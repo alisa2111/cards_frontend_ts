@@ -2,8 +2,8 @@ import * as React from 'react';
 import '../../../styles/AdminPage.css'
 import {User} from "../../../models/User";
 import DoctorRegistration from "./DoctorRegistration";
-import Header from "../../Header";
-import DoctorsComponent from "../../DoctorsComponent";
+import Header from "../../common/Header";
+import DoctorsComponent from "../../common/DoctorsComponent";
 
 interface Props{
     user: User

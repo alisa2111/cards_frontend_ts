@@ -1,9 +1,9 @@
 import * as React from 'react';
 import {User} from "../../../models/User";
-import Header from "../../Header";
+import Header from "../../common/Header";
 import {Employee} from "../../../models/Employee";
 import {img_doctor} from "../../../data/doctor";
-import {CardView} from "../../CardView";
+import {CardView} from "../../common/CardView";
 
 interface Props{
     user?: User

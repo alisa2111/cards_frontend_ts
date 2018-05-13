@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {User} from "../../../models/User";
-import Header from "../../Header";
+import Header from "../../common/Header";
 
 interface Props{
     user?: User

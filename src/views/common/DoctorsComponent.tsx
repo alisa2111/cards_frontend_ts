@@ -1,7 +1,7 @@
 import * as React from "react";
 import {CardView} from "./CardView";
-import {img_doctor} from "../data/doctor";
-import {Employee} from "../models/Employee";
+import {img_doctor} from "../../data/doctor";
+import {Employee} from "../../models/Employee";
 import SearchComponent from "./SearchComponent";
 
 interface Props {

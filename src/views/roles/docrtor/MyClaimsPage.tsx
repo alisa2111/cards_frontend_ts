@@ -8,7 +8,7 @@ interface Props{
     user: User
     onLogin: (user: User) => void
 }
-export default class MyPatientsPage extends React.Component<Props,any> {
+export default class MyClaimsPage extends React.Component<Props,any> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -16,7 +16,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
         };
     }
 
-    refreshPatients = (result: any) => {
+    refreshClaims = (result: any) => {
         const patients = result.map((r: any) => new Patient(
             r.id,
             r.lastName,
@@ -34,7 +34,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
     componentWillMount(){
         const {id} = this.props.user;
         console.log(id);
-        fetch(`http://localhost:8080/api/doctor/getAllPatient`, {
+        fetch(`http://localhost:8080/api/doctor/getAllPatientForAccept`, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -52,7 +52,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isDoctor={true} />
-                MY PATIENTS PAGE
+                MY CLAIMS PAGE
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>

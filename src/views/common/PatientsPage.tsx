@@ -1,12 +1,13 @@
 import * as React from 'react';
-import '../../../styles/AdminPage.css'
-import {User} from "../../../models/User";
-import Header from "../../Header";
-import '../../../styles/Patients.css'
-import {Patient} from "../../../models/Patient";
+import '../../styles/AdminPage.css'
+import '../../styles/Patients.css'
 import {Link} from "react-router-dom";
-import SearchComponent from "../../SearchComponent";
+import {User} from "../../models/User";
+import {Patient} from "../../models/Patient";
+import SearchComponent from "./SearchComponent";
+import Header from "./Header";
 interface Props{
+    isDoctor?:boolean
     user: User
     onLogin: (user: User) => void
     onPatient: (patient: Patient) => void
@@ -51,14 +52,23 @@ export default class PatientsPage extends React.Component<Props,any> {
     }
 
     render(){
-        const {onLogin , user , onPatient} = this.props;
+        const {isDoctor, onLogin , user , onPatient} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u} refreshPatients={this.refreshPatients} onPatient={onPatient}/>
+            <PatientRow
+                patient={u}
+                refreshPatients={this.refreshPatients}
+                onPatient={onPatient}
+                isDoctor={isDoctor}
+            />
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user={user} isAdmin={true} />
+                {
+                    isDoctor?
+                        <Header onLogin={onLogin} user={user} isDoctor={true}/>:
+                        <Header onLogin={onLogin} user={user} isAdmin={true} />
+                }
                 <SearchComponent title="Поиск по имени, фамилии, отчеству и адресу"
                                  placeholder="Поиск по пациентам"
                                  refreshState={this.refreshPatients}
@@ -88,7 +98,7 @@ export default class PatientsPage extends React.Component<Props,any> {
 }
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phone , address, birthday, id} = props.patient;
-    const {refreshPatients, onPatient} = props;
+    const {refreshPatients, onPatient, isDoctor} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
 
     function addToArchive() {
@@ -136,15 +146,19 @@ const PatientRow = (props: any) => {
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>
-            <td>
-                <button
-                    type="button"
-                    className="btn btn-secondary claim-btn"
-                    onClick={()=>{addToArchive()}}
-                >
-                    В архив
-                </button>
-            </td>
+                {
+                isDoctor ?
+                    null :
+                    <td>
+                        <button
+                            type="button"
+                            className="btn btn-secondary claim-btn"
+                            onClick={()=>{addToArchive()}}
+                        >
+                            В архив
+                        </button>
+                    </td>
+                }
         </tr>
     )
 };

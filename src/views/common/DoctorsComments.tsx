@@ -1,7 +1,7 @@
 import * as React from "react";
-import {User} from "../models/User";
+import {User} from "../../models/User";
 import Header from "./Header";
-import "../styles/Comments.css";
+import "../../styles/Comments.css";
 
 interface Props{
     user?: User

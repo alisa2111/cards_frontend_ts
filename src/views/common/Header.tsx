@@ -1,7 +1,7 @@
 import * as React from "react";
 import {Link} from 'react-router-dom'
-import {User} from "../models/User";
-import AuthDialog from "./homeViws/AuthDialog";
+import {User} from "../../models/User";
+import AuthDialog from "../homeViews/AuthDialog";
 interface Props{
     user?: User
     onLogin: (user: User) => void
@@ -133,7 +133,7 @@ const DoctorHeader = (props:any) => {
                             <Link to={`/profile`} className="nav-link">Профиль</Link>
                         </li>
                         <li className="nav-item ">
-                            <Link to={`/patients/base`} className="nav-link">База</Link>
+                            <Link to={`/patients`} className="nav-link">База</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -141,7 +141,7 @@ const DoctorHeader = (props:any) => {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link to={`/patients/my`} className="dropdown-item">Текущие пациенты</Link>
-                                <Link to={`/patients/my/all`} className="dropdown-item">Заявки</Link>
+                                <Link to={`/patients/my/claims`} className="dropdown-item">Заявки</Link>
                             </div>
                         </li>
                         <li className="nav-item">
