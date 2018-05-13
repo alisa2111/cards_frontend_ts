@@ -4,6 +4,7 @@ import Header from "../../../Header";
 import {Employee} from "../../../../models/Employee";
 import {CardView} from "../../../CardView";
 import {img_doctor} from "../../../../data/doctor";
+import SearchComponent from "../../../SearchComponent";
 
 
 interface Props{
@@ -63,6 +64,7 @@ export default class DoctorsArchive extends React.Component<Props,any> {
         const groups = Object.keys(groupedCards).map((department, index) => {
             return (
                 <div>
+                    <Header onLogin={onLogin} user={user} isAdmin={true} />
                     <div className='row'>
                         <div className='col-12'>
                             <div className='header border border-dark' key={index}>{department}</div>
@@ -85,7 +87,12 @@ export default class DoctorsArchive extends React.Component<Props,any> {
         });
         return (
             <div>
-                <Header onLogin={onLogin} user={user} isAdmin={true} search={true}/>
+                <Header onLogin={onLogin} user={user} isAdmin={true} />
+                <SearchComponent refreshState={this.refreshDoctorsArchive}
+                                 placeholder="Поиск по врачам"
+                                 title="Поиск по фамилии, имени, отчеству, отделу и специальности"
+                                 isDoctorArchive={true}
+                />
                 {groups}
             </div>
         )
