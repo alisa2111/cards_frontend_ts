@@ -111,11 +111,20 @@ const PatientRow = (props: any) => {
     return (
         <tr>
             <td>
-                <img onClick={()=>{window.location.href = '/patientCard'}}
-                     className="border border-dark" src={requestForImage}
-                     alt='qwerty' height="125px" width="125px"/></td>
+                <Link to={"/patientCard"}>
+                    <img
+                        onClick={() => {
+                            const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phone, birthday);
+                            onPatient(patient);
+                        }}
+                        className="border border-dark"
+                        src={requestForImage}
+                        alt='qwerty' height="125px" width="125px"
+                    />
+                </Link>
+            </td>
             <td onClick={()=>{
-                const patient = new Patient(id,surname, name, patronymic, email, gender, "123", address , phone, birthday);
+                const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phone, birthday);
                 onPatient(patient);
             }}>
                 <Link to={"/patientCard"}>{surname}</Link>
