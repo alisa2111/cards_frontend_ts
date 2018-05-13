@@ -1,9 +1,14 @@
 .table{
-    width: 90%;
+    width: 100%;
     margin: 20px auto 0 auto;
+    line-height: 1;
 }
 
 thead{
+    text-align: center;
+}
+
+th{
     text-align: center;
 }
 
@@ -24,14 +29,26 @@ td{
     color: black;
 }
 
-.table-user-information > tbody > tr {
-    border-top: 1px solid rgb(221, 221, 221);
-}
-
 .table-user-information > tbody > tr:first-child {
     border-top: 0;
 }
 
 .table-user-information > tbody > tr > td {
     border-top: 0;
+}
+
+.table-user-information > tbody > tr {
+    border-top: 1px solid rgb(221, 221, 221);
+}
+
+.table-user-information > tbody > tr > th:first-child {
+    border-top: 0;
+}
+
+.table-user-information > tbody > tr > td > th{
+    border-top: 0;
+}
+.avatar{
+    width: 300px;
+    height: 300px;
 }

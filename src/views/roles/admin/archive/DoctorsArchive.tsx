@@ -87,6 +87,7 @@ export default class DoctorsArchive extends React.Component<Props,any> {
         });
         return (
             <div>
+                <Header onLogin={onLogin} user={user} isAdmin={true} />
                 <SearchComponent refreshState={this.refreshDoctorsArchive}
                                  placeholder="Поиск по врачам"
                                  title="Поиск по фамилии, имени, отчеству, отделу и специальности"

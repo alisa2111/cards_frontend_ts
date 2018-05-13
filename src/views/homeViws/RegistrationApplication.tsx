@@ -72,8 +72,8 @@ export default class Registration extends React.Component<any,any> {
 
     sendClaim() {
         const {surname, name, patronymic, email, gender, password, address, phoneNumber, birthday} = this.state;
-        let birthday_ =  birthday.replace('-','.')
-        birthday_ =  birthday_.replace('-','.')
+        let birthday_ =  birthday.replace('-','.');
+        birthday_ =  birthday_.replace('-','.');
         fetch(`http://localhost:8080/api/patients/registration`, {
             method: 'post',
             headers: {
