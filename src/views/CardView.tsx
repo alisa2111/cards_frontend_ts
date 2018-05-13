@@ -11,7 +11,10 @@ export const CardView = (props:any) => {
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
-                <img className="card-img-top border border-dark" src={requestForImage} alt='qwerty'/>
+                <img
+                    className="card-img-top border border-dark"
+                    src={requestForImage}
+                    alt='qwerty'/>
                 <div className="card-body">
                     <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
                 </div>

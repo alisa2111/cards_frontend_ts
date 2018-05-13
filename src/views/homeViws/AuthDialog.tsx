@@ -20,8 +20,8 @@ export default class AuthDialog extends React.Component<Props,any> {
        const storageString = window.localStorage.getItem('user');
        console.log(storageString);
        if(storageString != null){
-            const {email , role } = JSON.parse(storageString);
-            const user = new User(email , role);
+            const {id, email , role } = JSON.parse(storageString);
+            const user = new User(id, email, role);
             user.isSignedIn = true;
             this.props.onLogin(user);
        }
@@ -41,12 +41,6 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     login() {
       const {email , password} = this.state;
-
-        // const user = new User("alisa", 'ADMIN');
-        // user.isSignedIn = true;
-        // this.props.onLogin(user);
-
-        // fetch is working
         fetch(`http://localhost:8080/api/authorization`, {
             method: 'post',
             headers: {
@@ -63,7 +57,8 @@ export default class AuthDialog extends React.Component<Props,any> {
                 return res.json();
             })
             .then((result:any) => {
-                const user = new User(result.email, result.role);
+                console.log(result);
+                const user = new User(result.id, result.email, result.role);
                 user.isSignedIn = true;
                 let obj = JSON.stringify(user);
                 localStorage.setItem("user", obj);

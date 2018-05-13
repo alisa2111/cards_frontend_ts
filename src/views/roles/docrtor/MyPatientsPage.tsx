@@ -32,19 +32,15 @@ export default class MyPatientsPage extends React.Component<Props,any> {
     };
 
     componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/all`, {
-            method: 'get',
+        const {id} = this.props.user;
+        console.log(id);
+        fetch(`http://localhost:8080/api/doctor/getAllPatientForAccept`, {
+            method: 'post',
             headers: {
-                'Accept': 'application/json'
+                'Content-Type': `application/x-www-form-urlencoded`
             },
+            body: "id=" + id
         })
-            .then((res: any) => {
-                return res.json();
-            })
-            .then(this.refreshPatients)
-            .catch((err: any) => {
-                console.log(err)
-            })
     }
 
     render(){
@@ -59,6 +55,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
+                        <th scope="col">Фото</th>
                         <th scope="col">Фамилия</th>
                         <th scope="col">Имя</th>
                         <th scope="col">Отчество</th>
@@ -66,7 +63,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
                         <th scope="col">E-mail</th>
                         <th scope="col">Телефон</th>
                         <th scope="col">Адрес</th>
-                        <th scope="col">Год рождения</th>
+                        <th scope="col">Г.Р.</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,10 +75,16 @@ export default class MyPatientsPage extends React.Component<Props,any> {
     }
 }
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {id, surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    let requestForImage = "http://localhost:8080/api/image/" + id;
     return (
         <tr onClick={()=>{window.location.href = '/patientCard'}}>
-            <td>{surname}</td>
+            <td>
+                <img onClick={()=>{window.location.href = '/patientCard'}}
+                     className="border border-dark" src={requestForImage}
+                     alt='qwerty' height="125px" width="125px"/>
+            </td>
+            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>
