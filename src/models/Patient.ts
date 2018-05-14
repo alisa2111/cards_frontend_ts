@@ -5,7 +5,7 @@ export class Patient {
     patronymic: string;
     gender: string;
     email: string;
-    phone: string;
+    phoneNumber: string;
     address: string;
     password:string;
     birthday:string;
@@ -19,7 +19,7 @@ export class Patient {
         email:string,
         password:string,
         address:string,
-        phone: string,
+        phoneNumber: string,
         birthday:string
     )
     {
@@ -28,7 +28,7 @@ export class Patient {
         this.name = name;
         this.patronymic = patronymic;
         this.email = email;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
         this.address = address;
         this.gender = gender;
         this.password = password;

@@ -85,6 +85,9 @@ export default class AppRouter extends React.Component<Props> {
                                     onLogin={onLogin}
                                     patient={patient}
                                     onPatient={onPatient}
+                                    isDoctor={user.role==='DOCTOR'}
+                                    isAdmin={user.role==='ADMIN'}
+                                    isPatient={user.role==='PATIENT'}
                                 />}/>
                             <Route exact={true} path='/archive/staff' render={() => <DoctorsArchive onLogin={onLogin} user={user}/>}/>
                             <Route exact={true} path='/archive/patients' render={() => <PatientsArchive onLogin={onLogin} user={user}/>}/>

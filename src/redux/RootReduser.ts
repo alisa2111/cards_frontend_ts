@@ -31,7 +31,7 @@ const PatientReducer = handleActions<PatientActionState, PatientActionData>({
 
     [PATIENT_SET]: (currentState: PatientActionState, action: Action<Patient>): PatientActionState => {
         const p = action.payload || initialPatientState; //copy current state
-        return new Patient(p.id, p.surname, p.name, p.patronymic, p.gender, p.email, p.phone, p.address, p.password, p.birthday);
+        return new Patient(p.id, p.surname, p.name, p.patronymic, p.gender, p.email, p.phoneNumber, p.address, p.password, p.birthday);
     },
 
 } as ReducerMap<PatientActionState, PatientActionData>, initialPatientState);
