@@ -3,10 +3,12 @@ import {Patient} from "../../../../models/Patient";
 import Header from "../../../common/Header";
 import * as React from "react";
 import SearchComponent from "../../../common/SearchComponent";
+import {Link} from "react-router-dom";
 
 interface Props{
     user: User
     onLogin: (user: User) => void
+    onPatient: (patient: Patient) => void
 }
 export default class PatientsArchive extends React.Component<Props,any> {
     constructor(props: any) {
@@ -49,10 +51,10 @@ export default class PatientsArchive extends React.Component<Props,any> {
     }
 
     render(){
-        const {onLogin , user} = this.props;
+        const {onLogin , user, onPatient} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u} refreshPatientsArchive={this.refreshPatientsArchive}/>
+            <PatientRow patient={u} refreshPatientsArchive={this.refreshPatientsArchive} onPatient={onPatient}/>
         );
         return(
             <div className="container-fluid">
@@ -86,7 +88,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
 }
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
-    const {refreshPatientsArchive}=props;
+    const {refreshPatientsArchive, onPatient}=props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
 
     function restorePatient(){
@@ -126,11 +128,19 @@ const PatientRow = (props: any) => {
     return (
         <tr>
             <td>
-                <img onClick={()=>{window.location.href = '/patientCard'}}
-                 className="border border-dark" src={requestForImage}
-                 alt='qwerty' height="125px" width="125px"/>
+                <Link to={"/patientCard"}>
+                    <img
+                        onClick={() => {
+                            const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phone, birthday);
+                            onPatient(patient);
+                        }}
+                        className="border border-dark"
+                        src={requestForImage}
+                        alt='qwerty' height="125px" width="125px"
+                    />
+                </Link>
             </td>
-            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
+            <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>

@@ -4,9 +4,8 @@ import {DoctorComment} from "../../models/DoctorComment";
 import "../../styles/Comments.css";
 
 interface Props{
-    user?: User
+    user: User
     onLogin: (user: User) => void
-    isDoctor?: boolean
     patientId: string
 }
 export default class DoctorsComments extends React.Component<Props,any> {
@@ -47,7 +46,7 @@ export default class DoctorsComments extends React.Component<Props,any> {
     }
 
     render(){
-        const {isDoctor} = this.props;
+        const {user} = this.props;
         const {comments} = this.state;
         const sortedComments = comments.sort(function(a:DoctorComment,b:DoctorComment){
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
@@ -68,9 +67,9 @@ export default class DoctorsComments extends React.Component<Props,any> {
             )
         });
         return(
-            <div className="container">
+            <div className="container big-wrapper-comments">
                 <div className="comments">
-                    {isDoctor ? <div className="comment-wrap">
+                    {user.role === "DOCTOR" ? <div className="comment-wrap">
                         <div className="comment-block">
                             <form action="">
                                 <textarea placeholder="Начните вводить..."></textarea>

@@ -133,10 +133,7 @@ const PatientRow = (props: any) => {
                     />
                 </Link>
             </td>
-            <td onClick={()=>{
-                const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phone, birthday);
-                onPatient(patient);
-            }}>
+            <td>
                 <Link to={"/patientCard"}>{surname}</Link>
             </td>
             <td>{name}</td>

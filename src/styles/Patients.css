@@ -51,4 +51,17 @@ td{
 .avatar{
     width: 300px;
     height: 300px;
+    border: 1px solid black;
+}
+
+.image-upload-div{
+    padding-left: 15px;
+    padding-top: 15px;
+    height: 120px;
+}
+
+.file-upload-button{
+    line-height: 1em;
+    margin-left: 80px;
+    margin-top: 10px;
 }

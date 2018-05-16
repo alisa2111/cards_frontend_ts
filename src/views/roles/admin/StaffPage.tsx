@@ -16,7 +16,14 @@ export default class StaffPage extends React.Component<Props,any> {
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isAdmin={true} />
-                <button type="button" className="btnSignUp" data-toggle="modal" data-target="#staffModal">Зарегистрировать нового сотрудника</button>
+                <button
+                    type="button"
+                    className="btnSignUp margin-left-35percent"
+                    data-toggle="modal"
+                    data-target="#staffModal"
+                >
+                    Зарегистрировать нового сотрудника
+                </button>
                 <DoctorRegistration/>
                 <DoctorsComponent isAdmin={true}/>
             </div>

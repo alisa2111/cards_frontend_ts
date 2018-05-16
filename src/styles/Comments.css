@@ -32,11 +32,19 @@ p {
     padding: 0 1.25rem;
 }
 
+.big-wrapper-comments{
+    border: 2px solid black;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
 .comment-wrap {
     margin-bottom: 1.25rem;
     display: table;
     width: 100%;
     min-height: 5.3125rem;
+    border: 1px solid black;
+    border-radius: 3px;
 }
 
 .photo {

@@ -60,7 +60,7 @@ const AdminHeader = (props:any) => {
     const {onLogin , user} = props;
     function exit(){
         if (user) {
-            localStorage.removeItem("user");
+            localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
         }
@@ -112,7 +112,7 @@ const DoctorHeader = (props:any) => {
     const {onLogin , user} = props;
     function exit(){
         if (user) {
-            localStorage.removeItem("user");
+            localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
         }
@@ -158,7 +158,7 @@ const PatientHeader = (props:any) => {
     const {onLogin , user} = props;
     function exit(){
         if (user) {
-            localStorage.removeItem("user");
+            localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
         }
@@ -176,7 +176,7 @@ const PatientHeader = (props:any) => {
                     <ul className="navbar-nav ml-auto">
 
                         <li className="nav-item ">
-                            <Link to={`/profile`} className="nav-link">Моя карточка</Link>
+                            <Link to={`/patientCard`} className="nav-link">Моя карточка</Link>
                         </li>
                         <li className="nav-item ">
                             <Link to={`/doctors/appointments`} className="nav-link">Мои записи</Link>

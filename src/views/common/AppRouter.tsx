@@ -5,7 +5,6 @@ import {Redirect, Route, Switch} from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import {User} from "../../models/User";
 import DoctorPage from '../roles/docrtor/DoctorPage';
-import PatientPage from '../roles/patient/PatientPage';
 import PatientsPage from "./PatientsPage";
 import StaffPage from "../roles/admin/StaffPage";
 import PatientCard from "../roles/admin/PatientCard";
@@ -31,36 +30,72 @@ export default class AppRouter extends React.Component<Props> {
            return(
                <BrowserRouter>
                    <Switch>
-                       <div>
-                           <Redirect exact={true} to='/patients/my'/>
-                           <Route exact={true} path='/patients/my' render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
-                           <Route exact={true} path='/patients/my/claims' render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
-                           <Route exact={true} path='/patients' render={() =>
-                               <PatientsPage
-                                   onLogin={onLogin}
-                                   onPatient={onPatient}
-                                   user={user}
-                                   isDoctor={true}
-                               />
-                           }/>
-                           <Route exact={true} path='/' render={() => <DoctorPage onLogin={onLogin} user = {user}/>}/>
-                       </div>
+                       <Route exact={true} path='/patientCard' render={() =>
+                           <PatientCard
+                               user={user}
+                               onLogin={onLogin}
+                               patient={patient}
+                               onPatient={onPatient}
+                               isDoctor={user.role === 'DOCTOR'}
+                               isAdmin={user.role === 'ADMIN'}
+                               isPatient={user.role === 'PATIENT'}
+                           />}/>
+                       <Route exact={true} path='/patients/my'
+                              render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
+                       <Route exact={true} path='/patients/my/claims'
+                              render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
+                       <Route exact={true} path='/patients' render={() =>
+                           <PatientsPage
+                               onLogin={onLogin}
+                               onPatient={onPatient}
+                               user={user}
+                               isDoctor={true}
+                           />
+                       }/>
+                       <Route exact={true} path='/' render={() => <DoctorPage onLogin={onLogin} user={user}/>}/>
+                       <Redirect exact={true} to='/patients/my'/>
                    </Switch>
                </BrowserRouter>
            )
         }
 
         if( user &&  user.isSignedIn && user.role==='PATIENT' ) {
+            let newPatient: Patient = patient;
+            fetch("http://localhost:8080/api/patients/getByEmail", {
+                method: 'post',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type':'application/x-www-form-urlencoded'
+                },
+                body: "email=" + user.email
+            })
+                .then((result: any) => {
+                    return result.json();
+                })
+                .then((res:any) => {
+                    newPatient = new Patient(res.id, res.surname, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
+                })
+                .catch( (err) =>{
+                    console.log(err);
+                });
             return(
                 <BrowserRouter>
                     <Switch>
-                        <div>
-                            <Redirect exact={true} to='/PatientPage'/>
-                            <Route exact={true} path='/PatientPage' render={() => <PatientPage onLogin={onLogin}/>}/>
-                            <Route exact={true} path='/Doctors' render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true}/>}/>
-                            <Route exact={true} path='/doctors/my' render={() => <MyDoctorsPage onLogin={onLogin} user={user}/>}/>
-                            <Route exact={true} path='/doctors/appointments' render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
-                        </div>
+                        <Route exact={true} path='/patientCard' render={() =>
+                            <PatientCard
+                                user={user}
+                                onLogin={onLogin}
+                                patient={newPatient}
+                                onPatient={onPatient}
+                                isPatient={user.role === 'PATIENT'}
+                            />}/>
+                        <Route exact={true} path='/Doctors'
+                               render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true}/>}/>
+                        <Route exact={true} path='/doctors/my'
+                               render={() => <MyDoctorsPage onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path='/doctors/appointments'
+                               render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
+                        <Redirect exact={true} to='/patientCard'/>
                     </Switch>
                 </BrowserRouter>
             )
@@ -70,28 +105,29 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
-                        <div>
-                            <Redirect exact={true}  to='/staff'/>
-                            <Route exact={true} path='/staff' render={() => <StaffPage onLogin={onLogin} user={user}/>}/>
-                            <Route exact={true} path='/patients' render={() =>
-                                <PatientsPage
-                                    onLogin={onLogin}
-                                    onPatient={onPatient}
-                                    user={user}/>}/>
-                            <Route exact={true} path='/patients/claim' render={() => <ClaimsPage onLogin={onLogin} user={user}/>}/>
-                            <Route exact={true} path='/patientCard' render={() =>
-                                <PatientCard
-                                    user={user}
-                                    onLogin={onLogin}
-                                    patient={patient}
-                                    onPatient={onPatient}
-                                    isDoctor={user.role==='DOCTOR'}
-                                    isAdmin={user.role==='ADMIN'}
-                                    isPatient={user.role==='PATIENT'}
-                                />}/>
-                            <Route exact={true} path='/archive/staff' render={() => <DoctorsArchive onLogin={onLogin} user={user}/>}/>
-                            <Route exact={true} path='/archive/patients' render={() => <PatientsArchive onLogin={onLogin} user={user}/>}/>
-                        </div>
+                        <Route exact={true} path='/staff' render={() => <StaffPage onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path='/patients' render={() =>
+                            <PatientsPage
+                                onLogin={onLogin}
+                                onPatient={onPatient}
+                                user={user}/>}/>
+                        <Route exact={true} path='/patients/claim'
+                               render={() => <ClaimsPage onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path='/patientCard' render={() =>
+                            <PatientCard
+                                user={user}
+                                onLogin={onLogin}
+                                patient={patient}
+                                onPatient={onPatient}
+                                isDoctor={user.role === 'DOCTOR'}
+                                isAdmin={user.role === 'ADMIN'}
+                                isPatient={user.role === 'PATIENT'}
+                            />}/>
+                        <Route exact={true} path='/archive/staff'
+                               render={() => <DoctorsArchive onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path='/archive/patients'
+                               render={() => <PatientsArchive onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
+                        <Redirect exact={true} to='/staff'/>
                     </Switch>
                 </BrowserRouter>
             )

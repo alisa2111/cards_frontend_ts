@@ -43,6 +43,10 @@ body{
     color: #082567 !important;
     line-height: 1.5;
 }
+.margin-left-35percent{
+    margin-left: 35%;
+}
+
 .btnSignUp{
     /*margin-left: 35%;*/
     margin-top: 35px;

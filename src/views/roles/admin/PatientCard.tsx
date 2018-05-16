@@ -3,22 +3,27 @@ import {Patient} from "../../../models/Patient";
 import Header from "../../common/Header";
 import {User} from "../../../models/User";
 import DoctorsComments from "../../common/DoctorsComments";
+import ImageComponentWithUpload from "../../common/ImageComponentWithUpload";
 
 interface Props {
     patient: Patient;
     onPatient: (patient: Patient) => void
     user: User
     onLogin: (user: User) => void
-    isDoctor?:boolean;
-    isPatient?:boolean;
-    isAdmin?:boolean;
+    isDoctor?: boolean;
+    isPatient?: boolean;
+    isAdmin?: boolean;
 }
 
 export default class PatientCard extends React.Component<Props, any> {
 
+    componentWillUnmount(){
+        localStorage.removeItem("patient");
+    }
+
     render() {
         const {onLogin, user, patient, isPatient, isDoctor, isAdmin} = this.props;
-        let requestForImage = "http://localhost:8080/api/image/" + String(patient.id);
+        localStorage.setItem("patient", JSON.stringify(patient));
         return (
             <div className="container">
                 {isAdmin ? <Header onLogin={onLogin} user={user} isAdmin={true}/> : null}
@@ -31,8 +36,11 @@ export default class PatientCard extends React.Component<Props, any> {
                         </div>
                         <div className="panel-body">
                             <div className="row">
-                                <div className="col-md-6 col-lg-6 ">
-                                    <img alt="User Pic" src={requestForImage} className="img-circle  avatar"/></div>
+                                        <ImageComponentWithUpload
+                                            accountId={String(patient.id)}
+                                            isPatient={isPatient}
+                                            isAdmin={isAdmin}
+                                        />
                                 <div className=" col-md-6 col-lg-6 ">
                                     <table className="table table-user-information">
                                         <tbody>
@@ -62,7 +70,7 @@ export default class PatientCard extends React.Component<Props, any> {
                             </div>
                         </div>
                     </div>
-                    <DoctorsComments user={user} onLogin={onLogin} patientId={String(patient.id)}/>
+                    <DoctorsComments user={user} onLogin={onLogin} patientId={String(patient.id)} />
                 </div>
             </div>
         )
