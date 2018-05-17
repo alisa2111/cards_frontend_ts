@@ -6,7 +6,7 @@ import {img_doctor} from "../../../data/doctor";
 import {CardView} from "../../common/CardView";
 
 interface Props{
-    user?: User
+    user: User
     onLogin: (user: User) => void
 }
 export default class MyDoctorsPage extends React.Component<Props,any> {
@@ -33,11 +33,13 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
     };
 
     componentWillMount() {
-        fetch(`http://localhost:8080/api/doctors/all`, {
-            method: 'get',
+        const {id} = this.props.user;
+        fetch(`http://localhost:8080/api/patient/getAllDoctorsForAccept`, {
+            method: 'post',
             headers: {
-                'Accept': 'application/json'
+                'Content-Type': `application/x-www-form-urlencoded`
             },
+            body: "id=" + id
         })
             .then((res: any) => {
                 return res.json();
@@ -55,7 +57,8 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
         }, {});
     };
 
-    render() {
+
+    render(){
         const {onLogin, user} = this.props;
         const {employees} = this.state;
         const groupedCards = this.groupBy(employees, 'department');  //groped by department
@@ -83,11 +86,12 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
                 </div>
             )
         });
-        return (
-            <div>
+        return(
+            <div className="container-fluid">
                 <Header onLogin={onLogin} user={user} isPatient={true}/>
                 {groups}
             </div>
+
         )
     }
 }
