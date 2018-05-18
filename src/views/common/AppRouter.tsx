@@ -74,24 +74,6 @@ export default class AppRouter extends React.Component<Props> {
         }
 
         if( user &&  user.isSignedIn && user.role==='PATIENT' ) {
-            let newPatient: Patient = patient;
-            fetch("http://localhost:8080/api/patients/getByEmail", {
-                method: 'post',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type':'application/x-www-form-urlencoded'
-                },
-                body: "email=" + user.email
-            })
-                .then((result: any) => {
-                    return result.json();
-                })
-                .then((res:any) => {
-                    newPatient = new Patient(res.id, res.surname, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
-                })
-                .catch( (err) =>{
-                    console.log(err);
-                });
             return(
                 <BrowserRouter>
                     <Switch>
@@ -99,7 +81,7 @@ export default class AppRouter extends React.Component<Props> {
                             <PatientCard
                                 user={user}
                                 onLogin={onLogin}
-                                patient={newPatient}
+                                patient={patient}
                                 onPatient={onPatient}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>

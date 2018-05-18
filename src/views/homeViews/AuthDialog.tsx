@@ -2,6 +2,7 @@ import * as React from "react";
 import '../../styles/HomePage.css'
 import '../../styles/AuthDialog.css'
 import {User} from "../../models/User";
+import {Patient} from "../../models/Patient";
 interface Props{
     user?: User
     onLogin: (user: User) => void
@@ -62,14 +63,41 @@ export default class AuthDialog extends React.Component<Props,any> {
                 user.isSignedIn = true;
                 let obj = JSON.stringify(user);
                 localStorage.setItem("user", obj);
-
+                if (user.role === "PATIENT") {
+                    this.saveToStorageIfPatient(user.email)
+                }
+                return user;
+            })
+            .then((user: User) => {
                 this.props.onLogin(user);
-
             })
             .catch((err: any) => {
                 console.log(err)
             });
     }
+
+    saveToStorageIfPatient(email: string){
+        let newPatient;
+        fetch("http://localhost:8080/api/patients/getByEmail", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body: "email=" + email
+        })
+            .then((result: any) => {
+                return result.json();
+            })
+            .then((res:any) => {
+                newPatient = new Patient(res.id, res.lastName, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
+                localStorage.setItem("patient", JSON.stringify(newPatient));
+            })
+            .catch( (err) =>{
+                console.log(err);
+            });
+    }
+
     render(){
         return(
             <div>
