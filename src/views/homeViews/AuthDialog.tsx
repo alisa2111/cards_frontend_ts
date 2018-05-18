@@ -66,6 +66,9 @@ export default class AuthDialog extends React.Component<Props,any> {
                 if (user.role === "PATIENT") {
                     this.saveToStorageIfPatient(user.email)
                 }
+                if (user.role === "DOCTOR") {
+                    this.saveToStorageIfDoctor(user.email)
+                }
                 return user;
             })
             .then((user: User) => {
@@ -77,6 +80,28 @@ export default class AuthDialog extends React.Component<Props,any> {
     }
 
     saveToStorageIfPatient(email: string){
+        let newPatient;
+        fetch("http://localhost:8080/api/doctors/getByEmail", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body: "email=" + email
+        })
+            .then((result: any) => {
+                return result.json();
+            })
+            .then((res:any) => {
+                newPatient = new Patient(res.id, res.lastName, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
+                localStorage.setItem("signedInDoc", JSON.stringify(newPatient));
+            })
+            .catch( (err) =>{
+                console.log(err);
+            });
+    }
+
+    saveToStorageIfDoctor(email: string){
         let newPatient;
         fetch("http://localhost:8080/api/patients/getByEmail", {
             method: 'post',

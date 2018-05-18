@@ -2,6 +2,7 @@ import * as React from "react";
 import {User} from "../../models/User";
 import {DoctorComment} from "../../models/DoctorComment";
 import "../../styles/Comments.css";
+import {Doctor} from "../../models/Doctor";
 
 interface Props{
     user: User
@@ -15,6 +16,43 @@ export default class DoctorsComments extends React.Component<Props,any> {
             input: '',
             comments:[]
         };
+    }
+
+    postRecord(){
+        const {input} = this.state;
+        const {patientId} = this.props;
+        let doctorString = localStorage.getItem("signedInDoc");
+        let doctor: Doctor;
+        let doctorId;
+        if (doctorString != null) {
+            let d = JSON.parse(doctorString);
+            doctor = new Doctor(d.id, d.surname, d.firstName, d.secondName, d.email, "", d.department, d.specialty, d.firstPractiseDate);
+            doctorId = doctor.id;
+        }
+        let d = new Date();
+        //dd.MM.yyyy HH:mm
+        let date = d.getDay() + '.' + d.getMonth() + ':' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        fetch(`http://localhost:8080/api/patients/history/add`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/json`,
+                'Accept': 'application/json'
+            },
+            body:
+                JSON.stringify({
+                    doctorId: doctorId,
+                    patientId: patientId,
+                    info: input,
+                    date: date
+                })
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(this.refreshComments)
+            .catch((err: any) => {
+                console.log(err)
+            })
     }
 
     refreshComments = (result: any) => {
@@ -71,11 +109,19 @@ export default class DoctorsComments extends React.Component<Props,any> {
                 <div className="comments">
                     {user.role === "DOCTOR" ? <div className="comment-wrap">
                         <div className="comment-block">
-                            <form action="">
-                                <textarea placeholder="Начните вводить..."></textarea>
-                            </form>
+                                <textarea
+                                    onChange={(ev) => {
+                                        this.setState({input: ev.target.value});
+                                    }}
+                                    placeholder="Начните вводить..."/>
                         </div>
-                        <button type="button" className="btn btn-success btn-textarea">Добавить</button>
+                        <button type="button"
+                                className="btn btn-success btn-textarea"
+                                onClick={() => {
+                                    this.postRecord();
+                                }}
+                        >Добавить запись
+                        </button>
                     </div> : null}
                     {groups}
                 </div>
