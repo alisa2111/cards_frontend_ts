@@ -12,6 +12,7 @@ interface Props {
     isDoctor?: boolean;
     isPatient?: boolean;
     isAdmin?: boolean;
+    self?: boolean;
 }
 
 export default class DoctorProfile extends React.Component<Props, any> {
@@ -21,7 +22,12 @@ export default class DoctorProfile extends React.Component<Props, any> {
     }
 
     render() {
-        const {onLogin, user, doctor, isPatient, isDoctor, isAdmin} = this.props;
+        const {onLogin, user, isPatient, isDoctor, isAdmin, self} = this.props;
+        let doctor = this.props.doctor;
+        if(self){
+            let docStr = localStorage.getItem("signedInDoc");
+            doctor = docStr != null ? JSON.parse(docStr): null;
+        }
         localStorage.setItem("doctor", JSON.stringify(doctor));
         return (
             <div className="container">

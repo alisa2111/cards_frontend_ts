@@ -53,6 +53,7 @@ export default class AppRouter extends React.Component<Props> {
                                isDoctor={user.role === 'DOCTOR'}
                                isAdmin={user.role === 'ADMIN'}
                                isPatient={user.role === 'PATIENT'}
+                               self={true}
                            />}/>
                        <Route exact={true} path='/patients/my'
                               render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
@@ -66,8 +67,7 @@ export default class AppRouter extends React.Component<Props> {
                                isDoctor={true}
                            />
                        }/>
-                       <Route exact={true} path='/' render={() => <DoctorProfile doctor={doctor} onDoctor={onDoctor} onLogin={onLogin} user={user}/>}/>
-                       <Redirect exact={true} to='/patients/my'/>
+                       <Redirect to='/patients/my'/>
                    </Switch>
                </BrowserRouter>
            )
