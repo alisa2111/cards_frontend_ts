@@ -3,6 +3,7 @@ import '../../styles/HomePage.css'
 import '../../styles/AuthDialog.css'
 import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";
+import {Doctor} from "../../models/Doctor";
 interface Props{
     user?: User
     onLogin: (user: User) => void
@@ -66,6 +67,9 @@ export default class AuthDialog extends React.Component<Props,any> {
                 if (user.role === "PATIENT") {
                     this.saveToStorageIfPatient(user.email)
                 }
+                if (user.role === "DOCTOR") {
+                    this.saveToStorageIfDoctor(user.email)
+                }
                 return user;
             })
             .then((user: User) => {
@@ -92,6 +96,28 @@ export default class AuthDialog extends React.Component<Props,any> {
             .then((res:any) => {
                 newPatient = new Patient(res.id, res.lastName, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
                 localStorage.setItem("patient", JSON.stringify(newPatient));
+            })
+            .catch( (err) =>{
+                console.log(err);
+            });
+    }
+
+    saveToStorageIfDoctor(email: string){
+        let doctor;
+        fetch("http://localhost:8080/api/doctors/getByEmail", {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body: "email=" + email
+        })
+            .then((result: any) => {
+                return result.json();
+            })
+            .then((res:any) => {
+                doctor = new Doctor(res.id, res.lastName, res.firstName, res.secondName, res.email, "", res.department, res.specialty, res.firstPractiseDate);
+                localStorage.setItem("signedInDoc", JSON.stringify(doctor));
             })
             .catch( (err) =>{
                 console.log(err);
