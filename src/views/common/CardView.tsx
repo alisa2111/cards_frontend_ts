@@ -15,10 +15,6 @@ export const CardView = (props:any) => {
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
                 {localStorage.getItem("user") === null ?
                     <img
-                        onClick={() => {
-                            const doctor = new Doctor(id,name, surname, patronymic, email, "", department, specialty , practise_date);
-                            onDoctor(doctor);
-                        }}
                         className="card-img-top border border-dark"
                         src={requestForImage}
                         alt='qwerty'/> :
