@@ -87,6 +87,7 @@ export default class DoctorsComments extends React.Component<Props,any> {
     render(){
         const {user} = this.props;
         const {comments} = this.state;
+        console.log(comments);
         const sortedComments = comments.sort(function(a:DoctorComment,b:DoctorComment){
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
         });
