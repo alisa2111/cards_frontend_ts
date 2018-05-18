@@ -1,24 +1,25 @@
 import * as React from 'react';
 import {User} from "../../../models/User";
 import Header from "../../common/Header";
-import {Employee} from "../../../models/Employee";
 import {img_doctor} from "../../../data/doctor";
 import {CardView} from "../../common/CardView";
+import {Doctor} from "../../../models/Doctor";
 
 interface Props{
     user: User
     onLogin: (user: User) => void
+    onDoctor: (doctor: Doctor) => void
 }
 export default class MyDoctorsPage extends React.Component<Props,any> {
     constructor(props: any) {
         super(props);
         this.state = {
-            employees: []
+            doctors: []
         };
     }
 
     refreshDoctors = (result: any) => {
-        const employees = result.map((e: any) => new Employee(
+        const doctors = result.map((e: any) => new Doctor(
             e.id,
             e.lastName,
             e.firstName,
@@ -29,7 +30,7 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
             e.specialty,
             e.firstPractiseDate
         ));
-        this.setState({employees})
+        this.setState({doctors})
     };
 
     componentWillMount() {
@@ -59,9 +60,9 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
 
 
     render(){
-        const {onLogin, user} = this.props;
-        const {employees} = this.state;
-        const groupedCards = this.groupBy(employees, 'department');  //groped by department
+        const {onLogin, user, onDoctor} = this.props;
+        const {doctors} = this.state;
+        const groupedCards = this.groupBy(doctors, 'department');  //groped by department
         const groups = Object.keys(groupedCards).map((department, index) => {
             return (
                 <div>
@@ -71,14 +72,16 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
                         </div>
                     </div>
                     <div className='card-deck'>
-                        {groupedCards[department].map((employee: object) => {
+                        {groupedCards[department].map((doctor: object) => {
                             return (
                                 <CardView
-                                    data={employee}
+                                    data={doctor}
+                                    onDoctor={onDoctor}
                                     refreshDoctorsArchive={this.refreshDoctors}
                                     image={img_doctor}
                                     isPatient={true}
                                     myDoctor={true}
+
                                 />
                             )
                         })}

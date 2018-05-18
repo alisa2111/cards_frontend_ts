@@ -42,7 +42,7 @@ const MainHeader = (props:any) => {
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to={`/Doctors`}>
+                            <Link className="nav-link" to={`/doctors`}>
                                 Наши специалисты
                             </Link>
                         </li>
@@ -187,7 +187,7 @@ const PatientHeader = (props:any) => {
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <Link to={`/doctors/my`} className="dropdown-item">Мои специалисты</Link>
-                                <Link to={`/Doctors`} className="dropdown-item">Все специалисты</Link>
+                                <Link to={`/doctors`} className="dropdown-item">Все специалисты</Link>
                             </div>
                         </li>
                         <li className="nav-item">

@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import {Doctor} from "../../models/Doctor";
 
 export const CardView = (props:any) => {
-    const {lastname, firstname, secondname, specialty, id, email, department, firstPractiseDate} = props.data;
+    const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;
     const {myDoctor, refreshDoctorsArchive, onDoctor} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
     return(
@@ -13,20 +13,30 @@ export const CardView = (props:any) => {
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
-
-                <Link to={'/profile'}>
+                {localStorage.getItem("user") === null ?
                     <img
                         onClick={() => {
-                            const doctor = new Doctor(id,lastname, firstname, secondname, email, "", department, specialty , firstPractiseDate);
+                            const doctor = new Doctor(id,name, surname, patronymic, email, "", department, specialty , practise_date);
                             onDoctor(doctor);
                         }}
                         className="card-img-top border border-dark"
                         src={requestForImage}
-                        alt='qwerty'/>
-                </Link>
+                        alt='qwerty'/> :
+
+                    <Link to={'/profile'}>
+                        <img
+                            onClick={() => {
+                                const doctor = new Doctor(id,name, surname, patronymic, email, "", department, specialty , practise_date);
+                                onDoctor(doctor);
+                            }}
+                            className="card-img-top border border-dark"
+                            src={requestForImage}
+                            alt='qwerty'/>
+                    </Link>
+                }
 
                 <div className="card-body">
-                    <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
+                    <p className="card-text">{surname} {name} {patronymic},<br/> {specialty}</p>
                 </div>
 
             </div>

@@ -96,13 +96,13 @@ export default class AppRouter extends React.Component<Props> {
                                 isAdmin={user.role === 'ADMIN'}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
-                        <Route exact={true} path='/Doctors'
+                        <Route exact={true} path='/doctors'
                                render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true} onDoctor={onDoctor}/>}/>
                         <Route exact={true} path='/doctors/my'
-                               render={() => <MyDoctorsPage onLogin={onLogin} user={user}/>}/>
+                               render={() => <MyDoctorsPage onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
                         <Route exact={true} path='/doctors/appointments'
                                render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
-                        <Redirect exact={true} to='/patientCard'/>
+                        <Redirect exact={true} to='/doctors'/>
                     </Switch>
                 </BrowserRouter>
             )
@@ -112,6 +112,16 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
+                        <Route exact={true} path='/profile' render={() =>
+                            <DoctorProfile
+                                user={user}
+                                onLogin={onLogin}
+                                doctor={doctor}
+                                onDoctor={onDoctor}
+                                isDoctor={user.role === 'DOCTOR'}
+                                isAdmin={user.role === 'ADMIN'}
+                                isPatient={user.role === 'PATIENT'}
+                            />}/>
                         <Route exact={true} path='/staff' render={() => <StaffPage onDoctor={onDoctor} onLogin={onLogin} user={user}/>}/>
                         <Route exact={true} path='/patients' render={() =>
                             <PatientsPage
@@ -131,9 +141,19 @@ export default class AppRouter extends React.Component<Props> {
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
                         <Route exact={true} path='/archive/staff'
-                               render={() => <DoctorsArchive onLogin={onLogin} user={user}/>}/>
+                               render={() => <DoctorsArchive onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
                         <Route exact={true} path='/archive/patients'
                                render={() => <PatientsArchive onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
+                        <Route exact={true} path='/profile' render={() =>
+                            <DoctorProfile
+                                user={user}
+                                onLogin={onLogin}
+                                doctor={doctor}
+                                onDoctor={onDoctor}
+                                isDoctor={user.role === 'DOCTOR'}
+                                isAdmin={user.role === 'ADMIN'}
+                                isPatient={user.role === 'PATIENT'}
+                            />}/>
                         <Redirect exact={true} to='/staff'/>
                     </Switch>
                 </BrowserRouter>
@@ -144,7 +164,7 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path='/Doctors' render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
+                        <Route exact={true} path='/doctors' render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
                         <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
                     </Switch>
                 </BrowserRouter>

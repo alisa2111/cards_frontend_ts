@@ -17,12 +17,11 @@ interface Props {
 export default class DoctorProfile extends React.Component<Props, any> {
 
     componentWillUnmount(){
-        localStorage.removeItem("patient");
+        localStorage.removeItem("doctor");
     }
 
     render() {
         const {onLogin, user, doctor, isPatient, isDoctor, isAdmin} = this.props;
-        console.log(doctor)
         localStorage.setItem("doctor", JSON.stringify(doctor));
         return (
             <div className="container">
@@ -45,26 +44,22 @@ export default class DoctorProfile extends React.Component<Props, any> {
                                 <div className=" col-md-6 col-lg-6 ">
                                     <table className="table table-user-information">
                                         <tbody>
-                                        {/*<tr>*/}
-                                            {/*<th>Пол:</th>*/}
-                                            {/*<td>{patient.gender}</td>*/}
-                                        {/*</tr>*/}
-                                        {/*<tr>*/}
-                                            {/*<th>Дата рождения:</th>*/}
-                                            {/*<td>{patient.birthday}</td>*/}
-                                        {/*</tr>*/}
-                                        {/*<tr>*/}
-                                            {/*<th>Адрес:</th>*/}
-                                            {/*<td>{patient.address}</td>*/}
-                                        {/*</tr>*/}
-                                        {/*<tr>*/}
-                                            {/*<th>Номер телефона:</th>*/}
-                                            {/*<td>{patient.phoneNumber}</td>*/}
-                                        {/*</tr>*/}
-                                        {/*<tr>*/}
-                                            {/*<th>Email:</th>*/}
-                                            {/*<td>{patient.email}</td>*/}
-                                        {/*</tr>*/}
+                                        <tr>
+                                            <th>Email:</th>
+                                            <td>{doctor.email}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Отдел:</th>
+                                            <td>{doctor.department}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Специализация:</th>
+                                            <td>{doctor.specialty}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Практикует с:</th>
+                                            <td>{doctor.practise_date}</td>
+                                        </tr>
                                         </tbody>
                                     </table>
                                 </div>
