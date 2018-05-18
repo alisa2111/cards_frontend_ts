@@ -95,7 +95,7 @@ export default class AuthDialog extends React.Component<Props,any> {
             })
             .then((res:any) => {
                 newPatient = new Patient(res.id, res.lastName, res.firstName, res.secondName, res.sex, res.email, "", res.address, res.phoneNumber, res.birthday);
-                localStorage.setItem("patient", JSON.stringify(newPatient));
+                localStorage.setItem("signedInPatient", JSON.stringify(newPatient));
             })
             .catch( (err) =>{
                 console.log(err);

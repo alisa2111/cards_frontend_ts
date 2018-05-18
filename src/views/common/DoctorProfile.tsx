@@ -49,6 +49,7 @@ export default class DoctorProfile extends React.Component<Props, any> {
                                     isPatient={isPatient}
                                     isAdmin={isAdmin}
                                     isDoctor={isDoctor}
+                                    self={self}
                                 />
                                 <div className=" col-md-6 col-lg-6 ">
                                     <table className="table table-user-information">
