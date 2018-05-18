@@ -104,7 +104,7 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     saveToStorageIfDoctor(email: string){
         let doctor;
-        fetch("http://localhost:8080/api/doctors/getByEmail", {
+        fetch("http://localhost:8080/api/doctor/getByEmail", {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
