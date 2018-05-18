@@ -31,7 +31,8 @@ export default class DoctorsComments extends React.Component<Props,any> {
         }
         let d = new Date();
         //dd.MM.yyyy HH:mm
-        let date = d.getDay() + '.' + d.getMonth() + ':' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        let date = d.getDay() + '.' + d.getMonth() + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        console.log("date -> " + date);
         fetch(`http://localhost:8080/api/patients/history/add`, {
             method: 'post',
             headers: {

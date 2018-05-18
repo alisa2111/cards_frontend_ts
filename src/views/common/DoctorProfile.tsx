@@ -24,9 +24,12 @@ export default class DoctorProfile extends React.Component<Props, any> {
     render() {
         const {onLogin, user, isPatient, isDoctor, isAdmin, self} = this.props;
         let doctor = this.props.doctor;
-        if(self){
+        console.log(self);
+        if (self) {
             let docStr = localStorage.getItem("signedInDoc");
-            doctor = docStr != null ? JSON.parse(docStr): null;
+            if (docStr != null) {
+                doctor = JSON.parse(docStr)
+            }
         }
         localStorage.setItem("doctor", JSON.stringify(doctor));
         return (
