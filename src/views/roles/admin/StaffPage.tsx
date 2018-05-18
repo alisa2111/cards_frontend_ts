@@ -4,15 +4,17 @@ import {User} from "../../../models/User";
 import DoctorRegistration from "./DoctorRegistration";
 import Header from "../../common/Header";
 import DoctorsComponent from "../../common/DoctorsComponent";
+import {Doctor} from "../../../models/Doctor";
 
 interface Props{
     user: User
     onLogin: (user: User) => void
+    onDoctor: (doctor: Doctor) => void
 }
 export default class StaffPage extends React.Component<Props,any> {
 
     render(){
-        const {onLogin , user} = this.props;
+        const {onLogin , user, onDoctor} = this.props;
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isAdmin={true} />
@@ -25,7 +27,7 @@ export default class StaffPage extends React.Component<Props,any> {
                     Зарегистрировать нового сотрудника
                 </button>
                 <DoctorRegistration/>
-                <DoctorsComponent isAdmin={true}/>
+                <DoctorsComponent isAdmin={true} onDoctor={onDoctor}/>
             </div>
         )
     }

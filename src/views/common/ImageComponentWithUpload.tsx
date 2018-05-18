@@ -4,6 +4,7 @@ interface Props {
     accountId: string
     isAdmin?: boolean
     isPatient?: boolean
+    isDoctor?: boolean
 }
 
 export default class ImageComponentWithUpload extends React.Component<Props, any> {
@@ -37,12 +38,12 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
 
     render() {
         const {isFormActive} = this.state;
-        const {accountId, isPatient, isAdmin} = this.props;
+        const {accountId, isPatient, isAdmin, isDoctor} = this.props;
         let requestForImage = "http://localhost:8080/api/image/" + accountId;
         return (
             <div className="col-md-6 col-lg-6 ">
                 <img alt="User Pic" src={requestForImage} className="img-circle avatar"/>
-                {isAdmin || isPatient ?
+                {isAdmin || isPatient || isDoctor ?
                     <div className="image-upload-div">
                         {isFormActive ?
                             <div>
