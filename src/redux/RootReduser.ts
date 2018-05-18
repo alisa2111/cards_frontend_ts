@@ -1,9 +1,10 @@
 import {User} from "../models/User";
-import {LOGIN_SET, PATIENT_SET} from "./ActionTypes";
+import {DOCTOR_SET, LOGIN_SET, PATIENT_SET} from "./ActionTypes";
 import {Action, handleActions, ReducerMap} from "redux-actions";
 import {combineReducers, Reducer} from 'redux'
 import {AppState, getInitialState} from "./AppState";
 import {Patient} from "../models/Patient";
+import {Doctor} from "../models/Doctor";
 
 // UserReducer
 type UserActionState = User//current state
@@ -36,10 +37,27 @@ const PatientReducer = handleActions<PatientActionState, PatientActionData>({
 
 } as ReducerMap<PatientActionState, PatientActionData>, initialPatientState);
 
+
+//Doctor Reducer
+type DoctorActionState = Doctor//current state
+type DoctorActionData = Doctor//action
+const initialDoctorState = getInitialState().doctor;
+
+const DoctorReducer = handleActions<DoctorActionState, DoctorActionData>({
+
+    [DOCTOR_SET]: (currentState: DoctorActionState, action: Action<Doctor>): DoctorActionState => {
+        const d = action.payload || initialDoctorState; //copy current state
+        return new Doctor(d.id, d.surname, d.name, d.patronymic, d.email, d.password, d.department, d.specialty, d.practise_date);
+    },
+
+} as ReducerMap<DoctorActionState, DoctorActionData>, initialDoctorState);
+
+
 // RootReducer
 const rootReducer: Reducer<AppState> = combineReducers({
     user: UsersReducer,
-    patient: PatientReducer
+    patient: PatientReducer,
+    doctor: DoctorReducer
 });
 
 export default rootReducer

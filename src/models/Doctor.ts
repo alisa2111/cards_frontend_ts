@@ -1,4 +1,5 @@
 export class Doctor {
+    id: number;
     surname: string;
     name: string;
     patronymic: string;
@@ -6,9 +7,10 @@ export class Doctor {
     password: string;
     department:string;
     specialty:string;
-    practise_date:string;
+    practise_date:string
 
     constructor(
+        id: number,
         surname: string ,
         name: string,
         patronymic: string,
@@ -19,6 +21,7 @@ export class Doctor {
         practise_date:string
     )
     {
+        this.id = id,
         this.surname = surname;
         this.name = name;
         this.patronymic = patronymic;

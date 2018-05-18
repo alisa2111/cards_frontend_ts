@@ -1,8 +1,10 @@
 import * as React from "react";
+import {Link} from "react-router-dom";
+import {Doctor} from "../../models/Doctor";
 
 export const CardView = (props:any) => {
-    const {lastname, firstname, secondname, specialty, id} = props.data;
-    const {myDoctor, refreshDoctorsArchive} = props;
+    const {lastname, firstname, secondname, specialty, id, email, department, firstPractiseDate} = props.data;
+    const {myDoctor, refreshDoctorsArchive, onDoctor} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
     return(
         //col-lg-4
@@ -11,10 +13,18 @@ export const CardView = (props:any) => {
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
-                <img
-                    className="card-img-top border border-dark"
-                    src={requestForImage}
-                    alt='qwerty'/>
+
+                <Link to={'/profile'}>
+                    <img
+                        onClick={() => {
+                            const doctor = new Doctor(id,lastname, firstname, secondname, email, "", department, specialty , firstPractiseDate);
+                            onDoctor(doctor);
+                        }}
+                        className="card-img-top border border-dark"
+                        src={requestForImage}
+                        alt='qwerty'/>
+                </Link>
+
                 <div className="card-body">
                     <p className="card-text">{lastname} {firstname} {secondname},<br/> {specialty}</p>
                 </div>
@@ -115,7 +125,6 @@ const ArchiveButtons = (props: any) => {
 
 const PatientButtons = (props:any) => {
     const {myDoctor} = props;
-    console.log(myDoctor)
     return (
         myDoctor?
             <button type="button" className="btn btn-default">Записаться</button>:

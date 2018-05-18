@@ -179,9 +179,6 @@ export default class DoctorRegistration extends React.Component<any,any> {
                                         id="year"
                                         onKeyUp={(e) => this.setPractiseDate(e)}/>
                                 </div>
-                                <div className="form-group">
-                                    <label  className="col-form-label">DOWNLOAD PHOTO</label>
-                                </div>
                             </form>
                         </div>
                         <div className="modal-footer">
