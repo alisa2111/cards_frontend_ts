@@ -33,7 +33,6 @@ export default class MyClaimsPage extends React.Component<Props,any> {
 
     componentWillMount(){
         const {id} = this.props.user;
-        console.log(id);
         fetch(`http://localhost:8080/api/doctor/getAllPatientForAccept`, {
             method: 'post',
             headers: {

@@ -1,6 +1,7 @@
 import * as React from "react";
 import {Link} from "react-router-dom";
 import {Doctor} from "../../models/Doctor";
+import AppointmentView from "../roles/patient/AppointmentView";
 
 export const CardView = (props:any) => {
     const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;
@@ -12,7 +13,7 @@ export const CardView = (props:any) => {
             <div className="card border border-dark" >
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
-                {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
+                {props.isPatient? <PatientButtons myDoctor={myDoctor} doctorId={id}/> : null}
                 {localStorage.getItem("user") === null ?
                     <img
                         className="card-img-top border border-dark"
@@ -130,10 +131,18 @@ const ArchiveButtons = (props: any) => {
 };
 
 const PatientButtons = (props:any) => {
-    const {myDoctor} = props;
-    return (
-        myDoctor?
-            <button type="button" className="btn btn-default">Записаться</button>:
+    const {myDoctor, doctorId} = props;
+    console.log(doctorId);
+    if (myDoctor)
+        return (
+            <div>
+                <button type="button" className="btn btn-primary" data-toggle="modal" data-target={`#${doctorId}`} data-whatever="@mdo">Записаться</button>
+                <AppointmentView doctorId={doctorId}/>
+            </div>
+        );
+    else
+        return (
             <button type="button" className="btn btn-default">Добавить</button>
-    )
+        );
+
 };

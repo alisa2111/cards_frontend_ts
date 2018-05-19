@@ -59,11 +59,11 @@ export default class AuthDialog extends React.Component<Props,any> {
                 return res.json();
             })
             .then((result:any) => {
-                console.log(result);
                 const user = new User(result.id, result.email, result.role);
                 user.isSignedIn = true;
                 let obj = JSON.stringify(user);
                 localStorage.setItem("user", obj);
+
                 if (user.role === "PATIENT") {
                     this.saveToStorageIfPatient(user.email)
                 }
@@ -117,6 +117,7 @@ export default class AuthDialog extends React.Component<Props,any> {
             })
             .then((res:any) => {
                 doctor = new Doctor(res.id, res.lastName, res.firstName, res.secondName, res.email, "", res.department, res.specialty, res.firstPractiseDate);
+                console.log('DOCTOR' + doctor)
                 localStorage.setItem("signedInDoc", JSON.stringify(doctor));
             })
             .catch( (err) =>{

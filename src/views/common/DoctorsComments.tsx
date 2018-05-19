@@ -90,7 +90,6 @@ export default class DoctorsComments extends React.Component<Props,any> {
         const sortedComments = comments.sort(function(a:DoctorComment,b:DoctorComment){
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
         });
-        console.log(sortedComments);
         const groups = sortedComments.map((data : DoctorComment) => {
             const {fios, date, info} = data;
             return(
