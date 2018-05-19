@@ -1,5 +1,5 @@
 import * as React from "react";
-import "../../styles/HomePage.css"
+import "styles/HomePage.css"
 import {img_doctor} from "../../data/doctor";
 import {User} from "../../models/User";
 import Header from "../common/Header";

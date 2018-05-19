@@ -1,5 +1,5 @@
 import * as React from "react";
-import '../../../styles/Registration.css'
+import 'styles/Registration.css'
 export default class DoctorRegistration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);

@@ -81,7 +81,7 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
                                     image={img_doctor}
                                     isPatient={true}
                                     myDoctor={true}
-
+                                    refreshDoctors={this.refreshDoctors}
                                 />
                             )
                         })}

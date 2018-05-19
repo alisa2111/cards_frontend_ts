@@ -22,8 +22,16 @@ export default class PatientCard extends React.Component<Props, any> {
     }
 
     render() {
-        const {onLogin, user, patient, isPatient, isDoctor, isAdmin} = this.props;
+        const {onLogin, user, isPatient, isDoctor, isAdmin} = this.props;
+        let {patient} = this.props;
+        if (isPatient) {
+            let patientStr = localStorage.getItem("signedInPatient");
+            if (patientStr != null) {
+                patient = JSON.parse(patientStr)
+            }
+        }
         localStorage.setItem("patient", JSON.stringify(patient));
+        let self = patient.email === user.email;
         return (
             <div className="container">
                 {isAdmin ? <Header onLogin={onLogin} user={user} isAdmin={true}/> : null}
@@ -40,6 +48,7 @@ export default class PatientCard extends React.Component<Props, any> {
                                             accountId={String(patient.id)}
                                             isPatient={isPatient}
                                             isAdmin={isAdmin}
+                                            self={self}
                                         />
                                 <div className=" col-md-6 col-lg-6 ">
                                     <table className="table table-user-information">

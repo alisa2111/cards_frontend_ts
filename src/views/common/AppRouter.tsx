@@ -165,8 +165,7 @@ export default class AppRouter extends React.Component<Props> {
                 <BrowserRouter>
                     <Switch>
                         <Route exact={true} path='/doctors' render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
-                        <Route exact={true} path='/' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
-                        <Redirect exact={true} to='/'/>
+                        <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
                     </Switch>
                 </BrowserRouter>
             )
