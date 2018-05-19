@@ -4,7 +4,7 @@ import {Doctor} from "../../models/Doctor";
 
 export const CardView = (props:any) => {
     const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;
-    const {myDoctor, refreshDoctorsArchive, onDoctor} = props;
+    const {myDoctor, refreshDoctorsArchive, onDoctor, refreshDoctors} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
     return(
         //col-lg-4
@@ -12,7 +12,7 @@ export const CardView = (props:any) => {
             <div className="card border border-dark" >
                 {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
                 {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
-                {props.isPatient? <PatientButtons myDoctor={myDoctor}/> : null}
+                {props.isPatient? <PatientButtons myDoctor={myDoctor} doctorId={id} refreshDoctors={refreshDoctors}/> : null}
                 {localStorage.getItem("user") === null ?
                     <img
                         className="card-img-top border border-dark"
@@ -130,10 +130,70 @@ const ArchiveButtons = (props: any) => {
 };
 
 const PatientButtons = (props:any) => {
-    const {myDoctor} = props;
+    const {myDoctor, doctorId, refreshDoctors} = props;
+    let patientStr = localStorage.getItem("signedInPatient");
+    let patientId = -1;
+    if (patientStr != null) {
+        patientId = JSON.parse(patientStr).id;
+    }
+
+    function addDoctor() {
+        fetch(`http://localhost:8080/api/patient/addDoctor`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "patientId=" + patientId + "&doctorId=" + doctorId
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then((res: any) => {
+                if (res.status === "Success") {
+                    alert("Вы отправили заявку.")
+                } else {
+                    alert("Извините, что-то пошло не так. Попробуйте позже.")
+                }
+            })
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
+    function deleteDoctor() {
+        fetch(`http://localhost:8080/api/patient/deleteDoctor`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`
+            },
+            body: "patientId=" + patientId + "&doctorId=" + doctorId
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshDoctors)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
     return (
         myDoctor?
-            <button type="button" className="btn btn-default">Записаться</button>:
-            <button type="button" className="btn btn-default">Добавить</button>
+            <div className="btn-group" role="group" aria-label="Basic example">
+                <button type="button" className="btn btn-default btn-admin">Записаться</button>
+                <button type="button"
+                        className="btn btn-danger btn-width-50percent"
+                        onClick={() => {
+                            deleteDoctor()
+                        }}
+                >Отказаться
+                </button>
+            </div> :
+            <button type="button"
+                    className="btn btn-default"
+                    onClick={() => {
+                        addDoctor()
+                    }}
+            >Добавить</button>
     )
 };
