@@ -1,6 +1,6 @@
 import * as React from 'react';
-import '../../styles/AdminPage.css'
-import '../../styles/Patients.css'
+import 'styles/AdminPage.css'
+import 'styles/Patients.css'
 import {Link} from "react-router-dom";
 import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";

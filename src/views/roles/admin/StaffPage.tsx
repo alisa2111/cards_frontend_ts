@@ -1,5 +1,5 @@
 import * as React from 'react';
-import '../../../styles/AdminPage.css'
+import 'styles/AdminPage.css'
 import {User} from "../../../models/User";
 import DoctorRegistration from "./DoctorRegistration";
 import Header from "../../common/Header";

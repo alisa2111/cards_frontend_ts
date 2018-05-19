@@ -1,6 +1,6 @@
 import * as React from "react";
 import Header from "../common/Header";
-import '../../styles/DoctorsPage.css'
+import 'styles/DoctorsPage.css'
 import DoctorsComponent from "../common/DoctorsComponent";
 import {User} from "../../models/User";
 import {Doctor} from "../../models/Doctor";

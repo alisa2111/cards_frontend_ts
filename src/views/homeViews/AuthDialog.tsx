@@ -1,6 +1,6 @@
 import * as React from "react";
-import '../../styles/HomePage.css'
-import '../../styles/AuthDialog.css'
+import 'styles/HomePage.css'
+import 'styles/AuthDialog.css'
 import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";
 import {Doctor} from "../../models/Doctor";

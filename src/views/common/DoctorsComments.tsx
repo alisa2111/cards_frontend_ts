@@ -1,7 +1,7 @@
 import * as React from "react";
 import {User} from "../../models/User";
 import {DoctorComment} from "../../models/DoctorComment";
-import "../../styles/Comments.css";
+import "styles/Comments.css";
 import {Doctor} from "../../models/Doctor";
 
 interface Props{
