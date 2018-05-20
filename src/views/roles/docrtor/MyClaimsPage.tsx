@@ -59,7 +59,7 @@ export default class MyClaimsPage extends React.Component<Props,any> {
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isDoctor={true} />
-                <div className="center">Мои заявки</div>
+                <div className="center name-of-page"><h2>Мои заявки</h2></div>
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
