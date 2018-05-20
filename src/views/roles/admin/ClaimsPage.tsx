@@ -112,18 +112,22 @@ const PatientRow = (props: any) => {
             });
     }
 
-    function deletePatient() {
-        let patient = new Patient(id, surname, name , patronymic, gender,  email , phone , address, "123",  birthday);
-        console.log(patient)
-        // fetch(`http://localhost:8080/MedicalCardsServer/api/...`, {
-        //     method: 'post',
-        // })
-        //     .then((res: any) => {
-        //         return res.json();
-        //     })
-        //     .catch((err: any) => {
-        //         console.log(err)
-        //     });
+    function declineClaim() {
+        fetch(`http://localhost:8080/api/patients/declineClaimForRegistration`, {
+            method: 'post',
+            headers: {
+                'Content-Type': "application/x-www-form-urlencoded",
+                'Accept': 'application/json'
+            },
+            body: "id=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshClaims)
+            .catch((err: any) => {
+                console.log(err)
+            });
     }
 
     return (
@@ -148,7 +152,7 @@ const PatientRow = (props: any) => {
                     <button
                         type="button"
                         className="btn btn-secondary claim-btn"
-                        onClick={()=>{deletePatient()}}
+                        onClick={()=>{declineClaim()}}
                     >
                         Отклонить
                     </button>
