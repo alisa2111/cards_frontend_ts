@@ -4,6 +4,7 @@ import {User} from "../../../models/User";
 import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
+import {Link} from "react-router-dom";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -40,18 +41,25 @@ export default class MyClaimsPage extends React.Component<Props,any> {
             },
             body: "id=" + id
         })
+            .then((res:any)=>{
+                return res.json();
+            })
+            .then(this.refreshClaims)
+            .catch((err:any)=>{
+                console.log(err);
+            })
     }
 
     render(){
         const {onLogin , user} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u}/>
+            <PatientRow patient={u} refreshClaims={this.refreshClaims} doctorId={user.id}/>
         );
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isDoctor={true} />
-                MY CLAIMS PAGE
+                <div className="center">Мои заявки</div>
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
@@ -76,15 +84,61 @@ export default class MyClaimsPage extends React.Component<Props,any> {
 }
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phone , address, birthday} = props.patient;
+    const {onPatient, refreshClaims, doctorId} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
+
+    function acceptClaim(){
+        fetch(`http://localhost:8080/api/doctor/approvedClaimPatient`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`,
+                'Accept': 'application/json'
+            },
+            body: "doctorId=" + doctorId + "&patientId=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshClaims)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
+    function declineClaim() {
+        fetch(`http://localhost:8080/api/doctor/declineClaimPatient`, {
+            method: 'post',
+            headers: {
+                'Content-Type': `application/x-www-form-urlencoded`,
+                'Accept': 'application/json'
+            },
+            body: "doctorId=" + doctorId + "&patientId=" + id
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshClaims)
+            .catch((err: any) => {
+                console.log(err)
+            });
+    }
+
     return (
-        <tr onClick={()=>{window.location.href = '/patientCard'}}>
+        <tr>
             <td>
-                <img onClick={()=>{window.location.href = '/patientCard'}}
-                     className="border border-dark" src={requestForImage}
-                     alt='qwerty' height="125px" width="125px"/>
+                <Link to={"/patientCard"}>
+                    <img
+                        onClick={() => {
+                            const patient = new Patient(id, surname, name, patronymic, email, gender, "", address, phone, birthday);
+                            onPatient(patient);
+                        }}
+                        className="border border-dark"
+                        src={requestForImage}
+                        alt='qwerty' height="125px" width="125px"
+                    />
+                </Link>
             </td>
-            <td onClick={()=>{window.location.href = '/patientCard'}}>{surname}</td>
+            <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>
@@ -92,6 +146,28 @@ const PatientRow = (props: any) => {
             <td>{phone}</td>
             <td>{address}</td>
             <td>{birthday}</td>
+            <td>
+                <div className="btn-group" role="group">
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        onClick={() => {
+                            acceptClaim()
+                        }}
+                    >
+                        Принять
+                    </button>
+                    <button
+                        type="button"
+                        className="btn btn-secondary claim-btn"
+                        onClick={() => {
+                            declineClaim()
+                        }}
+                    >
+                        Отклонить
+                    </button>
+                </div>
+            </td>
         </tr>
     )
 };
