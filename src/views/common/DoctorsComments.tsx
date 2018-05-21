@@ -32,7 +32,6 @@ export default class DoctorsComments extends React.Component<Props,any> {
         let d = new Date();
         //dd.MM.yyyy HH:mm
         let date = d.getDay() + '.' + d.getMonth() + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
-        console.log("date -> " + date);
         fetch(`http://localhost:8080/api/patients/history/add`, {
             method: 'post',
             headers: {
@@ -87,7 +86,6 @@ export default class DoctorsComments extends React.Component<Props,any> {
     render(){
         const {user} = this.props;
         const {comments} = this.state;
-        console.log(comments);
         const sortedComments = comments.sort(function(a:DoctorComment,b:DoctorComment){
             return new Date(b.date).valueOf() - new Date(a.date).valueOf();
         });

@@ -20,7 +20,6 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     componentWillMount(){
        const storageString = window.localStorage.getItem('user');
-       console.log(storageString);
        if(storageString != null){
             const {id, email , role } = JSON.parse(storageString);
             const user = new User(id, email, role);
@@ -117,7 +116,6 @@ export default class AuthDialog extends React.Component<Props,any> {
             })
             .then((res:any) => {
                 doctor = new Doctor(res.id, res.lastName, res.firstName, res.secondName, res.email, "", res.department, res.specialty, res.firstPractiseDate);
-                console.log('DOCTOR' + doctor)
                 localStorage.setItem("signedInDoc", JSON.stringify(doctor));
             })
             .catch( (err) =>{

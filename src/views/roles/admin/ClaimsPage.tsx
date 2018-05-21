@@ -80,7 +80,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
 }
 
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday , password, id} = props.patient;
+    const {surname, name , patronymic , gender,  email , phoneNumber , address, birthday , password, id} = props.patient;
     const {refreshClaims} = props;
     function addPatient() {
         fetch(`http://localhost:8080/api/patients/add`, {
@@ -98,7 +98,7 @@ const PatientRow = (props: any) => {
                     password: password,
                     sex: gender,
                     birthday: birthday,
-                    phoneNumber: phone,
+                    phoneNumber: phoneNumber,
                     address: address,
                     id: id
                 })
@@ -137,7 +137,7 @@ const PatientRow = (props: any) => {
             <td>{patronymic}</td>
             <td>{gender}</td>
             <td>{email}</td>
-            <td>{phone}</td>
+            <td>{phoneNumber}</td>
             <td>{address}</td>
             <td>{birthday}</td>
             <td>

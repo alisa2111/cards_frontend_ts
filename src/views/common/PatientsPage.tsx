@@ -97,7 +97,7 @@ export default class PatientsPage extends React.Component<Props,any> {
     }
 }
 const PatientRow = (props: any) => {
-    const {surname, name , patronymic , gender,  email , phone , address, birthday, id} = props.patient;
+    const {surname, name , patronymic , gender,  email , phoneNumber , address, birthday, id} = props.patient;
     const {refreshPatients, onPatient, isDoctor} = props;
     let requestForImage = "http://localhost:8080/api/image/" + id;
 
@@ -124,7 +124,7 @@ const PatientRow = (props: any) => {
                 <Link to={"/patientCard"}>
                     <img
                         onClick={() => {
-                            const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phone, birthday);
+                            const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phoneNumber, birthday);
                             onPatient(patient);
                         }}
                         className="border border-dark"
@@ -133,14 +133,12 @@ const PatientRow = (props: any) => {
                     />
                 </Link>
             </td>
-            <td>
-                <Link to={"/patientCard"}>{surname}</Link>
-            </td>
+            <td>{surname}</td>
             <td>{name}</td>
             <td>{patronymic}</td>
             <td>{gender}</td>
             <td>{email}</td>
-            <td>{phone}</td>
+            <td>{phoneNumber}</td>
             <td>{address}</td>
             <td>{birthday}</td>
                 {

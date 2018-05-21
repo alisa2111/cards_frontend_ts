@@ -71,7 +71,6 @@ const AdminButtons = (props: any) => {
             >
                 В архив
             </button>
-            <button type="button" className="btn btn-secondary btn-admin">Редактировать</button>
         </div>
     )
 };
@@ -181,7 +180,15 @@ const PatientButtons = (props:any) => {
     return (
         myDoctor?
             <div className="btn-group" role="group" aria-label="Basic example">
-                <button type="button" className="btn btn-primary" data-toggle="modal" data-target={`#${doctorId}`} data-whatever="@mdo">Записаться</button>
+                <button
+                    type="button"
+                    className="btn btn-primary btn-width-50percent"
+                    data-toggle="modal"
+                    data-target={`#${doctorId}`}
+                    data-whatever="@mdo"
+                >
+                    Записаться
+                </button>
                 <AppointmentView doctorId={doctorId} patientId={patientId}/>
                 <button
                     type="button"
