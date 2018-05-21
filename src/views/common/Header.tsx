@@ -142,6 +142,7 @@ const DoctorHeader = (props:any) => {
                                 Мои пациенты
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link to={`/appointments`} className="dropdown-item">Записи</Link>
                                 <Link to={`/patients/my`} className="dropdown-item">Текущие пациенты</Link>
                                 <Link to={`/patients/my/claims`} className="dropdown-item">Заявки</Link>
                             </div>

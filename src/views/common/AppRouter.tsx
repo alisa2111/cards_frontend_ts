@@ -17,6 +17,7 @@ import MyDoctorsPage from "../roles/patient/MyDoctorsPage";
 import MyClaimsPage from "../roles/docrtor/MyClaimsPage";
 import {Doctor} from "../../models/Doctor";
 import DoctorProfile from "./DoctorProfile";
+import DoctorAppointmentsPage from "../roles/docrtor/DoctorAppointmentsPage";
 
 interface Props{
     user?: User
@@ -33,6 +34,8 @@ export default class AppRouter extends React.Component<Props> {
            return(
                <BrowserRouter>
                    <Switch>
+                       <Route exact={true} path='/appointments'
+                              render={() => <DoctorAppointmentsPage onLogin={onLogin} user={user}/>}/>
                        <Route exact={true} path='/patientCard' render={() =>
                            <PatientCard
                                user={user}
@@ -56,7 +59,7 @@ export default class AppRouter extends React.Component<Props> {
                                self={true}
                            />}/>
                        <Route exact={true} path='/patients/my'
-                              render={() => <MyPatientsPage onLogin={onLogin} user={user}/>}/>
+                              render={() => <MyPatientsPage onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
                        <Route exact={true} path='/patients/my/claims'
                               render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
                        <Route exact={true} path='/patients' render={() =>

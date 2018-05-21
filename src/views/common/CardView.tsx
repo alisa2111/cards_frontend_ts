@@ -182,7 +182,7 @@ const PatientButtons = (props:any) => {
         myDoctor?
             <div className="btn-group" role="group" aria-label="Basic example">
                 <button type="button" className="btn btn-primary" data-toggle="modal" data-target={`#${doctorId}`} data-whatever="@mdo">Записаться</button>
-                <AppointmentView doctorId={doctorId}/>
+                <AppointmentView doctorId={doctorId} patientId={patientId}/>
                 <button
                     type="button"
                     className="btn btn-danger btn-width-50percent"

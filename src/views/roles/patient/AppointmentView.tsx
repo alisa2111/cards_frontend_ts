@@ -5,6 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 interface Props{
     doctorId: number
+    patientId: number
 }
 
 export default class AppointmentView extends React.Component<Props,any> {
@@ -32,9 +33,26 @@ export default class AppointmentView extends React.Component<Props,any> {
 
     addAppointment(){
         const {startDate, time} = this.state;
-        console.log(startDate.format("DD/MM/YY"));
-        console.log(time);
-        console.log (this.props.doctorId)}
+        const {doctorId, patientId} = this.props;
+
+        fetch(`http://localhost:8080/api/patient/addappointment`, {
+            method: 'post',
+            headers: {
+                'Content-Type':'application/x-www-form-urlencoded'
+            },
+            body:
+            "patientId=" + patientId +
+            "&doctorId=" + doctorId +
+            "&data=" + startDate.format("DD/MM/YYYY") +
+            "&time=" + time
+        })
+            .then((res: any) => {
+                location.reload();
+            })
+            .catch((err: any) => {
+                console.log(err)
+            })
+    }
 
     render() {
         const {doctorId} =  this.props;
@@ -54,7 +72,7 @@ export default class AppointmentView extends React.Component<Props,any> {
                                     <DatePicker
                                         selected={this.state.startDate}
                                         onChange={this.handleChange}
-                                        dateFormat={"DD/MM/YY"}
+                                        dateFormat={"DD/MM/YYYY"}
                                     />
 
                                 <br/>

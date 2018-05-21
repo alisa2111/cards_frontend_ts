@@ -86,8 +86,7 @@ export default class DoctorRegistration extends React.Component<any,any> {
             })
         })
             .then((res: any) => {
-                console.log(res);
-                return res;
+                location.reload();
             })
             .catch((err: any) => {
                 console.log(err)

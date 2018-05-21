@@ -7,7 +7,7 @@ interface Props{
     user?: User
     onLogin: (user: User) => void
 }
-export default class AppointmentsPage extends React.Component<Props,any> {
+export default class DoctorAppointmentsPage extends React.Component<Props,any> {
     constructor(props: any) {
         super(props);
         this.state = {
@@ -16,23 +16,22 @@ export default class AppointmentsPage extends React.Component<Props,any> {
     }
 
     componentWillMount(){
-        let patientStr = localStorage.getItem("signedInPatient");
-        let patientId = -1;
-        if (patientStr != null) {
-            patientId = JSON.parse(patientStr).id;
+        let doctorStr = localStorage.getItem("signedInDoc");
+        let doctorId = -1;
+        if (doctorStr != null) {
+            doctorId = JSON.parse(doctorStr).id;
         }
-        fetch(`http://localhost:8080/api/patient/getRecordToDoctors`, {
+        fetch(`http://localhost:8080/api/doctor/getRecordToDoctors`, {
             method: 'post',
             headers: {
                 'Content-Type':'application/x-www-form-urlencoded'
             },
-            body: "patientId=" + patientId
+            body: "doctorId=" + doctorId
         })
             .then((res: any) => {
                 return res.json();
             })
             .then((result:any)=>{
-                console.log(result)
                 const appointments = result.map((r: any) => new Appointment(
                     r.lastName,
                     r.firstName,
@@ -40,7 +39,7 @@ export default class AppointmentsPage extends React.Component<Props,any> {
                     r.date,
                     r.time ));
                 this.setState({appointments})
-        })
+            })
             .catch((err: any) => {
                 console.log(err)
             })
@@ -54,11 +53,12 @@ export default class AppointmentsPage extends React.Component<Props,any> {
         );
         return(
             <div className="container-fluid">
-                <Header onLogin={onLogin} user = {user} isPatient={true} />
+                <Header onLogin={onLogin} user = {user} isDoctor={true} />
+                <div className="center name-of-page"><h2>Записи на приём</h2></div>
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">ФИО врача</th>
+                        <th scope="col">ФИО пациента</th>
                         <th scope="col">Дата записи</th>
                         <th scope="col">Время записи</th>
                     </tr>
