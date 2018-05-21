@@ -65,3 +65,12 @@ td{
     margin-left: 80px;
     margin-top: 10px;
 }
+
+.name-of-page{
+    margin-top: 25px;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 4px;
+    width: 500px;
+}
