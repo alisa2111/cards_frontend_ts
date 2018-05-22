@@ -14,7 +14,9 @@ export default class AuthDialog extends React.Component<Props,any> {
         this.state = {
             email: '',
             password:'',
-            role:''
+            role:'',
+            error:'',
+            error_flag: false
         };
     }
 
@@ -40,8 +42,44 @@ export default class AuthDialog extends React.Component<Props,any> {
         })
     }
 
+    setError(error: string) {
+        this.setState({
+            error: error
+        })
+    }
+
+    setErrorFlag(flag: boolean) {
+        this.setState({
+            error_flag: flag
+        })
+    }
+
+    validate() {
+        const {email, password} = this.state;
+        let reg = email.match(/^[0-9a-z-\.]+\@[0-9a-z-]{2,}\.[a-z]{2,}$/i);
+        let length = password.length;
+
+        if (email === '' || password === '') {
+            this.setError("Необходимо заполнить все поля!");
+            this.setErrorFlag(true);
+        }
+
+        else {
+
+            if (!reg || length < 3) {
+                this.setError("Неправильный email или пароль!");
+                this.setErrorFlag(true);
+            }
+
+            else {
+                this.login();
+            }
+        }
+    }
+
+
     login() {
-      const {email , password} = this.state;
+      const {email, password} = this.state;
         fetch(`http://localhost:8080/api/authorization`, {
             method: 'post',
             headers: {
@@ -124,6 +162,7 @@ export default class AuthDialog extends React.Component<Props,any> {
     }
 
     render(){
+        const {error} = this.state;
         return(
             <div>
                 <button className='nav-link' data-toggle="modal" data-target="#exampleModalCenter"> Войти</button>
@@ -134,6 +173,11 @@ export default class AuthDialog extends React.Component<Props,any> {
                                 <h5 className="modal-title" id="exampleModalLongTitle">Авторизация</h5>
                             </div>
                             <div className="modal-body">
+                                {error === '' ? null :
+                                    <div className="alert alert-danger" role="alert">
+                                        {error}
+                                    </div>
+                                }
                                 <div className="login-page">
                                     <input
                                         className="input-auth"
@@ -149,7 +193,7 @@ export default class AuthDialog extends React.Component<Props,any> {
                             </div>
                             <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary " data-dismiss="modal">Закрыть</button>
-                                <button type="button" className="btn btn-primary " onClick={()=>this.login()}>Войти</button>
+                                <button type="button" className="btn btn-primary " onClick={()=>this.validate()}>Войти</button>
                             </div>
                         </div>
                     </div>
