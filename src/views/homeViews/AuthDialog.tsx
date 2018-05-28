@@ -4,6 +4,7 @@ import 'styles/AuthDialog.css'
 import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";
 import {Doctor} from "../../models/Doctor";
+import config from "../../../config";
 interface Props{
     user?: User
     onLogin: (user: User) => void
@@ -80,7 +81,7 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     login() {
       const {email, password} = this.state;
-        fetch(`http://localhost:8080/api/authorization`, {
+        fetch(config.urls.AUTHORIZATION, {
             method: 'post',
             headers: {
                 'Content-Type': `application/json`,
@@ -119,7 +120,7 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     saveToStorageIfPatient(email: string){
         let newPatient;
-        fetch("http://localhost:8080/api/patients/getByEmail", {
+        fetch(config.urls.GET_PATIENT_BY_EMAIL, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
@@ -141,7 +142,7 @@ export default class AuthDialog extends React.Component<Props,any> {
 
     saveToStorageIfDoctor(email: string){
         let doctor;
-        fetch("http://localhost:8080/api/doctor/getByEmail", {
+        fetch(config.urls.GET_DOCTOR_BY_EMAIL, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

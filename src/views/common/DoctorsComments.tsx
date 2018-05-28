@@ -3,6 +3,7 @@ import {User} from "../../models/User";
 import {DoctorComment} from "../../models/DoctorComment";
 import "styles/Comments.css";
 import {Doctor} from "../../models/Doctor";
+import config from "../../../config";
 
 interface Props{
     user: User
@@ -32,7 +33,7 @@ export default class DoctorsComments extends React.Component<Props,any> {
         let d = new Date();
         //dd.MM.yyyy HH:mm
         let date = d.getDay() + '.' + d.getMonth() + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
-        fetch(`http://localhost:8080/api/patients/history/add`, {
+        fetch(config.urls.DOCTOR_ADD_COMMENT, {
             method: 'post',
             headers: {
                 'Content-Type': `application/json`,
@@ -66,7 +67,7 @@ export default class DoctorsComments extends React.Component<Props,any> {
 
     componentWillMount(){
         const {patientId} = this.props;
-        fetch(`http://localhost:8080/api/patients/history/getHistory`, {
+        fetch(config.urls.GET_PATIENT_HISTORY, {
             method: 'post',
             headers: {
                 'Content-type':'application/x-www-form-urlencoded',

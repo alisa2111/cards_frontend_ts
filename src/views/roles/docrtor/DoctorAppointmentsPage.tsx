@@ -2,6 +2,7 @@ import * as React from 'react';
 import {User} from "../../../models/User";
 import Header from "../../common/Header";
 import {Appointment} from "../../../models/Appointment";
+import config from "../../../../config";
 
 interface Props{
     user?: User
@@ -21,7 +22,7 @@ export default class DoctorAppointmentsPage extends React.Component<Props,any> {
         if (doctorStr != null) {
             doctorId = JSON.parse(doctorStr).id;
         }
-        fetch(`http://localhost:8080/api/doctor/getRecordToDoctors`, {
+        fetch(config.urls.DOCTOR_GET_APPOINTMENTS, {
             method: 'post',
             headers: {
                 'Content-Type':'application/x-www-form-urlencoded'

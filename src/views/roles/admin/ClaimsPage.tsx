@@ -4,6 +4,7 @@ import {User} from "../../../models/User";
 import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
+import config from "../../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -32,7 +33,7 @@ export default class ClaimsPage extends React.Component<Props,any> {
 };
 
     componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/claim/all`, {
+        fetch(config.urls.ADMIN_GET_ALL_CLAIMS, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -83,7 +84,7 @@ const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phoneNumber , address, birthday , password, id} = props.patient;
     const {refreshClaims} = props;
     function addPatient() {
-        fetch(`http://localhost:8080/api/patients/add`, {
+        fetch(config.urls.ADMIN_ACCEPT_CLAIM, {
             method: 'post',
             headers: {
                 'Content-Type': `application/json`,
@@ -113,7 +114,7 @@ const PatientRow = (props: any) => {
     }
 
     function declineClaim() {
-        fetch(`http://localhost:8080/api/patients/declineClaimForRegistration`, {
+        fetch(config.urls.ADMIN_CANCEL_CLAIM, {
             method: 'post',
             headers: {
                 'Content-Type': "application/x-www-form-urlencoded",

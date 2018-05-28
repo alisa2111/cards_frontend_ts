@@ -1,5 +1,6 @@
 import * as React from "react";
 import 'styles/Registration.css'
+import config from "../../../../config";
 export default class DoctorRegistration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
@@ -67,7 +68,7 @@ export default class DoctorRegistration extends React.Component<any,any> {
             const {surname, name, patronymic, email, password, department , specialty, practise_date} = this.state;
             let practise_date_ =  practise_date.replace('-','.');
             practise_date_ =  practise_date_.replace('-','.');
-              fetch(`http://localhost:8080/api/doctors/registration`, {
+              fetch(config.urls.ADMIN_REGISTR_NEW_DOCTOR, {
                 method: 'post',
                 headers: {
                     'Content-Type': `application/json`,

@@ -5,6 +5,7 @@ import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
 import {Link} from "react-router-dom";
+import config from "../../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -34,7 +35,7 @@ export default class MyClaimsPage extends React.Component<Props,any> {
 
     componentWillMount(){
         const {id} = this.props.user;
-        fetch(`http://localhost:8080/api/doctor/getAllPatientForAccept`, {
+        fetch(config.urls.DOCTOR_GET_CLAIMS, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -85,10 +86,10 @@ export default class MyClaimsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phoneNumber , address, birthday} = props.patient;
     const {onPatient, refreshClaims, doctorId} = props;
-    let requestForImage = "http://localhost:8080/api/image/" + id;
+    let requestForImage = config.urls.IMAGE + id;
 
     function acceptClaim(){
-        fetch(`http://localhost:8080/api/doctor/approvedClaimPatient`, {
+        fetch(config.urls.DOCTOR_ACCEPT_CLAIM, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`,
@@ -106,7 +107,7 @@ const PatientRow = (props: any) => {
     }
 
     function declineClaim() {
-        fetch(`http://localhost:8080/api/doctor/declineClaimPatient`, {
+        fetch(config.urls.DOCTOR_CANCEL_CLAIM, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`,
@@ -126,7 +127,7 @@ const PatientRow = (props: any) => {
     return (
         <tr>
             <td>
-                <Link to={"/patientCard"}>
+                <Link to={config.links.PATIENT_CARD}>
                     <img
                         onClick={() => {
                             const patient = new Patient(id, surname, name, patronymic, email, gender, "", address, phoneNumber, birthday);

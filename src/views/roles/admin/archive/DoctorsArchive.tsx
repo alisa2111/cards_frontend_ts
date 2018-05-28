@@ -5,6 +5,7 @@ import {CardView} from "../../../common/CardView";
 import {img_doctor} from "../../../../data/doctor";
 import SearchComponent from "../../../common/SearchComponent";
 import {Doctor} from "../../../../models/Doctor";
+import config from "../../../../../config";
 
 
 interface Props{
@@ -36,7 +37,7 @@ export default class DoctorsArchive extends React.Component<Props,any> {
     };
 
     componentWillMount() {
-        fetch(`http://localhost:8080/api/archive/doctors/all`, {
+        fetch(config.urls.GET_ALL_DOCTORS_FROM_ARCHIVE, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'

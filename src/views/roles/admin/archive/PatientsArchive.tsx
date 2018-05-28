@@ -4,6 +4,7 @@ import Header from "../../../common/Header";
 import * as React from "react";
 import SearchComponent from "../../../common/SearchComponent";
 import {Link} from "react-router-dom";
+import config from "../../../../../config";
 
 interface Props{
     user: User
@@ -35,7 +36,7 @@ export default class PatientsArchive extends React.Component<Props,any> {
 
 
     componentWillMount(){
-        fetch(`http://localhost:8080/api/archive/patients/all`, {
+        fetch(config.urls.GET_ALL_PATIENTS_FROM_ARCHIVE, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -89,10 +90,10 @@ export default class PatientsArchive extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phoneNumber , address, birthday} = props.patient;
     const {refreshPatientsArchive, onPatient}=props;
-    let requestForImage = "http://localhost:8080/api/image/" + id;
+    let requestForImage = config.urls.IMAGE + id;
 
     function restorePatient(){
-        fetch(`http://localhost:8080/api/archive/patients/restore`, {
+        fetch(config.urls.RESTORE_PATIENTS_FROM_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -109,7 +110,7 @@ const PatientRow = (props: any) => {
     }
 
     function deletePatient(){
-        fetch(`http://localhost:8080/api/archive/patients/delete`, {
+        fetch(config.urls.DELETE_PATIENT_FROM_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -128,7 +129,7 @@ const PatientRow = (props: any) => {
     return (
         <tr>
             <td>
-                <Link to={"/patientCard"}>
+                <Link to={config.links.PATIENT_CARD}>
                     <img
                         onClick={() => {
                             const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phoneNumber, birthday);

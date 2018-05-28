@@ -5,6 +5,7 @@ import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
 import {Link} from "react-router-dom";
+import config from "../../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void
@@ -35,7 +36,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
 
     componentWillMount(){
         const {id} = this.props.user;
-        fetch(`http://localhost:8080/api/doctor/getAllPatient`, {
+        fetch(config.urls.DOCTOR_GET_ALL_PATIENTS, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -98,11 +99,11 @@ export default class MyPatientsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {id, surname, name , patronymic , gender,  email , phoneNumber , address, birthday} = props.patient;
     const {onPatient} = props;
-    let requestForImage = "http://localhost:8080/api/image/" + id;
+    let requestForImage = config.urls.IMAGE + id;
     return (
         <tr>
             <td>
-                <Link to={"/patientCard"}>
+                <Link to={config.links.PATIENT_CARD}>
                     <img
                         onClick={() => {
                             const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phoneNumber, birthday);

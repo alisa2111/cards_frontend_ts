@@ -4,6 +4,7 @@ import Header from "../../common/Header";
 import {img_doctor} from "../../../data/doctor";
 import {CardView} from "../../common/CardView";
 import {Doctor} from "../../../models/Doctor";
+import config from "../../../../config";
 
 interface Props{
     user: User
@@ -35,7 +36,7 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
 
     componentWillMount() {
         const {id} = this.props.user;
-        fetch(`http://localhost:8080/api/patient/getAllDoctorsForAccept`, {
+        fetch(config.urls.PATIENT_GET_DOCTORS, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`

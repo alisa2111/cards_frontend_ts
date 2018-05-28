@@ -18,6 +18,7 @@ import MyClaimsPage from "../roles/docrtor/MyClaimsPage";
 import {Doctor} from "../../models/Doctor";
 import DoctorProfile from "./DoctorProfile";
 import DoctorAppointmentsPage from "../roles/docrtor/DoctorAppointmentsPage";
+import config from "../../../config";
 
 interface Props{
     user?: User
@@ -34,9 +35,9 @@ export default class AppRouter extends React.Component<Props> {
            return(
                <BrowserRouter>
                    <Switch>
-                       <Route exact={true} path='/appointments'
+                       <Route exact={true} path={config.links.APPOINTMENTS}
                               render={() => <DoctorAppointmentsPage onLogin={onLogin} user={user}/>}/>
-                       <Route exact={true} path='/patientCard' render={() =>
+                       <Route exact={true} path={config.links.PATIENT_CARD} render={() =>
                            <PatientCard
                                user={user}
                                onLogin={onLogin}
@@ -47,7 +48,7 @@ export default class AppRouter extends React.Component<Props> {
                                isPatient={user.role === 'PATIENT'}
                            />}/>
 
-                       <Route exact={true} path='/profile' render={() =>
+                       <Route exact={true} path={config.links.PROFILE} render={() =>
                            <DoctorProfile
                                user={user}
                                onLogin={onLogin}
@@ -58,11 +59,11 @@ export default class AppRouter extends React.Component<Props> {
                                isPatient={user.role === 'PATIENT'}
                                self={true}
                            />}/>
-                       <Route exact={true} path='/patients/my'
+                       <Route exact={true} path={config.links.MY_PATIENTS}
                               render={() => <MyPatientsPage onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
-                       <Route exact={true} path='/patients/my/claims'
+                       <Route exact={true} path={config.links.DOCTOR_CLAIMS_FROM_PATIENTS}
                               render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
-                       <Route exact={true} path='/patients' render={() =>
+                       <Route exact={true} path={config.links.PATIENTS} render={() =>
                            <PatientsPage
                                onLogin={onLogin}
                                onPatient={onPatient}
@@ -70,7 +71,7 @@ export default class AppRouter extends React.Component<Props> {
                                isDoctor={true}
                            />
                        }/>
-                       <Redirect to='/patients/my'/>
+                       <Redirect to={config.links.MY_PATIENTS}/>
                    </Switch>
                </BrowserRouter>
            )
@@ -80,7 +81,7 @@ export default class AppRouter extends React.Component<Props> {
             return(
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path='/patientCard' render={() =>
+                        <Route exact={true} path={config.links.PATIENT_CARD} render={() =>
                             <PatientCard
                                 user={user}
                                 onLogin={onLogin}
@@ -89,7 +90,7 @@ export default class AppRouter extends React.Component<Props> {
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
 
-                        <Route exact={true} path='/profile' render={() =>
+                        <Route exact={true} path={config.links.PROFILE} render={() =>
                             <DoctorProfile
                                 user={user}
                                 onLogin={onLogin}
@@ -99,13 +100,13 @@ export default class AppRouter extends React.Component<Props> {
                                 isAdmin={user.role === 'ADMIN'}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
-                        <Route exact={true} path='/doctors'
+                        <Route exact={true} path={config.links.DOCTORS}
                                render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true} onDoctor={onDoctor}/>}/>
-                        <Route exact={true} path='/doctors/my'
+                        <Route exact={true} path={config.links.MY_DOCTORS}
                                render={() => <MyDoctorsPage onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
-                        <Route exact={true} path='/doctors/appointments'
+                        <Route exact={true} path={config.links.PATIENT_APPOINTMENTS}
                                render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
-                        <Redirect exact={true} to='/doctors'/>
+                        <Redirect exact={true} to={config.links.DOCTORS}/>
                     </Switch>
                 </BrowserRouter>
             )
@@ -115,7 +116,7 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path='/profile' render={() =>
+                        <Route exact={true} path={config.links.PROFILE} render={() =>
                             <DoctorProfile
                                 user={user}
                                 onLogin={onLogin}
@@ -125,15 +126,15 @@ export default class AppRouter extends React.Component<Props> {
                                 isAdmin={user.role === 'ADMIN'}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
-                        <Route exact={true} path='/staff' render={() => <StaffPage onDoctor={onDoctor} onLogin={onLogin} user={user}/>}/>
-                        <Route exact={true} path='/patients' render={() =>
+                        <Route exact={true} path={config.links.STAFF} render={() => <StaffPage onDoctor={onDoctor} onLogin={onLogin} user={user}/>}/>
+                        <Route exact={true} path={config.links.PATIENTS} render={() =>
                             <PatientsPage
                                 onLogin={onLogin}
                                 onPatient={onPatient}
                                 user={user}/>}/>
-                        <Route exact={true} path='/patients/claim'
+                        <Route exact={true} path={config.links.CLAIMS}
                                render={() => <ClaimsPage onLogin={onLogin} user={user}/>}/>
-                        <Route exact={true} path='/patientCard' render={() =>
+                        <Route exact={true} path={config.links.PATIENT_CARD} render={() =>
                             <PatientCard
                                 user={user}
                                 onLogin={onLogin}
@@ -143,11 +144,11 @@ export default class AppRouter extends React.Component<Props> {
                                 isAdmin={user.role === 'ADMIN'}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
-                        <Route exact={true} path='/archive/staff'
+                        <Route exact={true} path={config.links.ARCHIVE_DOCTORS}
                                render={() => <DoctorsArchive onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
-                        <Route exact={true} path='/archive/patients'
+                        <Route exact={true} path={config.links.ARCHIVE_PATIENTS}
                                render={() => <PatientsArchive onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
-                        <Route exact={true} path='/profile' render={() =>
+                        <Route exact={true} path={config.links.PROFILE} render={() =>
                             <DoctorProfile
                                 user={user}
                                 onLogin={onLogin}
@@ -157,7 +158,7 @@ export default class AppRouter extends React.Component<Props> {
                                 isAdmin={user.role === 'ADMIN'}
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
-                        <Redirect exact={true} to='/staff'/>
+                        <Redirect exact={true} to={config.links.STAFF}/>
                     </Switch>
                 </BrowserRouter>
             )
@@ -167,7 +168,7 @@ export default class AppRouter extends React.Component<Props> {
             return (
                 <BrowserRouter>
                     <Switch>
-                        <Route exact={true} path='/doctors' render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
+                        <Route exact={true} path={config.links.DOCTORS} render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
                         <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>
                     </Switch>
                 </BrowserRouter>

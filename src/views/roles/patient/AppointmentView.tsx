@@ -2,6 +2,7 @@ import * as React from "react";
 import DatePicker from 'react-datepicker';
 import  * as moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
+import config from "../../../../config";
 
 interface Props{
     doctorId: number
@@ -35,7 +36,7 @@ export default class AppointmentView extends React.Component<Props,any> {
         const {startDate, time} = this.state;
         const {doctorId, patientId} = this.props;
 
-        fetch(`http://localhost:8080/api/patient/addappointment`, {
+        fetch(config.urls.PATIENT_ADD_APPOINTMENT, {
             method: 'post',
             headers: {
                 'Content-Type':'application/x-www-form-urlencoded'

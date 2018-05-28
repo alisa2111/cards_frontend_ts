@@ -3,6 +3,7 @@ import {CardView} from "./CardView";
 import {img_doctor} from "../../data/doctor";
 import SearchComponent from "./SearchComponent";
 import {Doctor} from "../../models/Doctor";
+import config from "../../../config";
 
 interface Props {
     isAdmin?:boolean;
@@ -36,7 +37,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
 
 
     componentWillMount(){
-        fetch(`http://localhost:8080/api/doctors/all`, {
+        fetch(config.urls.GET_ALL_DOCTORS, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'

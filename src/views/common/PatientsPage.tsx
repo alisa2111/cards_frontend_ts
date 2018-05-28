@@ -6,6 +6,7 @@ import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";
 import SearchComponent from "./SearchComponent";
 import Header from "./Header";
+import config from "../../../config";
 interface Props{
     isDoctor?:boolean
     user: User
@@ -36,7 +37,7 @@ export default class PatientsPage extends React.Component<Props,any> {
     };
 
     componentWillMount(){
-        fetch(`http://localhost:8080/api/patients/all`, {
+        fetch(config.urls.GET_ALL_PATIENTS, {
             method: 'get',
             headers: {
                 'Accept': 'application/json'
@@ -99,10 +100,10 @@ export default class PatientsPage extends React.Component<Props,any> {
 const PatientRow = (props: any) => {
     const {surname, name , patronymic , gender,  email , phoneNumber , address, birthday, id} = props.patient;
     const {refreshPatients, onPatient, isDoctor} = props;
-    let requestForImage = "http://localhost:8080/api/image/" + id;
+    let requestForImage = config.urls.IMAGE + id;
 
     function addToArchive() {
-        fetch(`http://localhost:8080/api/archive/patients/add`, {
+        fetch(config.urls.MOVE_PATIENT_TO_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -121,7 +122,7 @@ const PatientRow = (props: any) => {
     return (
         <tr>
             <td>
-                <Link to={"/patientCard"}>
+                <Link to={config.links.PATIENT_CARD}>
                     <img
                         onClick={() => {
                             const patient = new Patient(id,surname, name, patronymic, email, gender, "", address , phoneNumber, birthday);

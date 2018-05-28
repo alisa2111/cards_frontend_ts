@@ -1,5 +1,6 @@
 import * as React from "react";
 import 'styles/Registration.css'
+import config from "../../../config";
 export default class Registration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);
@@ -74,7 +75,7 @@ export default class Registration extends React.Component<any,any> {
         const {surname, name, patronymic, email, gender, password, address, phoneNumber, birthday} = this.state;
         let birthday_ =  birthday.replace('-','.');
         birthday_ =  birthday_.replace('-','.');
-        fetch(`http://localhost:8080/api/patients/registration`, {
+        fetch(config.urls.PATIENT_REGISTRATION, {
             method: 'post',
             headers: {
                 'Content-Type': `application/json`,

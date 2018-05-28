@@ -1,4 +1,5 @@
 import * as React from "react";
+import config from "../../../config";
 
 interface Props {
     accountId: string
@@ -24,7 +25,7 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
         data.append('file', file);
         data.append("id", accountId);
         let request = new XMLHttpRequest();
-        request.open("POST", "http://localhost:8080/api/upload");
+        request.open("POST", config.urls.UPLOAD_IMAGE);
         request.send(data);
         request.onreadystatechange = function () {
             if (request.readyState == 4) {
@@ -40,7 +41,7 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
     render() {
         const {isFormActive} = this.state;
         const {accountId, isPatient, isAdmin, isDoctor, self} = this.props;
-        let requestForImage = "http://localhost:8080/api/image/" + accountId;
+        let requestForImage = config.urls.IMAGE + accountId;
         return (
             <div className="col-md-6 col-lg-6 ">
                 <img alt="User Pic" src={requestForImage} className="img-circle avatar"/>

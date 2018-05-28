@@ -2,11 +2,12 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {Doctor} from "../../models/Doctor";
 import AppointmentView from "../roles/patient/AppointmentView";
+import config from "../../../config";
 
 export const CardView = (props:any) => {
     const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;
     const {myDoctor, refreshDoctorsArchive, onDoctor, refreshDoctors} = props;
-    let requestForImage = "http://localhost:8080/api/image/" + id;
+    let requestForImage = config.urls.IMAGE + id;
     return(
         //col-lg-4
         <div className="col-sm-4">
@@ -46,7 +47,7 @@ const AdminButtons = (props: any) => {
     const {refreshDoctorsArchive} = props;
 
     function addToArchive() {
-        fetch(`http://localhost:8080/api/archive/doctors/add`, {
+        fetch(config.urls.MOVE_DOCTOR_TO_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -80,7 +81,7 @@ const ArchiveButtons = (props: any) => {
     const {refreshDoctorsArchive} = props;
 
     function restoreDoctor(){
-        fetch(`http://localhost:8080/api/archive/doctors/restore`, {
+        fetch(config.urls.RESTORE_DOCTOR_FROM_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -97,7 +98,7 @@ const ArchiveButtons = (props: any) => {
     }
 
     function deleteDoctor(){
-        fetch(`http://localhost:8080/api/archive/doctors/delete`, {
+        fetch(config.urls.DELETE_DOCTOR_FROM_ARCHIVE, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -138,7 +139,7 @@ const PatientButtons = (props:any) => {
     }
 
     function addDoctor() {
-        fetch(`http://localhost:8080/api/patient/addDoctor`, {
+        fetch(config.urls.PATIENT_ADD_DOCTOR, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
@@ -161,7 +162,7 @@ const PatientButtons = (props:any) => {
     }
 
     function deleteDoctor() {
-        fetch(`http://localhost:8080/api/patient/deleteDoctor`, {
+        fetch(config.urls.PATIENT_DELETE_DOCTOR, {
             method: 'post',
             headers: {
                 'Content-Type': `application/x-www-form-urlencoded`
