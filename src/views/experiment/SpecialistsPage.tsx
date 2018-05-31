@@ -14,6 +14,7 @@ interface Props{
 
     isDoctorsForPatient?: boolean
     isDoctorsInArchive?: boolean
+    isMyDoctor?: boolean
 }
 
 export default class SpecialistsPage extends React.Component<Props,any> {
@@ -87,7 +88,7 @@ export default class SpecialistsPage extends React.Component<Props,any> {
     }
 
     render() {
-        const {onLogin, user, onDoctor, isDoctorsForPatient = false, isDoctorsInArchive = false} = this.props;
+        const {onLogin, user, onDoctor, isDoctorsForPatient = false, isDoctorsInArchive = false, isMyDoctor = false} = this.props;
         const {doctors} = this.state;
         const groupedCards = this.groupBy(doctors, 'department');  //groped by department
         const groups = Object.keys(groupedCards).map((department, index) => (
@@ -105,7 +106,7 @@ export default class SpecialistsPage extends React.Component<Props,any> {
                             image={img_doctor}
                             refreshDoctors={this.refreshDoctors}
                             isPatient={isDoctorsForPatient}
-                            myDoctor={isDoctorsForPatient}
+                            myDoctor={isMyDoctor}
                             isArchive={isDoctorsInArchive}
                         />
                     ))}
