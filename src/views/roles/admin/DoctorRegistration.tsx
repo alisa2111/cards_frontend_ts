@@ -148,6 +148,7 @@ export default class DoctorRegistration extends React.Component<any,any> {
                                     </div>
                                     <select className="custom-select" id="inputGroupSelect01" onChange={(e) => this.setDepartment(e)}>
                                         <option value="Эндокринология">Эндокринология</option>
+                                        <option value="Хирургия">Хирургия</option>
                                         <option value="Дерматология">Дерматология</option>
                                         <option value="Онкодерматология">Онкодерматология</option>
                                         <option value="УЗИ-диагностика">УЗИ-диагностика</option>

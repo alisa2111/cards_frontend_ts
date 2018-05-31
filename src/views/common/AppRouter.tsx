@@ -8,17 +8,16 @@ import PatientsPage from "./PatientsPage";
 import StaffPage from "../roles/admin/StaffPage";
 import PatientCard from "../roles/admin/PatientCard";
 import ClaimsPage from "../roles/admin/ClaimsPage";
-import DoctorsArchive from "../roles/admin/archive/DoctorsArchive";
 import PatientsArchive from "../roles/admin/archive/PatientsArchive";
 import MyPatientsPage from "../roles/docrtor/MyPatientsPage";
 import AppointmentsPage from "../roles/patient/AppointmentsPage";
 import {Patient} from "../../models/Patient";
-import MyDoctorsPage from "../roles/patient/MyDoctorsPage";
 import MyClaimsPage from "../roles/docrtor/MyClaimsPage";
 import {Doctor} from "../../models/Doctor";
 import DoctorProfile from "./DoctorProfile";
 import DoctorAppointmentsPage from "../roles/docrtor/DoctorAppointmentsPage";
 import config from "../../../config";
+import SpecialistsPage from "../experiment/SpecialistsPage";
 
 interface Props{
     user?: User
@@ -103,7 +102,7 @@ export default class AppRouter extends React.Component<Props> {
                         <Route exact={true} path={config.links.DOCTORS}
                                render={() => <DoctorsPage onLogin={onLogin} user={user} isPatient={true} onDoctor={onDoctor}/>}/>
                         <Route exact={true} path={config.links.MY_DOCTORS}
-                               render={() => <MyDoctorsPage onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
+                               render={() => <SpecialistsPage onLogin={onLogin} user={user} onDoctor={onDoctor} isDoctorsForPatient={true}/>}/>
                         <Route exact={true} path={config.links.PATIENT_APPOINTMENTS}
                                render={() => <AppointmentsPage onLogin={onLogin} user={user}/>}/>
                         <Redirect exact={true} to={config.links.DOCTORS}/>
@@ -145,7 +144,7 @@ export default class AppRouter extends React.Component<Props> {
                                 isPatient={user.role === 'PATIENT'}
                             />}/>
                         <Route exact={true} path={config.links.ARCHIVE_DOCTORS}
-                               render={() => <DoctorsArchive onLogin={onLogin} user={user} onDoctor={onDoctor}/>}/>
+                               render={() => <SpecialistsPage onLogin={onLogin} user={user} onDoctor={onDoctor} isDoctorsInArchive={true}/>}/>
                         <Route exact={true} path={config.links.ARCHIVE_PATIENTS}
                                render={() => <PatientsArchive onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
                         <Route exact={true} path={config.links.PROFILE} render={() =>
