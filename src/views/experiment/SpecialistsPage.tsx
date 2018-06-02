@@ -1,7 +1,7 @@
 import {User} from "../../models/User";
 import {Doctor} from "../../models/Doctor";
 import * as React from "react";
-import config from "../../../config";
+import config from "../../config";
 import {img_doctor} from "../../data/doctor";
 import {CardView} from "../common/CardView";
 import Header from "../common/Header";

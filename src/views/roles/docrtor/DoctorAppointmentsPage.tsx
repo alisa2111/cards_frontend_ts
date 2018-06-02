@@ -2,7 +2,7 @@ import * as React from 'react';
 import {User} from "../../../models/User";
 import Header from "../../common/Header";
 import {Appointment} from "../../../models/Appointment";
-import config from "../../../../config";
+import config from "../../../config";
 
 interface Props{
     user?: User

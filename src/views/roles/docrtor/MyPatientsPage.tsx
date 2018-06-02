@@ -5,7 +5,7 @@ import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
 import {Link} from "react-router-dom";
-import config from "../../../../config";
+import config from "../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void

@@ -6,7 +6,7 @@ import {User} from "../../models/User";
 import {Patient} from "../../models/Patient";
 import SearchComponent from "./SearchComponent";
 import Header from "./Header";
-import config from "../../../config";
+import config from "../../config";
 interface Props{
     isDoctor?:boolean
     user: User

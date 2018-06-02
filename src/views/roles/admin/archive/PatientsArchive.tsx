@@ -4,7 +4,7 @@ import Header from "../../../common/Header";
 import * as React from "react";
 import SearchComponent from "../../../common/SearchComponent";
 import {Link} from "react-router-dom";
-import config from "../../../../../config";
+import config from "../../../../config";
 
 interface Props{
     user: User

@@ -2,7 +2,7 @@ import * as React from "react";
 import {Link} from "react-router-dom";
 import {Doctor} from "../../models/Doctor";
 import AppointmentView from "../roles/patient/AppointmentView";
-import config from "../../../config";
+import config from "../../config";
 
 export const CardView = (props:any) => {
     const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;

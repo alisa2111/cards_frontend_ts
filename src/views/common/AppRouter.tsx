@@ -16,7 +16,7 @@ import MyClaimsPage from "../roles/docrtor/MyClaimsPage";
 import {Doctor} from "../../models/Doctor";
 import DoctorProfile from "./DoctorProfile";
 import DoctorAppointmentsPage from "../roles/docrtor/DoctorAppointmentsPage";
-import config from "../../../config";
+import config from "../../config";
 import SpecialistsPage from "../experiment/SpecialistsPage";
 
 interface Props{

@@ -1,6 +1,6 @@
 import * as React from "react";
 import 'styles/Registration.css'
-import config from "../../../config";
+import config from "../../config";
 export default class Registration extends React.Component<any,any> {
     constructor(props:any) {
         super(props);

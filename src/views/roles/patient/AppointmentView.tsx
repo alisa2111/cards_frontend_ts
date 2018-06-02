@@ -2,7 +2,7 @@ import * as React from "react";
 import DatePicker from 'react-datepicker';
 import  * as moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
-import config from "../../../../config";
+import config from "../../../config";
 
 interface Props{
     doctorId: number

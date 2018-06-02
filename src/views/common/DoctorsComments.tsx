@@ -3,7 +3,7 @@ import {User} from "../../models/User";
 import {DoctorComment} from "../../models/DoctorComment";
 import "styles/Comments.css";
 import {Doctor} from "../../models/Doctor";
-import config from "../../../config";
+import config from "../../config";
 
 interface Props{
     user: User

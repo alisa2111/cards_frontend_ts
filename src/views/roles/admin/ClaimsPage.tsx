@@ -4,7 +4,7 @@ import {User} from "../../../models/User";
 import Header from "../../common/Header";
 import 'styles/Patients.css'
 import {Patient} from "../../../models/Patient";
-import config from "../../../../config";
+import config from "../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void

@@ -3,7 +3,7 @@ import {CardView} from "./CardView";
 import {img_doctor} from "../../data/doctor";
 import SearchComponent from "./SearchComponent";
 import {Doctor} from "../../models/Doctor";
-import config from "../../../config";
+import config from "../../config";
 
 interface Props {
     isAdmin?:boolean;
