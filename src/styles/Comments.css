@@ -109,7 +109,12 @@ p {
 .comment-actions li:hover {
     color: #0095ff;
 }
-.btn-textarea{
+.btn-textarea {
+    margin-top: 17px;
     margin-left: 10px;
     background-color: #082567;
+}
+
+.padding-10px {
+    padding: 10px;
 }

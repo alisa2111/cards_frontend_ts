@@ -5,6 +5,7 @@ interface Props {
     isDoctorArchive?:boolean;
     isPatient?:boolean;
     isPatientArchive?:boolean;
+    isRecords?:boolean;
     title?: string;
     placeholder?: string;
     refreshState?: any;
@@ -90,6 +91,30 @@ export default class SearchComponent extends React.Component<Props, any> {
             })
     };
 
+    searchRecords() {
+        const {input} = this.state;
+        const {refreshState} = this.props;
+        let patient = localStorage.getItem("patient");
+        if (patient != null) {
+            patient = JSON.parse(patient).id;
+        }
+        fetch(`http://localhost:8080/api/patient/getHistoryBySearch`, {
+            method: 'post',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': "application/x-www-form-urlencoded"
+            },
+            body: "patientId=" + patient + "&match=" + input
+        })
+            .then((res: any) => {
+                return res.json();
+            })
+            .then(refreshState)
+            .catch((err: any) => {
+                console.log(err)
+            })
+    };
+
     setStateInput(event: any) {
         this.setState({input: event.target.value});
     }
@@ -97,7 +122,7 @@ export default class SearchComponent extends React.Component<Props, any> {
     render() {
         const {title, placeholder,
             isDoctor = false, isDoctorArchive = false,
-            isPatient = false, isPatientArchive = false} = this.props;
+            isPatient = false, isPatientArchive = false, isRecords = false} = this.props;
         return (
             <div className="search-div center">
                 <input className="center"
@@ -119,6 +144,8 @@ export default class SearchComponent extends React.Component<Props, any> {
                                 this.searchPatients();
                             } else if (isPatientArchive) {
                                 this.searchPatientsArchive();
+                            } else if (isRecords) {
+                                this.searchRecords()
                             }
                         }}
                 >Поиск

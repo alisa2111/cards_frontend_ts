@@ -4,6 +4,7 @@ import {DoctorComment} from "../../models/DoctorComment";
 import "styles/Comments.css";
 import {Doctor} from "../../models/Doctor";
 import config from "../../config";
+import SearchComponent from "./SearchComponent";
 
 interface Props{
     user: User
@@ -32,7 +33,7 @@ export default class DoctorsComments extends React.Component<Props,any> {
         }
         let d = new Date();
         //dd.MM.yyyy HH:mm
-        let date = d.getDay() + '.' + d.getMonth() + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
+        let date = d.getDate() + '.' + (d.getMonth() + 1) + '.' + d.getFullYear() + ' ' + d.getHours() + ':' + d.getMinutes();
         fetch(config.urls.DOCTOR_ADD_COMMENT, {
             method: 'post',
             headers: {
@@ -106,9 +107,14 @@ export default class DoctorsComments extends React.Component<Props,any> {
         });
         return(
             <div className="container big-wrapper-comments">
+                <SearchComponent title="Поиск по тексту в записи"
+                                 placeholder="Поиск по записям в карточке"
+                                 refreshState={this.refreshComments}
+                                 isRecords={true}
+                />
                 <div className="comments">
-                    {user.role === "DOCTOR" ? <div className="comment-wrap">
-                        <div className="comment-block">
+                    {user.role === "DOCTOR" ? <div className="comment-wrap padding-10px">
+                        <div className="comment-block col-md-5 col-lg-5">
                                 <textarea
                                     onChange={(ev) => {
                                         this.setState({input: ev.target.value});
