@@ -80,7 +80,7 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                                     isAdmin={isAdmin}
                                     isArchive={isArchive}
                                     isPatient={isPatient}
-                                    refreshDoctorsArchive={this.refreshDoctors}
+                                    refreshDoctors={this.refreshDoctors}
                                     image={img_doctor}
                                 />
                             )

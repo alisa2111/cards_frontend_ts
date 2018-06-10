@@ -6,14 +6,14 @@ import config from "../../config";
 
 export const CardView = (props:any) => {
     const {surname, name, patronymic, specialty, id, email, department, practise_date} = props.data;
-    const {myDoctor, refreshDoctorsArchive, onDoctor, refreshDoctors} = props;
+    const {myDoctor, onDoctor, refreshDoctors} = props;
     let requestForImage = config.urls.IMAGE + id;
     return(
         //col-lg-4
         <div className="col-sm-4">
             <div className="card border border-dark" >
-                {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
-                {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctorsArchive}/> : null}
+                {props.isAdmin? <AdminButtons doctor={props.data} refreshDoctorsArchive={refreshDoctors}/> : null}
+                {props.isArchive? <ArchiveButtons doctor={props.data} refreshDoctorsArchive={refreshDoctors}/> : null}
                 {props.isPatient? <PatientButtons myDoctor={myDoctor} doctorId={id} refreshDoctors={refreshDoctors}/> : null}
                 {localStorage.getItem("user") === null ?
                     <img
