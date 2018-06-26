@@ -61,7 +61,8 @@ export default class MyPatientsPage extends React.Component<Props,any> {
                 this.setState({patients})
             })
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 

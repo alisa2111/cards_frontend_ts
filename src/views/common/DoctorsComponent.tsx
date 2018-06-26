@@ -48,7 +48,8 @@ export default class DoctorsComponent extends React.Component<Props,any> {
             })
             .then(this.refreshDoctors)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 

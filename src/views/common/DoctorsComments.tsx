@@ -53,7 +53,8 @@ export default class DoctorsComments extends React.Component<Props,any> {
             })
             .then(this.refreshComments)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 
@@ -81,7 +82,8 @@ export default class DoctorsComments extends React.Component<Props,any> {
             })
             .then(this.refreshComments)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 

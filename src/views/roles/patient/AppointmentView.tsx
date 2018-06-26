@@ -51,7 +51,8 @@ export default class AppointmentView extends React.Component<Props,any> {
                 location.reload();
             })
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 

@@ -59,7 +59,8 @@ const AdminButtons = (props: any) => {
             })
             .then(refreshDoctorsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -93,7 +94,8 @@ const ArchiveButtons = (props: any) => {
             })
             .then(refreshDoctorsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -110,7 +112,8 @@ const ArchiveButtons = (props: any) => {
             })
             .then(refreshDoctorsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -157,7 +160,8 @@ const PatientButtons = (props:any) => {
                 }
             })
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -174,7 +178,8 @@ const PatientButtons = (props:any) => {
             })
             .then(refreshDoctors)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 

@@ -44,7 +44,8 @@ export default class ClaimsPage extends React.Component<Props,any> {
             })
             .then(this.refreshClaims)
             .catch((err: any) => {
-            console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
         })
     }
 
@@ -109,7 +110,8 @@ const PatientRow = (props: any) => {
             })
             .then(refreshClaims)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -127,7 +129,8 @@ const PatientRow = (props: any) => {
             })
             .then(refreshClaims)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 

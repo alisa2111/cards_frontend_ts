@@ -47,7 +47,8 @@ export default class PatientsArchive extends React.Component<Props,any> {
             })
             .then(this.refreshPatientsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 
@@ -105,7 +106,8 @@ const PatientRow = (props: any) => {
             })
             .then(refreshPatientsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -122,7 +124,8 @@ const PatientRow = (props: any) => {
             })
             .then(refreshPatientsArchive)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 

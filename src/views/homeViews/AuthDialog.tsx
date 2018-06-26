@@ -114,7 +114,8 @@ export default class AuthDialog extends React.Component<Props,any> {
                 this.props.onLogin(user);
             })
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -137,6 +138,7 @@ export default class AuthDialog extends React.Component<Props,any> {
             })
             .catch( (err) =>{
                 console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
@@ -159,6 +161,7 @@ export default class AuthDialog extends React.Component<Props,any> {
             })
             .catch( (err) =>{
                 console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 

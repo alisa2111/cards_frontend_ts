@@ -48,7 +48,8 @@ export default class PatientsPage extends React.Component<Props,any> {
             })
             .then(this.refreshPatients)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             })
     }
 
@@ -115,7 +116,8 @@ const PatientRow = (props: any) => {
             })
             .then(refreshPatients)
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 

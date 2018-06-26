@@ -98,7 +98,8 @@ export default class Registration extends React.Component<any,any> {
                 location.reload();
             })
             .catch((err: any) => {
-                console.log(err)
+                console.log(err);
+                alert("Извините. Сервер недоступен в данный момент.");
             });
     }
 
