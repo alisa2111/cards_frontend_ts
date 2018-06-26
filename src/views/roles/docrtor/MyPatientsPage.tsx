@@ -74,6 +74,7 @@ export default class MyPatientsPage extends React.Component<Props,any> {
         return(
             <div className="container-fluid">
                 <Header onLogin={onLogin} user = {user} isDoctor={true} />
+                <div className="center name-of-page"><h2>Текущие пациенты</h2></div>
                 <table className="table table-hover table-bordered">
                     <thead>
                     <tr>
