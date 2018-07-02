@@ -78,7 +78,7 @@ export default class DoctorsArchive extends React.Component<Props,any> {
                                 <CardView
                                     data={doctor}
                                     onDoctor={onDoctor}
-                                    refreshDoctorsArchive={this.refreshDoctorsArchive}
+                                    refreshDoctors={this.refreshDoctorsArchive}
                                     isArchive={true}
                                     image={img_doctor}
                                 />
