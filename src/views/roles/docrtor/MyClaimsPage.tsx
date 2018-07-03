@@ -9,6 +9,7 @@ import config from "../../../config";
 interface Props{
     user: User
     onLogin: (user: User) => void
+    onPatient: (patient: Patient) => void
 }
 export default class MyClaimsPage extends React.Component<Props,any> {
     constructor(props: any) {
@@ -53,10 +54,10 @@ export default class MyClaimsPage extends React.Component<Props,any> {
     }
 
     render(){
-        const {onLogin , user} = this.props;
+        const {onLogin , user, onPatient} = this.props;
         const {patients} = this.state;
         const allPatientsView =  patients.map((u: Patient) =>
-            <PatientRow patient={u} refreshClaims={this.refreshClaims} doctorId={user.id}/>
+            <PatientRow patient={u} refreshClaims={this.refreshClaims} doctorId={user.id} onPatient={onPatient}/>
         );
         return(
             <div className="container-fluid">

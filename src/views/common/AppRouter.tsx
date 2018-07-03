@@ -62,7 +62,7 @@ export default class AppRouter extends React.Component<Props> {
                         <Route exact={true} path={config.links.MY_PATIENTS}
                                render={() => <MyPatientsPage onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
                         <Route exact={true} path={config.links.DOCTOR_CLAIMS_FROM_PATIENTS}
-                               render={() => <MyClaimsPage onLogin={onLogin} user={user}/>}/>
+                               render={() => <MyClaimsPage onLogin={onLogin} user={user} onPatient={onPatient}/>}/>
                         <Route exact={true} path={config.links.PATIENTS} render={() =>
                             <PatientsPage
                                 onLogin={onLogin}
