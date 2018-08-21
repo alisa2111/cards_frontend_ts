@@ -23,7 +23,7 @@ export default class SearchComponent extends React.Component<Props, any> {
         const {input} = this.state;
         const {refreshState} = this.props;
         fetch(`http://localhost:8080/api/doctors/search?match=${input}`, {
-            method: 'get',
+            method: 'post',
             headers: {
                 'Accept': 'application/json'
             }
@@ -41,7 +41,7 @@ export default class SearchComponent extends React.Component<Props, any> {
         const {input} = this.state;
         const {refreshState} = this.props;
         fetch(`http://localhost:8080/api/archive/doctors/search?match=${input}`, {
-            method: 'get',
+            method: 'post',
             headers: {
                 'Accept': 'application/json'
             }
@@ -59,7 +59,7 @@ export default class SearchComponent extends React.Component<Props, any> {
         const {input} = this.state;
         const {refreshState} = this.props;
         fetch(`http://localhost:8080/api/patients/search?match=${input}`, {
-            method: 'get',
+            method: 'post',
             headers: {
                 'Accept': 'application/json'
             }
@@ -77,7 +77,7 @@ export default class SearchComponent extends React.Component<Props, any> {
         const {input} = this.state;
         const {refreshState} = this.props;
         fetch(`http://localhost:8080/api/archive/patients/search?match=${input}`, {
-            method: 'get',
+            method: 'post',
             headers: {
                 'Accept': 'application/json'
             }
