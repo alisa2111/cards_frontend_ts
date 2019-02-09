@@ -65,7 +65,7 @@ const AdminHeader = (props:any) => {
             localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
-            location.href = '/'
+            location.href = config.FRONT_BASE_NAME
         }
     }
 
@@ -118,7 +118,7 @@ const DoctorHeader = (props:any) => {
             localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
-            location.href = '/'
+            location.href = config.FRONT_BASE_NAME
         }
     }
 
@@ -166,7 +166,7 @@ const PatientHeader = (props:any) => {
             localStorage.clear();
             user.isSignedIn = false;
             onLogin(user);
-            location.href = '/'
+            location.href = config.FRONT_BASE_NAME
         }
     }
 

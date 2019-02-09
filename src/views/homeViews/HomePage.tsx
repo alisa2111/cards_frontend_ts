@@ -1,6 +1,7 @@
 import * as React from "react";
 import "styles/HomePage.css"
-import {img_doctor} from "../../data/doctor";
+// @ts-ignore
+import * as img_doctor from "../../../src/images/e2.jpg";
 import {User} from "../../models/User";
 import Header from "../common/Header";
 import Registration from "./RegistrationApplication";

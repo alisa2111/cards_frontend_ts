@@ -33,7 +33,7 @@ export default class AppRouter extends React.Component<Props> {
         const {onLogin , user, patient, onPatient, doctor, onDoctor} = this.props;
         if( user && user.isSignedIn && user.role==='DOCTOR' ) {
             return(
-                <BrowserRouter>
+                <BrowserRouter basename={config.FRONT_BASE_NAME}>
                     <Switch>
                         <Route exact={true} path={config.links.APPOINTMENTS}
                                render={() => <DoctorAppointmentsPage onLogin={onLogin} user={user}/>}/>
@@ -79,7 +79,7 @@ export default class AppRouter extends React.Component<Props> {
 
         if( user &&  user.isSignedIn && user.role==='PATIENT' ) {
             return(
-                <BrowserRouter>
+                <BrowserRouter basename={config.FRONT_BASE_NAME}>
                     <Switch>
                         <Route exact={true} path={config.links.PATIENT_CARD} render={() =>
                             <PatientCard
@@ -114,7 +114,7 @@ export default class AppRouter extends React.Component<Props> {
 
         if( user &&  user.isSignedIn && user.role==='ADMIN' ) {
             return (
-                <BrowserRouter>
+                <BrowserRouter basename={config.FRONT_BASE_NAME}>
                     <Switch>
                         <Route exact={true} path={config.links.PROFILE} render={() =>
                             <DoctorProfile
@@ -166,7 +166,7 @@ export default class AppRouter extends React.Component<Props> {
 
         else {
             return (
-                <BrowserRouter>
+                <BrowserRouter basename={config.FRONT_BASE_NAME}>
                     <Switch>
                         <Route exact={true} path={config.links.DOCTORS} render={()=><DoctorsPage onDoctor={onDoctor} onLogin={onLogin} user={user} isAdmin={false}/>}/>
                         <Route exact={true} path='*' render={() =>  <HomePage onLogin={onLogin} user={user}/>}/>

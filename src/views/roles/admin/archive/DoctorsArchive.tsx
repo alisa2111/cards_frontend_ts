@@ -2,7 +2,6 @@ import * as React from 'react';
 import {User} from "../../../../models/User";
 import Header from "../../../common/Header";
 import {CardView} from "../../../common/CardView";
-import {img_doctor} from "../../../../data/doctor";
 import SearchComponent from "../../../common/SearchComponent";
 import {Doctor} from "../../../../models/Doctor";
 import config from "../../../../config";
@@ -80,7 +79,6 @@ export default class DoctorsArchive extends React.Component<Props,any> {
                                     onDoctor={onDoctor}
                                     refreshDoctors={this.refreshDoctorsArchive}
                                     isArchive={true}
-                                    image={img_doctor}
                                 />
                             )
                         })}

@@ -1,7 +1,6 @@
 import * as React from 'react';
 import {User} from "../../../models/User";
 import Header from "../../common/Header";
-import {img_doctor} from "../../../data/doctor";
 import {CardView} from "../../common/CardView";
 import {Doctor} from "../../../models/Doctor";
 import config from "../../../config";
@@ -78,7 +77,6 @@ export default class MyDoctorsPage extends React.Component<Props,any> {
                                 <CardView
                                     data={doctor}
                                     onDoctor={onDoctor}
-                                    image={img_doctor}
                                     isPatient={true}
                                     myDoctor={true}
                                     refreshDoctors={this.refreshDoctors}

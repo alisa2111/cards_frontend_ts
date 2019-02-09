@@ -1,6 +1,5 @@
 import * as React from "react";
 import {CardView} from "./CardView";
-import {img_doctor} from "../../data/doctor";
 import SearchComponent from "./SearchComponent";
 import {Doctor} from "../../models/Doctor";
 import config from "../../config";
@@ -82,7 +81,6 @@ export default class DoctorsComponent extends React.Component<Props,any> {
                                     isArchive={isArchive}
                                     isPatient={isPatient}
                                     refreshDoctors={this.refreshDoctors}
-                                    image={img_doctor}
                                 />
                             )
                         })}

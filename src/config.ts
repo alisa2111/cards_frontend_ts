@@ -1,8 +1,9 @@
 // app urls
 // const FRONTEND_URL = `http://localhost:3000`;
-const BACKEND_URL = `http://localhost:8080/api`;
+const BACKEND_URL = `http://localhost:8080/medical-cards-api`;
 
 export default {
+    FRONT_BASE_NAME: 'medical-cards',
     links: {
         APPOINTMENTS: `/appointments`,
         PATIENT_CARD: `/patientCard`,
