@@ -13,8 +13,7 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
     constructor(props: any) {
         super(props);
         this.state = {
-            isFormActive: false,
-            image: null
+            isFormActive: false
         };
     }
 
@@ -27,9 +26,10 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
         let request = new XMLHttpRequest();
         request.open("POST", config.urls.UPLOAD_IMAGE);
         request.send(data);
+        const component = this;
         request.onreadystatechange = function () {
             if (request.readyState == 4) {
-                location.reload();
+                component.setState({isFormActive: false});
             }
         }
     };
@@ -44,7 +44,8 @@ export default class ImageComponentWithUpload extends React.Component<Props, any
         let requestForImage = config.urls.IMAGE + accountId;
         return (
             <div className="col-md-6 col-lg-6 ">
-                <img alt="User Pic" src={requestForImage} className="img-circle avatar"/>
+                {/*Date.now() need for updating image from server*/}
+                <img alt="User Pic" src={`${requestForImage}?${Date.now()}`} className="img-circle avatar"/>
                 {isAdmin || (isPatient && self) || (isDoctor && self) ?
                     <div className="image-upload-div">
                         {isFormActive ?
