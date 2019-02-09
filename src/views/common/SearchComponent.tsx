@@ -1,4 +1,5 @@
 import * as React from "react";
+import config from '../../config';
 
 interface Props {
     isDoctor?:boolean;
@@ -22,7 +23,7 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchDoctors() {
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`http://localhost:8080/api/doctors/search?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_DOCTORS}?match=${input}`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json'
@@ -40,7 +41,7 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchDoctorsArchive() {
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`http://localhost:8080/api/archive/doctors/search?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_ARCHIVE_DOCTORS}?match=${input}`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json'
@@ -58,7 +59,7 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchPatients(){
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`http://localhost:8080/api/patients/search?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_PATIENTS}?match=${input}`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json'
@@ -76,7 +77,7 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchPatientsArchive(){
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`http://localhost:8080/api/archive/patients/search?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_ARCHIVE_PATIENTS}?match=${input}`, {
             method: 'post',
             headers: {
                 'Accept': 'application/json'
@@ -98,7 +99,7 @@ export default class SearchComponent extends React.Component<Props, any> {
         if (patient != null) {
             patient = JSON.parse(patient).id;
         }
-        fetch(`http://localhost:8080/api/patient/getHistoryBySearch`, {
+        fetch(config.urls.SEARCH_IN_PATIENT_HISTORY, {
             method: 'post',
             headers: {
                 'Accept': 'application/json',

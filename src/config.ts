@@ -10,6 +10,7 @@ export default {
         MY_PATIENTS: `/patients/my`,
         DOCTOR_CLAIMS_FROM_PATIENTS: `/patients/my/claims`,
         PATIENTS: `/patients`,
+        PATIENTS_CLAIM: `/patients/claim`,
         DOCTORS: `/doctors`,
         MY_DOCTORS: `/doctors/my`,
         PATIENT_APPOINTMENTS: `/doctors/appointments`,
@@ -52,6 +53,10 @@ export default {
         PATIENT_GET_APPOINTMENTS:`${BACKEND_URL}/patient/getRecordToDoctors`,
         PATIENT_ADD_APPOINTMENT: `${BACKEND_URL}/patient/addappointment`,
         PATIENT_GET_DOCTORS: `${BACKEND_URL}/patient/getAllDoctorsForAccept`,
-
+        SEARCH_IN_DOCTORS: `${BACKEND_URL}/doctors/search`,
+        SEARCH_IN_ARCHIVE_DOCTORS: `${BACKEND_URL}/archive/doctors/search`,
+        SEARCH_IN_PATIENTS: `${BACKEND_URL}/patients/search`,
+        SEARCH_IN_ARCHIVE_PATIENTS: `${BACKEND_URL}/archive/patients/search`,
+        SEARCH_IN_PATIENT_HISTORY: `${BACKEND_URL}/patient/getHistoryBySearch`
     }
 }

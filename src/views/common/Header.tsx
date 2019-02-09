@@ -2,6 +2,8 @@ import * as React from "react";
 import {Link} from 'react-router-dom'
 import {User} from "../../models/User";
 import AuthDialog from "../homeViews/AuthDialog";
+import config from '../../config';
+
 interface Props{
     user?: User
     onLogin: (user: User) => void
@@ -36,13 +38,13 @@ const MainHeader = (props:any) => {
             <div className="container">
                 <Link to={`/`} className="navbar-brand">MedicalCards</Link>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto">
                         <li className="nav-item">
-                            <Link className="nav-link" to={`/doctors`}>
+                            <Link className="nav-link" to={config.links.DOCTORS}>
                                 Наши специалисты
                             </Link>
                         </li>
@@ -72,22 +74,22 @@ const AdminHeader = (props:any) => {
             <div className="container">
                 <a className="navbar-brand nav-link">MedicalCards</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto">
 
                         <li className="nav-item ">
-                            <Link to={`/staff`} className="nav-link">Персонал</Link>
+                            <Link to={config.links.STAFF} className="nav-link">Персонал</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Пациенты
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link to={`/patients`} className="dropdown-item">Текущие пациенты</Link>
-                                <Link to={`/patients/claim`} className="dropdown-item">Заявки</Link>
+                                <Link to={config.links.PATIENTS} className="dropdown-item">Текущие пациенты</Link>
+                                <Link to={config.links.PATIENTS_CLAIM} className="dropdown-item">Заявки</Link>
                             </div>
                         </li>
                         <li className="nav-item dropdown">
@@ -95,8 +97,8 @@ const AdminHeader = (props:any) => {
                                 Архив
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link to={`/archive/staff`} className="dropdown-item">Персонал</Link>
-                                <Link to={`/archive/patients`} className="dropdown-item">Пациенты</Link>
+                                <Link to={config.links.ARCHIVE_DOCTORS} className="dropdown-item">Персонал</Link>
+                                <Link to={config.links.ARCHIVE_PATIENTS} className="dropdown-item">Пациенты</Link>
                             </div>
                         </li>
                         <li className="nav-item">
@@ -125,26 +127,26 @@ const DoctorHeader = (props:any) => {
             <div className="container">
                 <a className="navbar-brand nav-link">MedicalCards</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto">
 
                         <li className="nav-item ">
-                            <Link to={`/profile`} className="nav-link">Профиль</Link>
+                            <Link to={config.links.PROFILE} className="nav-link">Профиль</Link>
                         </li>
                         <li className="nav-item ">
-                            <Link to={`/patients`} className="nav-link">База</Link>
+                            <Link to={config.links.PATIENTS} className="nav-link">База</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Мои пациенты
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link to={`/appointments`} className="dropdown-item">Записи</Link>
-                                <Link to={`/patients/my`} className="dropdown-item">Текущие пациенты</Link>
-                                <Link to={`/patients/my/claims`} className="dropdown-item">Заявки</Link>
+                                <Link to={config.links.APPOINTMENTS} className="dropdown-item">Записи</Link>
+                                <Link to={config.links.MY_PATIENTS} className="dropdown-item">Текущие пациенты</Link>
+                                <Link to={config.links.DOCTOR_CLAIMS_FROM_PATIENTS} className="dropdown-item">Заявки</Link>
                             </div>
                         </li>
                         <li className="nav-item">
@@ -173,25 +175,25 @@ const PatientHeader = (props:any) => {
             <div className="container">
                 <a className="navbar-brand nav-link">MedicalCards</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    <span className="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"/>
                 </button>
 
                 <div className="collapse navbar-collapse" id="navbarResponsive">
                     <ul className="navbar-nav ml-auto">
 
                         <li className="nav-item ">
-                            <Link to={`/patientCard`} className="nav-link">Моя карточка</Link>
+                            <Link to={config.links.PATIENT_CARD} className="nav-link">Моя карточка</Link>
                         </li>
                         <li className="nav-item ">
-                            <Link to={`/doctors/appointments`} className="nav-link">Мои записи</Link>
+                            <Link to={config.links.PATIENT_APPOINTMENTS} className="nav-link">Мои записи</Link>
                         </li>
                         <li className="nav-item dropdown">
                             <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Специалисты
                             </a>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <Link to={`/doctors/my`} className="dropdown-item">Мои специалисты</Link>
-                                <Link to={`/doctors`} className="dropdown-item">Все специалисты</Link>
+                                <Link to={config.links.MY_DOCTORS} className="dropdown-item">Мои специалисты</Link>
+                                <Link to={config.links.DOCTORS} className="dropdown-item">Все специалисты</Link>
                             </div>
                         </li>
                         <li className="nav-item">
