@@ -23,11 +23,13 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchDoctors() {
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`${config.urls.SEARCH_IN_DOCTORS}?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_DOCTORS}`, {
             method: 'post',
             headers: {
-                'Accept': 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': "application/x-www-form-urlencoded"
+            },
+            body: "match=" + input
         })
             .then((res: any) => {
                 return res.json();
@@ -41,11 +43,13 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchDoctorsArchive() {
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`${config.urls.SEARCH_IN_ARCHIVE_DOCTORS}?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_ARCHIVE_DOCTORS}`, {
             method: 'post',
             headers: {
-                'Accept': 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': "application/x-www-form-urlencoded"
+            },
+            body: "match=" + input
         })
             .then((res: any) => {
                 return res.json();
@@ -59,11 +63,13 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchPatients(){
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`${config.urls.SEARCH_IN_PATIENTS}?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_PATIENTS}`, {
             method: 'post',
             headers: {
-                'Accept': 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': "application/x-www-form-urlencoded"
+            },
+            body: "match=" + input
         })
             .then((res: any) => {
                 return res.json();
@@ -77,11 +83,13 @@ export default class SearchComponent extends React.Component<Props, any> {
     searchPatientsArchive(){
         const {input} = this.state;
         const {refreshState} = this.props;
-        fetch(`${config.urls.SEARCH_IN_ARCHIVE_PATIENTS}?match=${input}`, {
+        fetch(`${config.urls.SEARCH_IN_ARCHIVE_PATIENTS}`, {
             method: 'post',
             headers: {
-                'Accept': 'application/json'
-            }
+                'Accept': 'application/json',
+                'Content-Type': "application/x-www-form-urlencoded"
+            },
+            body: "match=" + input
         })
             .then((res: any) => {
                 return res.json();
